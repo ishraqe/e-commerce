@@ -2,14 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d9e9577-da29-433e-8eee-9c385c4016fd" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Brand.php" afterPath="$PROJECT_DIR$/app/Brand.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Product.php" afterPath="$PROJECT_DIR$/app/Product.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/User.php" afterPath="$PROJECT_DIR$/app/User.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/app.php" afterPath="$PROJECT_DIR$/config/app.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/pages/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/pages/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/pages/shop.blade.php" afterPath="$PROJECT_DIR$/resources/views/pages/shop.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/pages/single-product.blade.php" afterPath="$PROJECT_DIR$/resources/views/pages/single-product.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/partials/related-product.blade.php" afterPath="$PROJECT_DIR$/resources/views/partials/related-product.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/pages/checkout.blade.php" afterPath="$PROJECT_DIR$/resources/views/pages/checkout.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/partials/cart.blade.php" afterPath="$PROJECT_DIR$/resources/views/partials/cart.blade.php" />
     </list>
     <ignored path="craftic.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,9 +34,9 @@
     <favorites_list name="craftic" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="ProductController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ProductController.php">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="2014_10_12_000000_create_users_table.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -40,32 +45,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PHP/\App\Http\Controllers\ProductController" pinned="false" current-in-tab="false">
-        <entry file="uml://PHP/\App\Http\Controllers\ProductController">
-          <provider selected="true" editor-type-id="UmlEditorProvider">
-            <state>
-              <ID>PHP</ID>
-              <OriginalElement>\App\Http\Controllers\ProductController</OriginalElement>
-              <nodes>
-                <node x="-193.0" y="-175.0">\Illuminate\Routing\Controller</node>
-                <node x="-163.5" y="113.0">\App\Http\Controllers\ProductController</node>
-              </nodes>
-              <notes />
-              <edges>
-                <edge source="\App\Http\Controllers\ProductController" target="\Illuminate\Routing\Controller">
-                  <point x="0.0" y="-69.5" />
-                  <point x="0.0" y="114.0" />
-                </edge>
-              </edges>
-              <settings layout="Hierarchic Group" zoom="1.0" x="-209.0" y="4.5" />
-              <SelectedNodes />
-              <Categories>
-                <Category>Fields</Category>
-                <Category>Constants</Category>
-                <Category>Constructors</Category>
-                <Category>Methods</Category>
-              </Categories>
-              <VISIBILITY>private</VISIBILITY>
+      <file leaf-file-name="Cart.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Cart.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="21" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="21" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -80,82 +65,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PHP/\App\Brand" pinned="false" current-in-tab="true">
-        <entry file="uml://PHP/\App\Brand">
-          <provider selected="true" editor-type-id="UmlEditorProvider">
-            <state>
-              <ID>PHP</ID>
-              <OriginalElement>\App\Brand</OriginalElement>
-              <nodes>
-                <node x="0.0" y="79.0">\Illuminate\Database\Eloquent\Model</node>
-                <node x="292.75" y="0.0">\Illuminate\Contracts\Support\Jsonable</node>
-                <node x="389.75" y="0.0">\ArrayAccess</node>
-                <node x="153.75" y="0.0">\Illuminate\Contracts\Queue\QueueableEntity</node>
-                <node x="39.75" y="0.0">\Illuminate\Contracts\Routing\UrlRoutable</node>
-                <node x="331.0" y="907.0">\App\Brand</node>
-                <node x="607.75" y="0.0">\JsonSerializable</node>
-                <node x="505.75" y="0.0">\Illuminate\Contracts\Support\Arrayable</node>
-              </nodes>
-              <notes />
-              <edges>
-                <edge source="\Illuminate\Database\Eloquent\Model" target="\ArrayAccess">
-                  <point x="64.08333333333348" y="-389.0" />
-                  <point x="448.5833333333335" y="54.0" />
-                  <point x="437.75" y="54.0" />
-                  <point x="0.0" y="14.5" />
-                </edge>
-                <edge source="\Illuminate\Database\Eloquent\Model" target="\Illuminate\Contracts\Support\Jsonable">
-                  <point x="-64.08333333333348" y="-389.0" />
-                  <point x="320.4166666666665" y="54.0" />
-                  <point x="331.25" y="54.0" />
-                  <point x="0.0" y="14.5" />
-                </edge>
-                <edge source="\Illuminate\Database\Eloquent\Model" target="\Illuminate\Contracts\Support\Arrayable">
-                  <point x="192.25" y="-389.0" />
-                  <point x="576.75" y="54.0" />
-                  <point x="546.75" y="54.0" />
-                  <point x="0.0" y="14.5" />
-                </edge>
-                <edge source="\Illuminate\Database\Eloquent\Model" target="\JsonSerializable">
-                  <point x="320.4166666666665" y="-389.0" />
-                  <point x="704.9166666666665" y="54.0" />
-                  <point x="664.25" y="54.0" />
-                  <point x="0.0" y="14.5" />
-                </edge>
-                <edge source="\Illuminate\Database\Eloquent\Model" target="\Illuminate\Contracts\Routing\UrlRoutable">
-                  <point x="-320.4166666666665" y="-389.0" />
-                  <point x="64.08333333333348" y="54.0" />
-                  <point x="86.75" y="54.0" />
-                  <point x="0.0" y="14.5" />
-                </edge>
-                <edge source="\App\Brand" target="\Illuminate\Database\Eloquent\Model">
-                  <point x="0.0" y="-25.5" />
-                  <point x="0.0" y="389.0" />
-                </edge>
-                <edge source="\Illuminate\Database\Eloquent\Model" target="\Illuminate\Contracts\Queue\QueueableEntity">
-                  <point x="-192.25" y="-389.0" />
-                  <point x="192.25" y="54.0" />
-                  <point x="213.25" y="54.0" />
-                  <point x="0.0" y="14.5" />
-                </edge>
-              </edges>
-              <settings layout="Hierarchic Group" zoom="0.8" x="489.625" y="970.875" />
-              <SelectedNodes>
-                <node>\App\Brand</node>
-              </SelectedNodes>
-              <Categories>
-                <Category>Fields</Category>
-                <Category>Constants</Category>
-              </Categories>
-              <VISIBILITY>private</VISIBILITY>
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" />
+      </list>
+    </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER">
@@ -234,50 +154,10 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="craftic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="craftic" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="craftic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="craftic" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -303,6 +183,12 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
@@ -338,18 +224,21 @@
       <updated>1481988704306</updated>
       <workItem from="1481988705719" duration="489000" />
       <workItem from="1482002385860" duration="1464000" />
+      <workItem from="1482154505623" duration="482000" />
+      <workItem from="1482155219644" duration="1143000" />
+      <workItem from="1482610584892" duration="17000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1953000" />
+    <option name="totallyTimeSpent" value="3595000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -385,7 +274,7 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ProductController.php">
+    <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -393,31 +282,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="uml://PHP/\App\Http\Controllers\ProductController">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>PHP</ID>
-          <OriginalElement>\App\Http\Controllers\ProductController</OriginalElement>
-          <nodes>
-            <node x="-193.0" y="-175.0">\Illuminate\Routing\Controller</node>
-            <node x="-163.5" y="113.0">\App\Http\Controllers\ProductController</node>
-          </nodes>
-          <notes />
-          <edges>
-            <edge source="\App\Http\Controllers\ProductController" target="\Illuminate\Routing\Controller">
-              <point x="0.0" y="-69.5" />
-              <point x="0.0" y="114.0" />
-            </edge>
-          </edges>
-          <settings layout="Hierarchic Group" zoom="1.0" x="-209.0" y="4.5" />
-          <SelectedNodes />
-          <Categories>
-            <Category>Fields</Category>
-            <Category>Constants</Category>
-            <Category>Constructors</Category>
-            <Category>Methods</Category>
-          </Categories>
-          <VISIBILITY>private</VISIBILITY>
+    <entry file="file://$PROJECT_DIR$/app/Cart.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="21" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Brand.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Brand.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ProductController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Brand.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -487,7 +395,7 @@
               <point x="0.0" y="14.5" />
             </edge>
           </edges>
-          <settings layout="Hierarchic Group" zoom="0.8" x="489.625" y="970.875" />
+          <settings layout="Hierarchic Group" zoom="0.8" x="490.0" y="971.0" />
           <SelectedNodes>
             <node>\App\Brand</node>
           </SelectedNodes>
@@ -495,6 +403,146 @@
             <Category>Fields</Category>
             <Category>Constants</Category>
           </Categories>
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://PHP/\App\Http\Controllers\OrderController">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>PHP</ID>
+          <OriginalElement>\App\Http\Controllers\OrderController</OriginalElement>
+          <nodes>
+            <node x="43.0" y="0.0">\App\Http\Controllers\Controller</node>
+            <node x="0.0" y="79.0">\App\Http\Controllers\OrderController</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="\App\Http\Controllers\OrderController" target="\App\Http\Controllers\Controller">
+              <point x="0.0" y="-58.5" />
+              <point x="0.0" y="14.5" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="1.0" x="-215.0" y="5.0" />
+          <SelectedNodes>
+            <node>\App\Http\Controllers\OrderController</node>
+          </SelectedNodes>
+          <Categories>
+            <Category>Fields</Category>
+            <Category>Constants</Category>
+            <Category>Constructors</Category>
+            <Category>Methods</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ProductController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://PHP/\App\Http\Controllers\ProductController">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>PHP</ID>
+          <OriginalElement>\App\Http\Controllers\ProductController</OriginalElement>
+          <nodes>
+            <node x="82.0" y="0.0">\App\Http\Controllers\Controller</node>
+            <node x="0.0" y="79.0">\App\Http\Controllers\ProductController</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="\App\Http\Controllers\ProductController" target="\App\Http\Controllers\Controller">
+              <point x="0.0" y="-102.5" />
+              <point x="0.0" y="14.5" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="1.0" x="-209.0" y="5.0" />
+          <SelectedNodes>
+            <node>\App\Http\Controllers\ProductController</node>
+          </SelectedNodes>
+          <Categories>
+            <Category>Fields</Category>
+            <Category>Constants</Category>
+            <Category>Constructors</Category>
+            <Category>Methods</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://PHP/\CreateUsersTable">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>PHP</ID>
+          <OriginalElement>\CreateUsersTable</OriginalElement>
+          <nodes>
+            <node x="0.0" y="0.0">\Illuminate\Database\Migrations\Migration</node>
+            <node x="14.5" y="124.0">\CreateUsersTable</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="\CreateUsersTable" target="\Illuminate\Database\Migrations\Migration">
+              <point x="0.0" y="-36.5" />
+              <point x="0.0" y="37.0" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="1.0" x="62.0" y="54.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Fields</Category>
+            <Category>Constants</Category>
+            <Category>Constructors</Category>
+            <Category>Methods</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Cart.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="21" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://PHP/\App\Cart">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>PHP</ID>
+          <OriginalElement>\App\Cart</OriginalElement>
+          <nodes>
+            <node x="-233.0" y="-135.0">\App\Cart</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="27.0" y="15.0" />
+          <SelectedNodes>
+            <node>\App\Cart</node>
+          </SelectedNodes>
+          <Categories>
+            <Category>Fields</Category>
+            <Category>Constants</Category>
+            <Category>Constructors</Category>
+            <Category>Methods</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
           <VISIBILITY>private</VISIBILITY>
         </state>
       </provider>

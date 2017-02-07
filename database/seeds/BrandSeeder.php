@@ -13,29 +13,10 @@ class BrandSeeder extends Seeder
     {
        $brand=new \App\Brand([
        	'brand_name'=>'Apple',
-        'category_id' =>1	
-      
+        'category_id' =>1	,
+         'brand_description'=> 'lorem',
+         'in_market_from'=> '1-12-99'
        	]);
-
-        $brand->save();
-        $brand=new \App\Brand([
-        'brand_name'=>'Symphony',
-        'category_id' =>2 
-        ]);
-
-        $brand->save();
-        $brand=new \App\Brand([
-        'brand_name'=>'Gucci',
-        'category_id' =>1 
-      
-        ]);
-
-        $brand->save();
-        $brand=new \App\Brand([
-        'brand_name'=>'Lee',
-        'category_id' =>1 
-      
-        ]);
 
         $brand->save();
     }

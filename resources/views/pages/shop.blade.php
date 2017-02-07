@@ -1,57 +1,62 @@
 @extends('layouts.master')  
 @section('content')
-    <div class="product-big-title-area">
+ 
+           
+                       
+    <section id="advertisement">
+        <div class="container">
+            <img src="/images/shop/advertisement.jpg" alt="" />
+        </div>
+    </section>
+    
+    <section>
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
-                    <div class="product-bit-title text-center">
-                        <h2>Shop</h2>
-                    </div>
+                <div class="col-sm-3">
+                   @include('partials.left-sidebar')
                 </div>
-            </div>
-        </div>
-    </div>
-    
-    
-    <div class="single-product-area">
-        <div class="zigzag-bottom"></div>
-        <div class="container">
-            @foreach($product->chunk(4) as $proChunk)
-                <div class="row">
-                @foreach($proChunk as $p)
-                    <div class="col-md-3 col-sm-6">
-                    <div class="single-shop-product">
-                        <div class="product-upper">
-                            <img src="img/product-2.jpg" alt="">
+                
+                <div class="col-sm-9 padding-right">
+                    <div class="features_items"><!--features_items-->
+                        <h2 class="title text-center">Features Items</h2>
+
+                    
+                        @foreach($product as $p)
+                        <div class="col-sm-4">
+                            <div class="product-image-wrapper">
+                                <div class="single-products">
+                                    <div class="productinfo text-center">
+                                        <img src="images/shop/product12.jpg" alt="" />
+                                        <h2>${{$p->price}}</h2>
+                                        <p>{{$p->title}}</p>
+                                        <a href="{{route('product.addToCart',['id'=>$p->id])}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        <a href="{{action('ProductController@show',[$p->id])}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>View Details</a>
+                                    </div>
+                                    <div class="product-overlay">
+                                        <div class="overlay-content">
+                                            <h2>$56</h2>
+                                            <p>Easy Polo Black Edition</p>
+                                            <a href="{{route('product.addToCart',['id'=>$p->id])}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="choose">
+                                    <ul class="nav nav-pills nav-justified">
+                                        <li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+                                        <li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                        <h2><a href="">{{$p->title}}</a></h2>
-                        <div class="product-carousel-price">
-                            <ins>${{$p->price}}</ins> <del>$999.00</del>
-                        </div>  
+                        @endforeach
                         
-                        <div class="product-option-shop">
-                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
-                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="{{action('ProductController@show',[$p->id])}}">View Details</a>
-                        </div>                       
-                    </div>
-                </div>
-                @endforeach
-               
-                </div>
-            @endforeach
-
-            
-            
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="product-pagination text-center">
-                        <nav>
-                          {!! $product->render() !!}
-                        </nav>                        
-                    </div>
+                       
+                    </div><!--features_items-->
+                     {!! $product->render() !!}
                 </div>
             </div>
         </div>
-    </div>
-
+    </section>
+    
+    
 @endsection

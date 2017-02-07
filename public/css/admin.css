@@ -1,0 +1,279 @@
+
+
+.navbar{
+	width: 102%;
+}
+.imageContainer{
+	background: url('/images/admin/bg.jpg') no-repeat ;
+	min-height: 679px;
+background-size: 72em 49em;
+}
+
+.login-formContainer {
+    background: #BBBBBB;
+    margin: -20px 0px 0px -30px;
+    height: 697px;
+}
+.login-formContainer-inner  {
+    padding-top: 211px;
+    padding-left: 52px;
+    padding-right: 49px;
+}
+.nav{
+	margin-right: -17px;
+}
+.dropdown-toggle > img:nth-child(1){
+    height: 23px;
+    width: 23px;
+}
+.dashboard .col-md-2{
+	width: 20%;
+	border-right: 1px solid black;
+}
+.dashboard{
+	margin-top: -20px;
+}
+.main-menu{
+	height: 100%;
+	margin-left: 24px;
+	margin-top: 10px;
+}
+.list-group{
+	width: inherit;
+}
+a.list-group-item i{
+    margin-right: 9px;
+}
+.dashboard .col-md-10{
+	    width: 79.333%;
+	    margin-left: 0px;
+		min-height: 618px;
+		height: 100%;
+		background-size: inherit;
+}
+.content-container{
+	margin-left: 13px;
+	height: 100%;
+    margin-top:19px ;
+	
+}
+.content-container-inner{
+	background: url('/images/admin/02.png') no-repeat;
+	
+	height: 225px;
+	border-radius: 6px;
+	background-size: 337px auto;
+}
+.content-text{
+	margin-top: -152px;
+margin-left: 131px;
+color: whitesmoke;
+padding: 15px;
+}
+.content-text h1{
+	margin-top: -34px;
+}
+.content-text button{
+	margin-top: 55px;
+}
+.service{
+	margin: 10px 0px 10px 13px;
+}
+.service-container{
+	height: 89px;
+	border-radius: 4px;
+	background: green;
+	padding: 13px 5px 10px 24px;
+}
+
+div.col-md-3:nth-child(1) > div:nth-child(1){
+	background: red;
+}
+div.col-md-3:nth-child(2) > div:nth-child(1){
+	background: grey;
+}
+div.col-md-3:nth-child(3) > div:nth-child(1){
+	background: green;
+}
+
+div.col-md-3:nth-child(4) > div:nth-child(1){
+	background: blue;
+}
+
+.service  i{
+	font-size: 40px;
+	padding: 22px
+	color: black;
+}
+.service span{
+	margin-left:  50px;
+font-size: 40px;
+}
+.service small{
+	font-size: 121%;
+}
+div.row:nth-child(3){
+	margin-right: -15px;
+	margin-left: -30px;
+	margin-top: 24px;
+}
+
+#cart_items .cart_info {
+  border: 1px solid #E6E4DF;
+  margin-bottom: 50px
+}
+
+
+#cart_items .cart_info .cart_menu {
+  background: #FE980F;
+  color: #fff;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: normal;
+}
+
+#cart_items .cart_info .table.table-condensed thead tr {
+  height: 51px;
+}
+
+
+#cart_items .cart_info .table.table-condensed tr {
+  border-bottom: 1px solid#F7F7F0
+}
+
+#cart_items .cart_info .table.table-condensed tr:last-child {
+  border-bottom: 0
+}
+
+.cart_info table tr td {
+  border-top: 0 none;
+  vertical-align: inherit;
+}
+
+
+#cart_items .cart_info .image {
+  padding-left: 30px;
+}
+
+
+#cart_items .cart_info .cart_description h4 {
+  margin-bottom: 0
+}
+
+#cart_items .cart_info .cart_description h4 a {
+  color: #363432;
+  font-family: 'Roboto',sans-serif;
+  font-size: 20px;
+  font-weight: normal;
+
+}
+
+#cart_items .cart_info .cart_description p {
+  color:#696763
+}
+
+
+#cart_items .cart_info .cart_price p {
+  color:#696763;
+  font-size: 18px
+}
+
+
+#cart_items .cart_info .cart_total_price {
+  color: #FE980F;
+  font-size: 24px;
+}
+
+.cart_product {
+  display: block;
+  margin: 15px -70px 10px 25px;
+}
+
+.cart_quantity_button a {
+  background:#F0F0E9;
+  color: #696763;
+  display: inline-block;
+  font-size: 16px;
+  height: 28px;
+  overflow: hidden;
+  text-align: center;
+  width: 35px;
+  float: left;
+}
+
+
+.cart_quantity_input {
+  color: #696763;
+  float: left;
+  font-size: 16px;
+  text-align: center;
+  font-family: 'Roboto',sans-serif;
+  
+}
+
+
+.cart_delete  {
+  display: block;
+  margin-right: -12px;
+  overflow: hidden;
+}
+
+
+.cart_delete a {
+  background:#F0F0E9;
+  color: #FFFFFF;
+  padding: 5px 7px;
+  font-size: 16px
+}
+
+.cart_delete a:hover {
+  background:#FE980F
+}
+
+
+.form-container{
+	margin-top: 10px;
+}
+.user_info {
+    display: block;
+    margin-bottom: 15px;
+    margin-left: -41px;
+    margin-top: 20px;
+    overflow: hidden;
+}
+.user_info .single_field {
+    width: 31%;
+}
+.user_info label,.form-group label {
+    color: #696763;
+    display: block;
+    font-size: 15px;
+    font-weight: normal;
+}
+.user_info input, select, textarea {
+    background: #F0F0E9;
+    border: 0;
+    color: #696763;
+    padding: 5px;
+    width: 100%;
+    border-radius: 0;
+    resize: none;
+}
+.user_info > li {
+    float: left;
+    margin-right: 10px;
+}
+ul li {
+    list-style: none;
+}
+.price-form{
+    width: 99px;
+}
+.pro-image{
+    width: 108px;
+height: 87px;
+}
+.search_box{
+  font-size: 15px;
+padding: 6px;
+}

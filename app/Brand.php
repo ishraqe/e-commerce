@@ -3,14 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Product;
 class Brand extends Model
 {
   
-    protected $fillable = array('brand_name');
+    protected $fillable = array('brand_name','brand_image','category_id','brand_description','in_market_from');
 
      public function product()
     {
-        return $this->hasMany('App\Product');
+        return $this->hasMany(Product::class);
     }
 }
