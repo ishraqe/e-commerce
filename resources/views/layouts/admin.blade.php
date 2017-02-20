@@ -37,20 +37,19 @@
             <li><a href="panels.html" class=""><i class="lnr lnr-cog"></i> <span>Panels</span></a></li>
             <li><a href="notifications.html" class=""><i class="lnr lnr-alarm"></i> <span>Notifications</span></a></li>
             <li><a href="{{url('/admin/product')}}" class=""><i class="lnr lnr-alarm"></i> <span>Products</span></a></li>
-            <li><a href="notifications.html" class=""><i class="lnr lnr-alarm"></i> <span>User</span></a></li>
-            <li><a href="notifications.html" class=""><i class="lnr lnr-alarm"></i> <span>Orders</span></a></li>
-            <li><a href="notifications.html" class=""><i class="lnr lnr-alarm"></i> <span>Review</span></a></li>
-            <li><a href="notifications.html" class=""><i class="lnr lnr-alarm"></i> <span>Blog</span></a></li>
             <li>
-              <a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>Pages</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+              <a href="#subPages" data-toggle="collapse" class="collapsed"><i class="fa fa-user-o" aria-hidden="true"></i></i> <span>User</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
               <div id="subPages" class="collapse ">
                 <ul class="nav">
-                  <li><a href="page-profile.html" class="">Profile</a></li>
+                  <li><a href="page-profile.html" class="">Reported users</a></li>
                   <li><a href="page-login.html" class="">Login</a></li>
                   <li><a href="page-lockscreen.html" class="">Lockscreen</a></li>
                 </ul>
               </div>
             </li>
+            <li><a href="notifications.html" class=""><i class="fa fa-shopping-cart" aria-hidden="true"></i> <span>Orders</span></a></li>
+            <li><a href="notifications.html" class=""><i class="fa fa-comments-o" aria-hidden="true"></i></i> <span>Review</span></a></li>
+            <li><a href="notifications.html" class=""><i class="fa fa-book" aria-hidden="true"></i> <span>Blog</span></a></li>
             <li><a href="tables.html" class=""><i class="lnr lnr-dice"></i> <span>Tables</span></a></li>
             <li><a href="typography.html" class=""><i class="lnr lnr-text-format"></i> <span>Typography</span></a></li>
             <li><a href="icons.html" class=""><i class="lnr lnr-linearicons"></i> <span>Icons</span></a></li>
@@ -165,9 +164,23 @@
 </script>
 
 <script type="text/javascript">
-  $("#confirmationCheck").on("click", function() {
-   // here asign the image to the modal when the user click the enlarge link
-   $('#confirmationmodal').modal('show'); // imagemodal is the id attribute assigned to the bootstrap modal, then i use the show function
+var productTitle=null;
+
+$('.action_button').find('.interaction').find('.edit').on('click', function(event){
+    
+
+   $("#edit_modal").modal();
+   $.ajax(
+   { 
+      url: '/en/api/v0.1/social/removeAlbum/',
+      type: 'GET',
+      dataType: 'JSON',
+      success: function (res) {
+        if(res.status == 2000){
+          window.location.href = '/'+vpUsername+'/albums';
+        }
+      }
+    });
 });
 </script>
 

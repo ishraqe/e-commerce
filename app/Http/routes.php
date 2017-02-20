@@ -63,9 +63,11 @@ Route::get('/shopping-cart',[
 	'uses'=>'ProductController@getCart',
 	'as' => 'product.shoppingCart'
 ]);
+
 Route::get('/cart',function(){
 	return view('pages.cart');
 });
+
 Route::get('/checkout',[
 	'uses'=>'ProductController@getCheckOut',
 	'as'=>'cart.checkout'
@@ -80,10 +82,28 @@ Route::post('/addReview/{id}',[
 	'as'=>'review.store'
 ]);
 
+Route::get('/blog',[
+    'uses' => 'blogController@getBlog',
+    'as'  => 'get.blog'
+
+]);
+
+Route::get('/blog-single/{id}', [
+    'uses' => 'blogController@showBlog',
+    'as'  => 'blog.single'
+]);
+
+
+
+
 Route::group(['prefix'=>'user'],function(){
 	Route::get('/account',[
 		'uses'=>'UserController@getAccount',
 		'as'=>'user.account'	
+	]);
+	Route::get('/myblog/{id}',[
+		'uses'=> 'UserController@getMyblog',
+		'as' => 'user.blog'
 	]);
 });
 
@@ -94,6 +114,8 @@ Route::group(['prefix'=>'admin'],function(){
 		'uses' => 'adminController@getLogin',
 		'as' =>'admin.login'
 	]);
+
+
 	Route::post('/login',[
 		'uses' => 'adminController@postLogin',
 		'as' =>'admin.postlogin'
@@ -112,6 +134,7 @@ Route::group(['prefix'=>'admin'],function(){
 		'as' =>'admin.dashboard',
 		'middleware'=>'admin'
 	]);
+
 
 	Route::get('/logout',function(){
 		Auth::logout();

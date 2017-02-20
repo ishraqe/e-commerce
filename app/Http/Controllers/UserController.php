@@ -12,6 +12,7 @@ use App\Brand;
 use App\Category;
 use App\Review;
 use DB;
+use App\Blog;
 use Session;
 use Illuminate\Support\Facades\Auth;
 
@@ -120,4 +121,21 @@ class UserController extends Controller
             'brand'  => $brand
         ]);
     }
+
+    public function getMyblog($id)
+    {
+
+      $category=Category::all();
+      $brand=Brand::all();
+      $myblog=Blog::where('user_id',$id)
+              ->orderBY('created_at','desc')
+              ->paginate(2);
+
+      return view('pages.blog.user.myblog')->with([
+        'myblog' => $myblog,
+        'category'=>$category,
+        'brand' => $brand
+      ]);
+    }
 }
+

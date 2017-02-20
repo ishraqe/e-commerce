@@ -4,8 +4,7 @@
 			 <a href="{{$productDetails->image}}" data-lightbox="{{$productDetails->image}}" data-title="{{$productDetails->title}}" >
               <img src="{{$productDetails->image}}" >
             </a>
-		
-			<h3>ZOOM</h3>
+			<h3>Click to enlarge</h3>
 		</div>
 		<div id="similar-product" class="carousel slide" data-ride="carousel">
 			

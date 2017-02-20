@@ -106,7 +106,7 @@ Dashboard
                         <tr class="text-center">
                           <th scope="row">{{$index++}}</th>
                           <td>
-                            <a href="{{$p->image}}" data-lightbox="{{$p->image}}" data-title="{{$p->title}}" style=" width: 72px; height: 62px;">
+                            <a href="{{$p->image}}" data-lightbox="{{$p->image}}" id="productImage" data-title="{{$p->title}}" style=" width: 72px; height: 62px;">
                               <img src="{{$p->image}}" style=" width: 72px; height: 62px;">
                             </a>
                             <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -126,37 +126,42 @@ Dashboard
                               </div>
                             </div>
                           </td>  
-                          <td><h4>{{ucfirst($p->title)}}</h4></td>
-                          <td><p>{{ucfirst( implode(' ', array_slice (str_word_count($p->description,2),0,7)))}}</p></td>
-                          <td><p>${{ucfirst($p->price)}}</p></td>     
-                          <td><p>{{ucfirst($p->category->category_name)}}</p></td>     
-                          <td><p>{{ucfirst($p->brand->brand_name) }}</p></td>     
-                          <td>
-                            <a href="{{action('adminController@editProductInfo',[$p->id])}}">Edit</a>
+                          <td><h4 id="productTitle">{{ucfirst($p->title)}}</h4></td>
+                          <td><p id="productDesc">{{ucfirst( implode(' ', array_slice (str_word_count($p->description,2),0,7)))}}</p></td>
+                          <td><p id="productPrice">${{ucfirst($p->price)}}</p></td>
+                          <td><p id="productCategory">{{ucfirst($p->category->category_name)}}</p></td>
+                          <td><p id="productBrand">{{ucfirst($p->brand->brand_name) }}</p></td>
+                          <td class="action_button">
+                            <div class="interaction">
+                              <a class="edit" id="confirmationCheck">Edit</a>
 
-                            <a class="cart_quantity_delete" id="confirmationCheck" href=#><i class="fa fa-times"></i></a>
-                            <div class="modal fade" id="confirmationmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                              <div class="modal-dialog">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                    <h4 class="modal-title" id="myModalLabel">Are you sure  you want to delete this product??</h4>
-                                  </div>
-                                  <div class="modal-body">
-                                    <a class="btn btn-success" href="{{action('adminController@deleteProduct',[$p->id])}}">Yes</a>
-                                    <button class="btn btn-danger" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                  </div>
-                                  <div class="modal-footer">
-                                    
-                                  </div>
-                                </div>
-                              </div>
+                            <a class="cart_quantity_delete" id="" href=#><i class="fa fa-times"></i></a>
                             </div>
+                            
                           </td>           
                         </tr>
                       @endforeach
                     </tbody>
                   </table>
+                  <div class="modal fade" tabindex="-1" role="dialog" id="edit_modal">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Edit info</h4>
+                      </div>
+                      <div class="modal-body">
+                          <form>
+                            <input type="text" id="productTitle" name="title">
+                          </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                      </div>
+                    </div><!-- /.modal-content -->
+                  </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
                 </div>
                 <div class="panel-footer">
                   <div class="row">

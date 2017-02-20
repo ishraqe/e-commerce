@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Home | E-Shopper</title>
+    <title>@yield('title')</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/font-awesome.min.css" rel="stylesheet">
     <link href="/css/prettyPhoto.css" rel="stylesheet">
@@ -75,7 +75,9 @@
                                 @if(Auth::user())
                                 <li class="dropdown"><a href="#"><i class="fa fa-user"></i> {{ucfirst(Auth::user()->name)}}<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="{{route('user.account')}}"><i class="fa fa-user"></i> Account</a></li>
+                                        <li><a href="{{route('user.account')}}"><i class="fa fa-user"></i> My profile</a></li>
+                                        <li><a href="{{action('UserController@getMyblog',[Auth::user()->id])}}"><i class="fa fa-user"></i> My Blogs</a></li>
+                                        <li><a href=""><i class="fa fa-user"></i> My products</a></li>
                                          <li><a href="#"><i class="fa fa-user"></i>Account Setting</a></li>
                                           <li><a href="#"><i class="fa fa-user"></i> Account blah blah</a></li>
                                         <li><a href="{{url('/logout')}}"><i class="fa fa-user"></i> Log-out</a></li> 
@@ -115,7 +117,7 @@
                                 </li> 
                                 <li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="blog.html">Blog List</a></li>
+                                        <li><a href="{{url('/blog')}}">Blog List</a></li>
                                         <li><a href="blog-single.html">Blog Single</a></li>
                                     </ul>
                                 </li> 

@@ -52,6 +52,7 @@ class adminController extends Controller
 		$category=Category::all();
 		$brand=Brand::all();
 		$product=$pro->getAllProduct();
+
 		return view('admin.dashboard')->with([
 			'product'=>$product,
 			'category'=>$category,
