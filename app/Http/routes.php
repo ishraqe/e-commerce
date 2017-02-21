@@ -101,10 +101,18 @@ Route::group(['prefix'=>'user'],function(){
 		'uses'=>'UserController@getAccount',
 		'as'=>'user.account'	
 	]);
+	
 	Route::get('/myblog/{id}',[
 		'uses'=> 'UserController@getMyblog',
 		'as' => 'user.blog'
 	]);
+
+	Route::post('/create-blog',[
+		'uses'=> 'blogController@create',
+		'as' => 'create.blog'
+	]);
+
+
 });
 
 

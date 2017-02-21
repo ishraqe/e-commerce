@@ -16,6 +16,7 @@ class CreateBlogsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->integer('user_id');
+            $table->string('short_description',45);
             $table->longText('blog_body');
             $table->string('blog_header_image')->nullable();
             $table->integer('vote');

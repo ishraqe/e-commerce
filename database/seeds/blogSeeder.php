@@ -14,6 +14,7 @@ class blogSeeder extends Seeder
         $blog=new \App\Blog([
             'title'=>'GIRLS PINK T SHIRT ARRIVED IN STORE',
             'user_id' =>1,
+            'short_description'=> 'hello im ish man',
             'blog_body'=> 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
 
@@ -35,6 +36,7 @@ class blogSeeder extends Seeder
         $blog=new \App\Blog([
             'title'=>'GIRLS PINK T SHIRT ARRIVED IN STORE',
             'user_id' =>1,
+            'short_description'=> 'hello im ish man',
             'blog_body'=> 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
 

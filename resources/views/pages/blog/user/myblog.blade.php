@@ -11,8 +11,14 @@
 				</div>
 				<div class="col-sm-9">
 					<div class="blog-post-area">
-						<button>Hello</button>
+						<!-- Button trigger modal -->
+						<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myBlogmodal">
+						  Add new blog
+						</button>
+						<!-- Modal -->
+						@include('partials.blog-editor')
 						<h2 class="title text-center">Latest From my Blog</h2>
+						@include('partials.message')
 						@foreach($myblog as $b)
 						<div class="single-blog-post">
 							<h3>{{$b->title}}</h3>
@@ -30,8 +36,7 @@
 										<i class="fa fa-star-half-o"></i>
 								</span>
 							</div>
-							
-							<p>{{implode(' ', array_slice(str_word_count($b->blog_body, 2), 0, 42))}}</p>
+							 <p>{!! $b->blog_body !!}</p>
 							<a  class="btn btn-primary" href="{{action('blogController@showBlog',[$b->id])}}">Read More</a>
 						</div>
 
@@ -45,3 +50,14 @@
 		</div>
 	</section>
 @endsection
+
+@if(!empty($errors->blogErrors->all()))
+@section('script')
+
+<script type="text/javascript">
+    $(window).load(function(){
+        $('#myBlogmodal').modal('show');
+    });
+</script>
+@endsection
+@endif
