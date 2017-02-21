@@ -6,7 +6,8 @@
         <h4 class="modal-title" id="myModalLabel">Add your blog content here:  (ajax form validation)</h4>
       </div>
       <div class="modal-body">
-        <form action="{{route('create.blog')}}" method="post">
+      
+        <form action="{{route('create.blog')}}" method="post" enctype="multipart/form-data" >
         <div class="form-group {{ $errors->blogErrors->first('blogTitle') ? ' has-error' : '' }}">
 				<label for="blog-title">Blog title</label>
 				<input type="text" class="form-control" id="blog-title"  name ="blogTitle" placeholder="Enter title here">

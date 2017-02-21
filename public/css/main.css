@@ -2550,3 +2550,7 @@ h2.title {
 .signUpError , .signInError{
   margin-left: -42px;
 }
+
+.blog-page{
+  margin: 19px 0px 0px -50px;
+}

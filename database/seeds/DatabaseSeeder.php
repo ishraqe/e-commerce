@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
 //        $this->call(ProductModelSeeder::class);
 //        $this->call(ReviewSeeder::class);
 //        $this->call(UserSeeder::class);
-        $this->call(blogSeeder::class);
+        // $this->call(blogSeeder::class);
+        $this->call(blogComment::class);
         
         
     

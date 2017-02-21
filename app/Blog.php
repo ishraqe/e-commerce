@@ -13,4 +13,9 @@ class Blog extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function blogComment()
+    {
+        return $this->hasMany(BlogComment::class);
+    }
+
 }

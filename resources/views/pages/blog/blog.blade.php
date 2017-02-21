@@ -30,14 +30,19 @@
 								</span>
 							</div>
 							<a href="">
+								@if(!empty($b->blog_header_image))
 								<img src="{{$b->blog_header_image}}" alt="">
+								@endif
 							</a>
-							<p>{{implode(' ', array_slice(str_word_count($b->blog_body, 2), 0, 42))}}</p>
+							<p>{{implode(' ', array_slice(str_word_count($b->short_description, 2), 0, 42))}}</p>
 							<a  class="btn btn-primary" href="{{action('blogController@showBlog',[$b->id])}}">Read More</a>
 						</div>
 
 						@endforeach
-						{!! $blog->links() !!}
+						
+						<div class="blog-page">
+							{!! $blog->links() !!}
+						</div>
 					</div>
 				</div>
 			</div>

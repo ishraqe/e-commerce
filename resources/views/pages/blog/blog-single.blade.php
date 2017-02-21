@@ -26,10 +26,11 @@
 									<i class="fa fa-star-half-o"></i>
 								</span>
 							</div>
+							<p>{{$blogDesc->short_description}}</p>
 							<a href="">
 								<img src="{{$blogDesc->blog_header_image}}" alt="">
 							</a>
-							<p>{{$blogDesc->blog_body}}</p>
+							<p>{!! $blogDesc->blog_body !!}</p>
 						</div>
 
 					</div><!--/blog-post-area-->
@@ -72,10 +73,12 @@
 						</div>
 					</div><!--Comments-->
 					<div class="response-area">
-						<h2>3 RESPONSES</h2>
+						<h2>{{count($blogDesc->blogComment)}} RESPONSES</h2>
 						<ul class="media-list">
-							<li class="media">
-								
+
+						@foreach($blogDesc->blogComment as $comment)
+							<h1>NOt done</h1>
+							<li class="media">	
 								<a class="pull-left" href="#">
 									<img class="media-object" src="images/blog/man-two.jpg" alt="">
 								</a>
@@ -89,7 +92,8 @@
 									<a class="btn btn-primary" href=""><i class="fa fa-reply"></i>Replay</a>
 								</div>
 							</li>
-							<li class="media second-media">
+							@endforeach
+							<!-- <li class="media second-media">
 								<a class="pull-left" href="#">
 									<img class="media-object" src="images/blog/man-three.jpg" alt="">
 								</a>
@@ -116,7 +120,7 @@
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 									<a class="btn btn-primary" href=""><i class="fa fa-reply"></i>Replay</a>
 								</div>
-							</li>
+							</li> -->
 						</ul>					
 					</div><!--/Response-area-->
 					<div class="replay-box">

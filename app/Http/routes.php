@@ -104,7 +104,8 @@ Route::group(['prefix'=>'user'],function(){
 	
 	Route::get('/myblog/{id}',[
 		'uses'=> 'UserController@getMyblog',
-		'as' => 'user.blog'
+		'as' => 'user.blog',
+		'middleware'=>'auth'
 	]);
 
 	Route::post('/create-blog',[

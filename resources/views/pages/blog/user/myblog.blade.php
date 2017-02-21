@@ -36,7 +36,7 @@
 										<i class="fa fa-star-half-o"></i>
 								</span>
 							</div>
-							 <p>{!! $b->blog_body !!}</p>
+							 <p>{{ $b->short_description }}</p>
 							<a  class="btn btn-primary" href="{{action('blogController@showBlog',[$b->id])}}">Read More</a>
 						</div>
 
@@ -44,7 +44,10 @@
 
 
 					</div>
-					{!! $myblog->render() !!}
+					<div class="blog-page">
+						{!! $myblog->render() !!}
+					</div>
+					
 				</div>
 			</div>
 		</div>

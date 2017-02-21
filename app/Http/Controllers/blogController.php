@@ -22,7 +22,7 @@ class blogController extends Controller
         $brand=Brand::all();
 
 
-        $blog=Blog::paginate(4);
+        $blog=Blog::orderBy('created_at','desc')->paginate(4);
 
 
 
@@ -36,6 +36,7 @@ class blogController extends Controller
     public function  showBlog($id){
         $blogDesc=Blog::findOrfail($id);
 
+        
         return view('pages.blog.blog-single')->with([
             'blogDesc'=>$blogDesc
         ]);
@@ -57,21 +58,34 @@ class blogController extends Controller
              return redirect()->back()->withErrors($validator, 'blogErrors');
         }else{
 
-            $blog =  Blog::create([
-                'title' => $request['blogTitle'],
-                'user_id' => Auth::user()->id,
-                'short_description' => $request['short_description'],
-                'blog_body' =>  $request['blogBody'],
-                'blog_header_image' => $request['blog_header_image'],
-               
-             ]);
+            if ($request->hasFile('blog_header_image')) {
+            $image = $request->file('blog_header_image');
+            $image_name = str_random(20);
+            $ext = strtolower($image->getClientOriginalExtension());
+            $image_full_name = $image_name . '.' . $ext;
+            $destination_path = 'products_images/';
+            $image_url ='/' .$destination_path . $image_full_name;
+            $success = $request->file('blog_header_image')->move($destination_path, $image_full_name);
+           
+            if ($success){
 
-            Session::flash('added_confirmation','Your blog has been created successfully');
+                     $blog =  Blog::create([
 
-            return redirect()->back();
-        }
+                    'title' => $request['blogTitle'],
+                    'user_id' => Auth::user()->id,
+                    'short_description' => $request['short_description'],
+                    'blog_body' =>  $request['blogBody'],
+                    'blog_header_image' => $image_url,
+                   
+                 ]);
 
+                Session::flash('added_confirmation','Your blog has been created successfully');
 
+                return redirect()->back();
+            }
 
+        }           
+        
     }
+}
 }
