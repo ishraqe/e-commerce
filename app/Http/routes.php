@@ -93,7 +93,10 @@ Route::get('/blog-single/{id}', [
     'as'  => 'blog.single'
 ]);
 
-
+Route::post('/blog/addComment/{id}', [
+    'uses' => 'blogController@addComment',
+    'as'  => 'blog.addComment'
+]);
 
 
 Route::group(['prefix'=>'user'],function(){

@@ -2554,3 +2554,7 @@ h2.title {
 .blog-page{
   margin: 19px 0px 0px -50px;
 }
+
+#blog-edit{
+  margin-top: -37px;
+}
