@@ -16,8 +16,7 @@ class AppServiceProvider extends ServiceProvider
     {
         view()->composer('layouts.master',function($view){
             $category=Category::all()->take(9); 
-            
-
+                 
             $brand=Brand::all()->take(9); 
             $view->with([
                 'category'  => $category,

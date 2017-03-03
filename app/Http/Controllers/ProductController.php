@@ -23,7 +23,7 @@ class ProductController extends Controller
     {
         
        
-    	$product=Product::all()->take(3);
+    	$product=Product::all()->take(6);
             
         $category=Category::all(); 
 

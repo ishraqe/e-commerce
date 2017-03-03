@@ -70,7 +70,7 @@
                                 <li><a href="{{route('product.wishListmain')}}">
                                     <i class="fa fa-star"></i> Wishlist
                                    
-                                    <span class="product-count">
+                                    <span class="badge">
                                     <?php if (Auth::guest()) { ?>
                                        {{Session::has('wish') ? Session::get('wish')->totalQty : ''}}
                                    <?php }else{ ?>
@@ -79,8 +79,6 @@
                                         echo $wishNumber;
                                         ?>
                                    <?php } ?>
-                                    
-                                    
                                     </span>
                                     </a>
                                 </li>
@@ -91,7 +89,7 @@
                                             ${{Session::has('cart') ? Session::get('cart')->totalPrice : ''}}
                                         </span>
                                         <i class="fa fa-shopping-cart"></i>
-                                        <span class="product-count">{{Session::has('cart') ? Session::get('cart')->totalQty : ''}}
+                                        <span class="badge">{{Session::has('cart') ? Session::get('cart')->totalQty : ''}}
                                         </span>
                                     </a>
                                 </li>
@@ -175,7 +173,7 @@
    
        
 
-  @yield('content')
+@yield('content')
    
     
     

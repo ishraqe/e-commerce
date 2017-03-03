@@ -2562,5 +2562,8 @@ h2.title {
 .single-products .productinfo img {
       height: 188px;
 }
+.badge {
+  background-color:  #47B374;
+}
 
 
