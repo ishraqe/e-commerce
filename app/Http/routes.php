@@ -33,6 +33,21 @@ Route::get('/', [
 |
   
 */
+
+
+
+Route::get('/category/all', [
+	'uses' => 'ProductController@categoryAll',
+	'as' => 'category.all'
+
+]);
+
+Route::get('/brand/all', [
+	'uses' => 'ProductController@brandAll',
+	'as' => 'brand.all'
+
+]);
+
 Route::get('/contact',function(){
 	return view('pages.contact-us');
 });

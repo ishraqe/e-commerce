@@ -115,12 +115,25 @@
                                         <li><a href="{{route('product.shoppingCart')}}">Cart</a></li>  
                                     </ul>
                                 </li> 
-                                <li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
+                                <li><a href="{{url('/blog')}}">Blog</a></li>
+                                <li class="dropdown"><a href="#">Categories<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="{{url('/blog')}}">Blog List</a></li>
-                                        <li><a href="blog-single.html">Blog Single</a></li>
+                                        @foreach($category as $c)
+                                        <li>
+                                            <a href="#">{{ ucfirst($c->category_name)}}</a>
+                                        </li>
+                                        @endforeach
+                                        <li><a href="{{route('category.all')}}">See all</a></li>
                                     </ul>
-                                </li> 
+                                </li>
+                                <li class="dropdown"><a href="#">Brands<i class="fa fa-angle-down"></i></a>
+                                    <ul role="menu" class="sub-menu">
+                                    @foreach($brand as $b)
+                                        <li><a href="#">{{ ucfirst($b->brand_name)}}</a></li>
+                                    @endforeach    
+                                        <li><a href="{{route('brand.all')}}">See all</a></li>
+                                    </ul>
+                                </li>  
                                 <li><a href="404.html">404</a></li>
                                 <li><a href="{{url('/contact')}}">Contact</a></li>
                             </ul>

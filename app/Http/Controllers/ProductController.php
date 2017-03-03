@@ -122,6 +122,38 @@ class ProductController extends Controller
     public function updateCart(Request $request){
         return "update cart";
     }
+    public function categoryAll()
+    {
+       $category=Category::all();
+
+       return view('pages.categories')->with([
+            'category' => $category
+        ]);
+
+    }
+
+    public function brandAll()
+    {
+        
+        // $brand = DB::table('brands')
+        //     ->join('products', 'brands.id', '=', 'products.brand_id')
+        //     ->select('*')
+        //     ->groupBY('brands.brand_name')
+        //     ->get();    
+        //     dd($brand);   
+
+
+    $brand =Brand::orderBy('created_at','desc')->get();
+
+  
+    $products='';
+        
+        
+        return view('pages.brand')->with([
+            'brand' => $brand,
+            'products' => $products
+        ]);
+    }
 
 
 }
