@@ -67,10 +67,33 @@
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
                                
-                                <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
+                                <li><a href="{{route('product.wishListmain')}}">
+                                    <i class="fa fa-star"></i> Wishlist
+                                   
+                                    <span class="product-count">
+                                    <?php if (Auth::guest()) { ?>
+                                       {{Session::has('wish') ? Session::get('wish')->totalQty : ''}}
+                                   <?php }else{ ?>
+                                       <?php 
+                                        $wishNumber= \App\WishList::where('user_id',Auth::user()->id)->count();
+                                        echo $wishNumber;
+                                        ?>
+                                   <?php } ?>
+                                    
+                                    
+                                    </span>
+                                    </a>
+                                </li>
                                 <li><a href="{{route('cart.checkout')}}"><i class="fa fa-crosshairs"></i> Checkout</a></li>
                                 <li> 
-                                    <a href="{{route('product.shoppingCart')}}">Cart - <span class="cart-amunt">${{Session::has('cart') ? Session::get('cart')->totalPrice : ''}}</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">{{Session::has('cart') ? Session::get('cart')->totalQty : ''}}</span></a>
+                                    <a href="{{route('product.shoppingCart')}}">Cart - 
+                                        <span class="cart-amunt">
+                                            ${{Session::has('cart') ? Session::get('cart')->totalPrice : ''}}
+                                        </span>
+                                        <i class="fa fa-shopping-cart"></i>
+                                        <span class="product-count">{{Session::has('cart') ? Session::get('cart')->totalQty : ''}}
+                                        </span>
+                                    </a>
                                 </li>
                                 @if(Auth::user())
                                 <li class="dropdown"><a href="#"><i class="fa fa-user"></i> {{ucfirst(Auth::user()->name)}}<i class="fa fa-angle-down"></i></a>

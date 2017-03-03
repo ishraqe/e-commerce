@@ -22,7 +22,7 @@ class ProductModelSeeder extends Seeder
     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
    ',
         'price'=> 120,
-        'image'=>'\home\ish\Desktop\craftic\public\product_images\qCBZBSusL1Q8nJVBy9jB.jpg'
+        'image'=>'http://www.apple.com/uk/pr/products/images/iMac27_iMac21_Photos_PRINT_131020_HERO.jpg'
 
 
         ]);

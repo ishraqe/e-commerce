@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Cart;
+use App\Wish;
 use App\Http\Requests;
 use App\Product;
 use App\Order;
@@ -13,6 +14,8 @@ use App\Category;
 use App\Review;
 use DB;
 use Session;
+use Auth;
+use App\WishList;
 
 class ProductController extends Controller
 {
@@ -95,7 +98,27 @@ class ProductController extends Controller
         return redirect()->back();
     }
 
+    public function addToWishlist(Request $request,$id)
+    {
+        if (!Auth::guest()) {
+            $product=Product::findOrfail($id);
+            $wishlist = WishList::create([
 
+                'product_id' => $product->id,
+                'user_id' => Auth::user()->id,
+            ]);
+
+            return redirect()->back(); 
+        }else{
+            $product=Product::findOrfail($id);
+            $oldWishlist=Session::has('wishlist') ? Session::get('wishlist') : null;
+            $wish=new Wish($oldWishlist);
+            $wish->add($product,$product->id);
+
+            $request->session()->put('wish',$wish);  
+            return redirect()->back(); 
+        }
+    }
     public function getCart(){
         $oldcart=[];
         $cart=[];
@@ -106,8 +129,44 @@ class ProductController extends Controller
             $oldcart=Session::get('cart');
             $cart = new Cart($oldcart);
             
-            return view('pages.cart',['product'=>$cart->items,'totalPrice'=>$cart->totalPrice]);
+            return view('pages.cart',[
+                'product'=>$cart->items,
+                'totalPrice'=>$cart->totalPrice,
+
+            ]);
         }
+    }
+
+    public function getWishList()
+    {
+
+        if (!Auth::guest()) {
+            $wishlist=WishList::where('user_id', Auth::user()->id)->get();
+            
+
+            return view('pages.wish',[
+                'wishlist'=>$wishlist
+                
+            ]);
+        }else{
+            $oldWish=[];
+            $wish=[];
+            if(!Session::has('wish')){
+                return view('pages.wish');
+            }else{
+                
+                $oldWish=Session::get('wish');
+                $wish = new Wish($oldWish);
+                
+
+                return view('pages.wish',[
+                    'product'=>$wish->items,
+                    'totalPrice'=>$wish->totalPrice,
+                    'image' => $wish->image
+                ]);
+            }
+        }
+        
     }
     public function getCheckOut(Request $request){
         if (!Session::has('cart')) {

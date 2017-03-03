@@ -22,7 +22,7 @@ class BrandSeeder extends Seeder
 
         $brand=new \App\Brand([
         'brand_name'=>'Samsung',
-        'category_id' =>1   ,
+        'category_id' =>2   ,
          'brand_description'=> 'lorem',
          'in_market_from'=> '1-12-99'
         ]);

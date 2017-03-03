@@ -74,10 +74,21 @@ Route::get('/add-to-cart/{id}',[
 	'as' => 'product.addToCart'
 ]);
 
+Route::get('/add-to-wishlist/{id}',[
+	'uses'=>'ProductController@addToWishlist',
+	'as' => 'product.addToWishlist'
+]);
+
 Route::get('/shopping-cart',[
 	'uses'=>'ProductController@getCart',
 	'as' => 'product.shoppingCart'
 ]);
+
+Route::get('/shopping-wishlist',[
+	'uses'=>'ProductController@getWishList',
+	'as' => 'product.wishListmain'
+]);
+
 
 Route::get('/cart',function(){
 	return view('pages.cart');

@@ -79,7 +79,7 @@ class blogController extends Controller
            
                 if ($success){
 
-                         $blog =  Blog::create([
+                    $blog =  Blog::create([
 
                         'title' => $request['blogTitle'],
                         'user_id' => Auth::user()->id,
