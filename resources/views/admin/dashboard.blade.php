@@ -133,9 +133,9 @@ Dashboard
                           <td><p id="productBrand">{{ucfirst($p->brand->brand_name) }}</p></td>
                           <td class="action_button">
                             <div class="interaction">
-                              <a class="edit" id="confirmationCheck">Edit</a>
+                              <a class="edit" href="{{action('adminController@showInfo',['id'=>$p->id])}}" id="confirmationCheck">Edit</a>
 
-                            <a class="cart_quantity_delete" id="" href=#><i class="fa fa-times"></i></a>
+                              <a class="cart_quantity_delete" id="" href=#><i class="fa fa-times"></i></a>
                             </div>
                             
                           </td>           

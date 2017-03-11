@@ -3030,3 +3030,6 @@ ul.activity-timeline > li:last-child:after {
   
 }
 
+.card-header-link{
+  font-size: 24px;
+}

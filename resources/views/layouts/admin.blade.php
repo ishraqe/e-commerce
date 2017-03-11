@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="/assets/css/vendor/icon-sets.css">
   <link rel="stylesheet" href="/assets/css/main.min.css">
-  <!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
+
   <link rel="stylesheet" href="/assets/css/demo.css">
   <link rel="stylesheet" type="text/css" href="/lightbox/lightbox.css">
   <!-- GOOGLE FONTS -->
@@ -157,6 +157,7 @@
 
 </script>
 <script type="text/javascript">
+
   $("#pop").on("click", function() {
    $('#imagepreview').attr('src', $('#imageresource').attr('src')); // here asign the image to the modal when the user click the enlarge link
    $('#imagemodal').modal('show'); // imagemodal is the id attribute assigned to the bootstrap modal, then i use the show function
@@ -183,6 +184,8 @@ $('.action_button').find('.interaction').find('.edit').on('click', function(even
     });
 });
 </script>
+
+@yield('script')
 
 </body>
 

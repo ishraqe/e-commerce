@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\BasicInfo;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests;
 use App\User;
+use League\Flysystem\Exception;
 use Session;
 use DB;
+use Validator;
 use App\Order;
 use App\Product;
 use App\Category;
@@ -52,6 +55,8 @@ class adminController extends Controller
 		$category=Category::all();
 		$brand=Brand::all();
 		$product=$pro->getAllProduct();
+
+
 
 		return view('admin.dashboard')->with([
 			'product'=>$product,
@@ -107,6 +112,8 @@ class adminController extends Controller
 		}
        
 	}
+
+
 	public function showProduct()
 	{
 		$pro=new Product();
@@ -126,6 +133,7 @@ class adminController extends Controller
 		$product=Product::findOrfail($id);
 		$category=Category::all();
 		$brand=Brand::all();
+
 		return view('admin.product.edit')->with([
 			'product' =>$product,
 			'category'=>$category,
@@ -182,12 +190,70 @@ class adminController extends Controller
 
 	public function deleteProduct($id)
 	{
-		$deleteProduct=Product::findOrfail($id)->delete();
-        Session::flash('delete_confirmation','Your Product has been deleted');
-		return redirect()->back();
+
+	    try{
+            Product::findOrfail($id)->delete();
+            Session::flash('delete_confirmation','Your Product has been deleted');
+            return redirect()->back();
+        }catch (Exception $e){
+	        return $e;
+        }
+
 	}
 
 	public function getProfile(){
+
+
 		return view('admin.page-profile');
 	}
+    public  function  editBasicProfile(Request $request){
+
+        $validator = Validator::make($request->all(), [
+            'mobile_number'=>'required|numeric',
+            'website'=>'required',
+            'user_image'=>'jpeg, png,jpg',
+            'about'    => 'required|max:100'
+        ]);
+        if ($validator->fails()) {
+
+            return redirect()->back()->withErrors($validator, 'editBasicError');
+        }else {
+
+            $image = $request->file('image');
+            try{
+                if ($image) {
+                    $image_name = str_random(20);
+                    $ext = strtolower($image->getClientOriginalExtension());
+                    $image_full_name = $image_name . '.' . $ext;
+                    $destination_path = 'product_images/';
+                    $image_url = '/' . $destination_path . $image_full_name;
+                    $success = $request->file('image')->move($destination_path, $image_full_name);
+
+
+                    if ($success) {
+
+                        $basic = BasicInfo::where('user_id', Auth::user()->id);
+
+                        $basic->mobile_number = $request['mobile_number'];
+                        $basic->website = $request['website'];
+                        $basic->user_image = $image_url;
+                        $basic->about = $request['about'];
+
+                        $basic->update();
+
+                        return redirect()->back();
+                    }
+                }
+            }catch(Exception $e){
+                return $e;
+            }
+        }
+    }
+
+
+
+
+
+	
 }
+

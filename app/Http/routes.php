@@ -166,6 +166,11 @@ Route::group(['prefix'=>'admin'],function(){
 		'middleware'=> 'admin'
 	]);
 
+    Route::post('/edit/basicProfile',[
+        'uses' =>'adminController@editBasicProfile',
+        'as'  => 'admin.editBasicProfile',
+        'middleware' => 'admin'
+    ]);
 
 	Route::get('/dashboard',[
 		'uses'=>'adminController@getDasborad',
@@ -207,6 +212,13 @@ Route::group(['prefix'=>'admin'],function(){
 		'as'=>'admin.deleteProduct',
 		'middleware'=>'admin'
 	]);
+
+	Route::get('/getInfo/{id}',[
+		'uses'=>'adminController@showInfo',
+		'as'=>'admin.showInfo',
+		'middleware'=>'admin'
+	]);
+
 
 	
 });

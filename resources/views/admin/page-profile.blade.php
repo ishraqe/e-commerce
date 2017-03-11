@@ -39,25 +39,38 @@
 						<div class="profile-info">
 							<h4 class="heading">Basic Info</h4>
 							<ul class="list-unstyled list-justify">
-								<li>Mobile <span>(124) 823409234</span></li>
+								<li>Mobile <span>{{Auth::user()->basicInfo->mobile_number}}</span></li>
 								<li>Email <span>{{Auth::user()->email}}</span></li>
-								<li>Website <span><a href="https://www.themeineed.com">www.themeineed.com</a></span></li>
+								<li>Website <span><a href="{{Auth::user()->basicInfo->website}}"  target="_blank">{{Auth::user()->basicInfo->website}}</a></span></li>
 							</ul>
 						</div>
-						<div class="profile-info">
-							<h4 class="heading">Social</h4>
-							<ul class="list-inline social-icons">
-								<li><a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a></li>
-								<li><a href="#" class="google-plus-bg"><i class="fa fa-google-plus"></i></a></li>
-								<li><a href="#" class="github-bg"><i class="fa fa-github"></i></a></li>
-							</ul>
-						</div>
+
 						<div class="profile-info">
 							<h4 class="heading">About</h4>
-							<p>Interactively fashion excellent information after distinctive outsourcing.</p>
+							<p>{{Auth::user()->basicInfo->about}}</p>
 						</div>
-						<div class="text-center"><a href="#" class="btn btn-primary">Edit Profile</a></div>
+						<div class="text-center">
+							<button class="btn btn-primary" data-toggle="modal" data-target="#profileEditModal" >Edit basic info</button>
+						</div>
+					</div>
+					<div class="modal fade" id="profileEditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+										<i class="material-icons">clear</i>
+									</button>
+									<h4 class="modal-title">Edit basic info</h4>
+								</div>
+								<div class="modal-body">
+									@include('admin.profile.edit-profile')
+								</div>
+								<div class="modal-footer">
+
+									<button type="button" class="btn btn-danger btn-simple" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
 					</div>
 					<!-- END PROFILE DETAIL -->
 				</div>
@@ -66,43 +79,43 @@
 				<div class="profile-right">
 					<h4 class="heading">{{Auth::user()->name}}'s Awards</h4>
 					<!-- AWARDS -->
-					<div class="awards">
-						<div class="row">
-							<div class="col-md-3 col-sm-6">
-								<div class="award-item">
-									<div class="hexagon">
-										<span class="lnr lnr-sun award-icon"></span>
-									</div>
-									<span>Most Bright Idea</span>
-								</div>
-							</div>
-							<div class="col-md-3 col-sm-6">
-								<div class="award-item">
-									<div class="hexagon">
-										<span class="lnr lnr-clock award-icon"></span>
-									</div>
-									<span>Most On-Time</span>
-								</div>
-							</div>
-							<div class="col-md-3 col-sm-6">
-								<div class="award-item">
-									<div class="hexagon">
-										<span class="lnr lnr-magic-wand award-icon"></span>
-									</div>
-									<span>Problem Solver</span>
-								</div>
-							</div>
-							<div class="col-md-3 col-sm-6">
-								<div class="award-item">
-									<div class="hexagon">
-										<span class="lnr lnr-heart award-icon"></span>
-									</div>
-									<span>Most Loved</span>
-								</div>
-							</div>
-						</div>
-						<div class="text-center"><a href="#" class="btn btn-default">See all awards</a></div>
-					</div>
+					{{--<div class="awards">--}}
+						{{--<div class="row">--}}
+							{{--<div class="col-md-3 col-sm-6">--}}
+								{{--<div class="award-item">--}}
+									{{--<div class="hexagon">--}}
+										{{--<span class="lnr lnr-sun award-icon"></span>--}}
+									{{--</div>--}}
+									{{--<span>Most Bright Idea</span>--}}
+								{{--</div>--}}
+							{{--</div>--}}
+							{{--<div class="col-md-3 col-sm-6">--}}
+								{{--<div class="award-item">--}}
+									{{--<div class="hexagon">--}}
+										{{--<span class="lnr lnr-clock award-icon"></span>--}}
+									{{--</div>--}}
+									{{--<span>Most On-Time</span>--}}
+								{{--</div>--}}
+							{{--</div>--}}
+							{{--<div class="col-md-3 col-sm-6">--}}
+								{{--<div class="award-item">--}}
+									{{--<div class="hexagon">--}}
+										{{--<span class="lnr lnr-magic-wand award-icon"></span>--}}
+									{{--</div>--}}
+									{{--<span>Problem Solver</span>--}}
+								{{--</div>--}}
+							{{--</div>--}}
+							{{--<div class="col-md-3 col-sm-6">--}}
+								{{--<div class="award-item">--}}
+									{{--<div class="hexagon">--}}
+										{{--<span class="lnr lnr-heart award-icon"></span>--}}
+									{{--</div>--}}
+									{{--<span>Most Loved</span>--}}
+								{{--</div>--}}
+							{{--</div>--}}
+						{{--</div>--}}
+						{{--<div class="text-center"><a href="#" class="btn btn-default">See all awards</a></div>--}}
+					{{--</div>--}}
 					<!-- END AWARDS -->
 					<!-- TABBED CONTENT -->
 					<div class="custom-tabs-line tabs-line-bottom left-aligned">
@@ -230,4 +243,35 @@
 	</div>
 </div>
 <!-- END MAIN CONTENT -->
-@endsection		
+@endsection
+
+@section('script')
+	<script>
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#imgInp").change(function(){
+            readURL(this);
+        });
+	</script>
+	@if(!$errors->editBasicError->isEmpty())
+		<script>
+            $(function() {
+                $('#profileEditModal').modal('show');
+            });
+
+		</script>
+	@endif
+
+
+@endsection
