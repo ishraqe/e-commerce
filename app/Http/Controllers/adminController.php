@@ -211,49 +211,71 @@ class adminController extends Controller
         $validator = Validator::make($request->all(), [
             'mobile_number'=>'required|numeric',
             'website'=>'required',
-            'user_image'=>'jpeg, png,jpg',
+            'user_image'=> 'mimes:jpeg,jpg,png',
             'about'    => 'required|max:100'
         ]);
+
+       
         if ($validator->fails()) {
 
             return redirect()->back()->withErrors($validator, 'editBasicError');
         }else {
 
-            $image = $request->file('image');
-            try{
-                if ($image) {
-                    $image_name = str_random(20);
-                    $ext = strtolower($image->getClientOriginalExtension());
-                    $image_full_name = $image_name . '.' . $ext;
-                    $destination_path = 'product_images/';
-                    $image_url = '/' . $destination_path . $image_full_name;
-                    $success = $request->file('image')->move($destination_path, $image_full_name);
+        	try{
+        			$image=$request['user_image'];
+
+        			if (!empty($image)) {
+        				$image_name = str_random(20);
+			            $ext = strtolower($image->getClientOriginalExtension());
+			            $image_full_name = $image_name . '.' . $ext;
+			            $destination_path = 'product_images/';
+			            $image_url ='/' .$destination_path . $image_full_name;
 
 
-                    if ($success) {
+			            $success = $request->file('user_image')->move($destination_path, $image_full_name);
 
-                        $basic = BasicInfo::where('user_id', Auth::user()->id);
+			          
+			            $basicInfo = BasicInfo::where('user_id', Auth::user()->id)->first();
 
-                        $basic->mobile_number = $request['mobile_number'];
-                        $basic->website = $request['website'];
-                        $basic->user_image = $image_url;
-                        $basic->about = $request['about'];
 
-                        $basic->update();
+			            
+		            	$basic=BasicInfo::findOrfail($basicInfo->id);
 
-                        return redirect()->back();
-                    }
-                }
-            }catch(Exception $e){
-                return $e;
-            }
+	                    $basic->mobile_number = $request['mobile_number'];
+	                    $basic->about = $request['about'];
+	                    $basic->website = $request['website'];
+	                    $basic->user_image = $image_url;
+	                    
+
+	                    $saveData  = $basic->update();
+		                
+		               
+		             
+		               if ($saveData) {
+					        Session::flash('update_confirmation','Your basic info has been updated');
+					        return redirect()->back();
+		                }
+        			}else{
+        				$basicInfo = BasicInfo::where('user_id', Auth::user()->id)->first();
+		            	$basic=BasicInfo::findOrfail($basicInfo->id);
+
+	                    $basic->mobile_number = $request['mobile_number'];
+	                    $basic->about = $request['about'];
+	                    $basic->website = $request['website'];
+	                    
+	                    $saveData  = $basic->update();
+		           
+		             
+		               if ($saveData) {
+					        Session::flash('update_confirmation','Your basic info has been updated');
+					        return redirect()->back();
+		                }
+        			} 
+			}catch(Exception $e){
+				die($e->getMessage());
+			}
         }
     }
-
-
-
-
-
 	
 }
 

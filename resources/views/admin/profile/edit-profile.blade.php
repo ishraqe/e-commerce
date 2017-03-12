@@ -27,7 +27,7 @@
 
                     <div class="form-group">
                         <label for="exampleInputFile">Profile photo</label>
-                        <input class="form-control" name="image" type='file' id="imgInp" />
+                        <input class="form-control" name="user_image" type='file' id="imgInp" />
 
                         <img id="blah" name="profile_image"  alt="Preview image" class="img-rounded"  width="304" height="236"  />
                     </div>

@@ -47,6 +47,14 @@
                 </ul>
               </div>
             </li>
+            <li>
+              <a href="#mail" data-toggle="collapse" class="collapsed"><i class="fa fa-user-o" aria-hidden="true"></i></i> <span>MailBox</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+              <div id="mail" class="collapse ">
+                <ul class="nav">
+                  <li><a href="" class="">Inbox</a></li>
+                </ul>
+              </div>
+            </li>
             <li><a href="notifications.html" class=""><i class="fa fa-shopping-cart" aria-hidden="true"></i> <span>Orders</span></a></li>
             <li><a href="notifications.html" class=""><i class="fa fa-comments-o" aria-hidden="true"></i></i> <span>Review</span></a></li>
             <li><a href="notifications.html" class=""><i class="fa fa-book" aria-hidden="true"></i> <span>Blog</span></a></li>
@@ -82,6 +90,32 @@
             <ul class="nav navbar-nav navbar-right">
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
+                  <i class="fa fa-envelope-o" aria-hidden="true"></i>
+
+                  <span class="badge bg-danger">{{count($message)}}</span>
+                </a>
+                <ul class="dropdown-menu notifications">
+
+                @foreach($message as $m)
+                    <?php 
+                      
+                      $users = DB::table('users')->where('id',$m->sender_id )->get();
+                      
+                      foreach ($users as $user) { ?>
+                  <li>
+                    <a href="#" class="notification-item">
+                    <span class="dot bg-success">
+                        <p><?= $user->name;  ?> Sent you a message</p>
+                    </span>
+                    </a>
+                  </li>
+                    <?php } ?>
+                @endforeach 
+                  <li><a href="#" class="more">See all messages</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
                   <i class="lnr lnr-alarm"></i>
                   <span class="badge bg-danger">5</span>
                 </a>
@@ -107,7 +141,6 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/assets/img/user.png" class="img-circle" alt="Avatar"> <span>{{Auth::user()->name}}</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
                 <ul class="dropdown-menu">
                   <li><a href="{{url('/admin/profile')}}"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
-                  <li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
                   <li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
                   <li><a href="{{url('/admin/logout')}}"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
                 </ul>

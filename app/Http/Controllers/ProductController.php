@@ -63,7 +63,7 @@ class ProductController extends Controller
                     ->orderBy('created_at','desc')
                     ->take(8)
                     ->get();
-
+                    
         return view('pages.product-details')->with([
             'productDetails' => $productDetails,
             'category' => $category,

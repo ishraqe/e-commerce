@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBasicInfosTable extends Migration
+class CreateMessagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,11 @@ class CreateBasicInfosTable extends Migration
      */
     public function up()
     {
-        Schema::create('basic_infos', function (Blueprint $table) {
+        Schema::create('messages', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('mobile_number');
-            $table->text('about');
-            $table->string('website');
-            $table->string('user_image');
+            $table->integer('sender_id');
+            $table->integer('receiver_id');
+            $table->text('message_body');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateBasicInfosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('basic_infos');
+        Schema::drop('messages');
     }
 }

@@ -17,6 +17,7 @@ class imageSeeder extends Seeder
       
        	]);
        	$image->save();
+        
        	 $image=new \App\Image([
        	'product_id'=>1,
        	'image'=>'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcS8AxyBej_No8LT0w0J2ry3rw_NUw3Vqo7a7zXtF0r8CbNawrgM'

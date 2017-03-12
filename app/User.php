@@ -35,9 +35,15 @@ class User extends Authenticatable
         return $this->hasMany(BlogComment::class);
     }
 
+
     public function basicInfo()
     {
         return $this->hasOne(BasicInfo::class);
+    }
+
+    public function message()
+    {
+        return $this->hasMany(Message::class);
     }
     
 }
