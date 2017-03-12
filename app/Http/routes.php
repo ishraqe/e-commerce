@@ -234,6 +234,11 @@ Route::group(['prefix'=>'admin'],function(){
 		'as' => 'admin.allAdmin',
 		'middleware' => 'admin'
 	]);
+	Route::post('/add',[
+		'uses' => 'adminController@addNewAdmin',
+		'as' => 'admin.addAdmin',
+		'middleware' => 'admin'
+	]);
 	
 });
 

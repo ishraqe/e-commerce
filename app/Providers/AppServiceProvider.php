@@ -19,9 +19,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer(['layouts.master','layouts.admin'],function($view){
+            $message=[];
+            
             $category=Category::all()->take(9); 
-
-            $message= DB::table('messages')->where('receiver_id',Auth::user()->id)->get();
+            if (!Auth::guest()) {
+                $message= DB::table('messages')->where('receiver_id',Auth::user()->id)->get();
+            }
+            
 
             
             

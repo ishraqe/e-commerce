@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\BasicInfo;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests;
 use App\User;
@@ -308,6 +307,25 @@ class adminController extends Controller
 		return view('admin.users.admin')->with([
 			'admin' => $admin
 		]);
+	}
+
+	public function addNewAdmin(Request $request)
+	{
+		$validator = Validator::make($request->all(), [
+            'name'=>'required',
+            'email'=>'required',
+            'password'=> 'required',
+            'admin_type'  => 'required'
+        ]);
+		$admin_type= serialize($request->admin_type);
+		
+       
+        if ($validator->fails()) {
+
+            return redirect()->back()->withErrors($validator, 'adminadderror');
+        }else {
+        	
+        }
 	}
 }
 
