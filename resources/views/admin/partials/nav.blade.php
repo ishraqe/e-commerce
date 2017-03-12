@@ -1,14 +1,32 @@
 <ul class="nav">
-            <li><a href="{{url('admin/dashboard')}}" class="active"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
-            <li><a href="elements.html" class=""><i class="lnr lnr-code"></i> <span>Elements</span></a></li>
-            <li><a href="charts.html" class=""><i class="lnr lnr-chart-bars"></i> <span>Charts</span></a></li>
-            <li><a href="panels.html" class=""><i class="lnr lnr-cog"></i> <span>Panels</span></a></li>
+            <li>
+                <a href="{{url('admin/dashboard')}}" class="active">
+                  <i class="lnr lnr-home"></i>
+                   <span>Dashboard</span>
+                </a>
+            </li>
+
+            <li>
+              <a href="#user" data-toggle="collapse" class="collapsed"><i class="fa fa-user-o" aria-hidden="true"></i></i> <span>User</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+              <div id="user" class="collapse ">
+                <ul class="nav">
+                  <li><a href="{{route('admin.users')}}" class="">All</a></li>
+                  <li><a href="{{route('admin.alluser')}}" class="">Users</a></li>
+                  <li><a href="{{route('admin.allAdmin')}}" class="">Admin</a></li>
+                  <li><a href="{{route('admin.users')}}" class="">Reported users</a></li>
+                  <li><a href="{{route('admin.users')}}" class="">Pending request</a></li> 
+                </ul>
+              </div>
+            </li>
+
+            
             <li><a href="notifications.html" class=""><i class="lnr lnr-alarm"></i> <span>Notifications</span></a></li>
             <li><a href="{{url('/admin/product')}}" class=""><i class="lnr lnr-alarm"></i> <span>Products</span></a></li>
-            <li><a href="{{route('admin.users')}}" class=""><i class="fa fa-user-o" aria-hidden="true"></i><span>User</span></a></li>
             
+            
+
             <li>
-              <a href="#mail" data-toggle="collapse" class="collapsed"><i class="fa fa-user-o" aria-hidden="true"></i></i> <span>MailBox</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+              <a href="#mail" data-toggle="collapse" class="collapsed"><i class="fa fa-envelope -o" aria-hidden="true"></i></i> <span>MailBox</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
               <div id="mail" class="collapse ">
                 <ul class="nav">
                   <li><a href="" class="">Inbox</a></li>

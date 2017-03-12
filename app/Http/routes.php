@@ -224,6 +224,16 @@ Route::group(['prefix'=>'admin'],function(){
 		'as'=>'admin.users',
 		'middleware'=>'admin'
 	]);
+	Route::get('/allusers',[
+		'uses' => 'adminController@getAlluser',
+		'as' => 'admin.alluser',
+		'middleware' => 'admin'
+	]);
+	Route::get('/allAdmin',[
+		'uses' => 'adminController@getAllAdmin',
+		'as' => 'admin.allAdmin',
+		'middleware' => 'admin'
+	]);
 	
 });
 

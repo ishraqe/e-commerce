@@ -14,7 +14,7 @@ Dashboard
               <!-- BASIC TABLE -->
               <div class="panel">
                 <div class="panel-heading">
-                  <h3 class="panel-title btn btn-info">All users</h3>
+                  <h3 class="panel-title btn btn-info">All users <span class="badge">{{count($users)}}</span></h3>
                 </div>
                 <div class="panel-body">
                   <table class="table">
@@ -25,17 +25,17 @@ Dashboard
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Username</th>
+                        <th>Delete</th>
                       </tr>
                     </thead>
                     <tbody>
-                     
-                
                       @foreach($users as $u)
                         <tr>
                           <td>1</td>
                           <td>Steve</td>
                           <td>Jobs</td>
                           <td>@steve</td>
+                          <td><button>Delete</button></td>
                         </tr>
                         @endforeach
                     @else
@@ -48,6 +48,9 @@ Dashboard
                     </tbody>
                   </table>
                 </div>
+                <div class="panel-heading">
+                  <a href="{{route('admin.alluser')}}" class="panel-title btn btn-info">See All</a>
+                </div>
               </div>
               <!-- END BASIC TABLE -->
             </div>
@@ -55,7 +58,10 @@ Dashboard
               <!-- TABLE NO PADDING -->
               <div class="panel">
                 <div class="panel-heading">
-                  <h3 class="panel-title btn btn-info">Admin List</h3>
+
+                  <h3 class="panel-title btn btn-info">Admin List <span class="badge">{{count($admin)}}</span></h3>
+
+                 
                 </div>
                 <div class="panel-body no-padding">
                   <table class="table">
@@ -78,6 +84,7 @@ Dashboard
                         <td>@steve</td>
                       </tr>
                       @endforeach
+
                     @else
                         <div class="alert alert-info alert-dismissible" role="alert">
                           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -89,6 +96,9 @@ Dashboard
                     </tbody>
                   </table>
                 </div>
+                <div class="panel-heading">
+                  <a href="{{route('admin.allAdmin')}}" class="panel-title btn btn-info">See All</a>
+                </div>
               </div>
               <!-- END TABLE NO PADDING -->
             </div>
@@ -98,7 +108,7 @@ Dashboard
               <!-- TABLE STRIPED -->
               <div class="panel">
                 <div class="panel-heading">
-                  <h3 class="panel-title btn btn-info">Reported user</h3>
+                  <h3 class="panel-title btn btn-info">Reported user <span class="badge">{{count($reported_user)}}</span></h3>
                 </div>
                 <div class="panel-body">
                   <table class="table table-striped">
@@ -132,6 +142,9 @@ Dashboard
                     </tbody>
                   </table>
                 </div>
+                <div class="panel-heading">
+                  <!-- <a class="panel-title btn btn-info">See All</a> -->
+                </div>
               </div>
               <!-- END TABLE STRIPED -->
             </div>
@@ -139,7 +152,7 @@ Dashboard
               <!-- TABLE HOVER -->
               <div class="panel">
                 <div class="panel-heading">
-                  <h3 class="panel-title btn btn-info">Pending</h3>
+                  <h3 class="panel-title btn btn-info">Pending <span class="badge">{{count($pending)}}</span></h3>
                 </div>
                 <div class="panel-body">
                   <table class="table table-hover">
@@ -172,6 +185,9 @@ Dashboard
                       
                     </tbody>
                   </table>
+                </div>
+                <div class="panel-heading">
+                 <!-- <a class="panel-title btn btn-info">See All</a> -->
                 </div>
               </div>
               <!-- END TABLE HOVER -->

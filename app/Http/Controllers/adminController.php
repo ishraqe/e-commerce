@@ -291,5 +291,24 @@ class adminController extends Controller
 			'pending' => $pending
 		]);
 	}
+	public function getAlluser()
+	{
+		$users=User::where(['is_reported'=>false,'admin'=>0,'is_active'=>true])->paginate(12);
+
+
+		return view('admin.users.users')->with([
+			'users' => $users
+		]);
+	}
+	public function getAllAdmin($value='')
+	{
+		$admin=User::where(['is_reported'=>false,'admin'=>1])->get();
+
+
+		return view('admin.users.admin')->with([
+			'admin' => $admin
+		]);
+	}
 }
+
 
