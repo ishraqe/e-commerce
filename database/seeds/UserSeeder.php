@@ -17,16 +17,18 @@ class UserSeeder extends Seeder
        	'email'=>'admin@admin.com',
       	'password'=>bcrypt(111111),
 
+
       	
        	]);
-
+ 
        	$user->save();
 
          $user=new \App\User([
         'name'=>'ishman',
         'email'=>'marchent@marchent.com',
         'password'=>bcrypt(111111),
-        'marchent'=>1
+        'marchent'=>1,
+        'is_active'=>  true
         
         ]);
         $user->save();
@@ -34,7 +36,8 @@ class UserSeeder extends Seeder
          $user=new \App\User([
         'name'=>'ishman',
         'email'=>'user@user.com',
-        'password'=>bcrypt(111111)
+        'password'=>bcrypt(111111),
+        'is_active'=>  false
         
         ]);
         $user->save();

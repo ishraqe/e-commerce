@@ -276,6 +276,20 @@ class adminController extends Controller
 			}
         }
     }
-	
+	public function showUsers()
+	{
+		$users=User::where(['is_reported'=>false,'admin'=>0,'is_active'=>true])->take(8)->get();
+		$reported_user=User::where(['is_reported'=>true,'admin'=>0])->get();
+		$admin=User::where(['is_reported'=>false,'admin'=>1])->take(8)->get();
+		$pending=User::where('is_active',false)->get();
+
+
+		return view('admin.users.index')->with([
+			'users' => $users,
+			'reported_user' => $reported_user,
+			'admin' => $admin,
+			'pending' => $pending
+		]);
+	}
 }
 

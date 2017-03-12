@@ -218,8 +218,12 @@ Route::group(['prefix'=>'admin'],function(){
 		'as'=>'admin.showInfo',
 		'middleware'=>'admin'
 	]);
-
-
+	
+	Route::get('/users',[
+		'uses'=>'adminController@showUsers',
+		'as'=>'admin.users',
+		'middleware'=>'admin'
+	]);
 	
 });
 
