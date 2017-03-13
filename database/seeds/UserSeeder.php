@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
        	$user->save();
 
          $user=new \App\User([
-        'name'=>'ishman',
+        'name'=>'rubi',
         'email'=>'marchent@marchent.com',
         'password'=>bcrypt(111111),
         'marchent'=>1,
@@ -34,7 +34,7 @@ class UserSeeder extends Seeder
         $user->save();
 
          $user=new \App\User([
-        'name'=>'ishman',
+        'name'=>'kanak',
         'email'=>'user@user.com',
         'password'=>bcrypt(111111),
         'is_active'=>  false

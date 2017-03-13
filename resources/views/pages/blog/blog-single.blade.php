@@ -13,10 +13,11 @@
 						<div class="single-blog-post">
 
 							<h3>{{$blogDesc->title}}</h3>
-							@if(Auth::user()->id === $blogDesc->user->id)
-								 <button id="blog-edit" class="btn btn-primary pull-right">Edit (open modal)</button>
-							@endif
-
+							@if(!Auth::guest())
+								@if(Auth::user()->id === $blogDesc->user->id)
+									 <button id="blog-edit" class="btn btn-primary pull-right">Edit (open modal)</button>
+								@endif
+							@endif	
 							
 							<div class="post-meta">
 								<ul>
