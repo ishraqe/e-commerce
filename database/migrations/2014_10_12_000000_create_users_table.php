@@ -16,11 +16,12 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->boolean('admin')->default(false);
+            $table->string('admin_type');
             $table->string('email')->unique();
             $table->string('password');
             $table->boolean('marchent')->default(false);
             $table->boolean('is_reported')->default(false);
-            $table->boolean('is_active')->default(true);
+            $table->boolean('is_active')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

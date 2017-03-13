@@ -14,27 +14,47 @@
 	      <!-- BASIC TABLE -->
 	      <div class="panel">
 	        <div class="panel-heading">
-	          <h3 class="panel-title btn btn-info">All users <span class="badge">{{count($admin)}}</span></h3>
+	          <h3 class="panel-title btn btn-info">All admin <span class="badge">{{count($admin)}}</span></h3>
 	        </div>
 	        <div class="panel-body">
-	          <table class="table">
+	          <table class="table col-md-12">
 	              @if(count($admin)>0)
 	            <thead>
 	              <tr>
 	                <th>#</th>
-	                <th>First Name</th>
-	                <th>Last Name</th>
+	                
 	                <th>Username</th>
+	                <th>Admin type</th>
+	                <th>From</th>
 	                <th>Delete</th>
 	              </tr>
 	            </thead>
 	            <tbody>
 	              @foreach($admin as $u)
 	                <tr>
-	                  <td>1</td>
-	                  <td>Steve</td>
-	                  <td>Jobs</td>
-	                  <td>@steve</td>
+	                  <td>{{$index++}}</td>
+	                  <td>{{$u->name}}</td>
+	                  <?php 
+	                  
+	                  $type=unserialize(base64_decode($u->admin_type));  
+	            
+	                   ?>
+
+	                  	<td>
+	                  	 <?php
+		                  	foreach ($type as $t) {
+		                  		if ($t==3 && $t==2) {
+		                  			echo "blog admin";
+		                  		}elseif ($t==2) {
+		                  			echo "string";
+		                  		}else{
+		                  			echo "super";
+		                  		}
+		                  	} 
+
+	                  	?>
+
+	                  </td>
 	                  <td><button>Delete</button></td>
 	                </tr>
 	                @endforeach
@@ -59,4 +79,14 @@
 	</div>
 </div>
 
+@endsection
+@section('script')
+	@if(!$errors->adminadderror->isEmpty())
+		<script>
+	        $(function() {
+	            $('#addAdmin').modal('show');
+	        });
+
+		</script>
+	@endif
 @endsection

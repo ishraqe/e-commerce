@@ -299,32 +299,46 @@ class adminController extends Controller
 			'users' => $users
 		]);
 	}
-	public function getAllAdmin($value='')
+	public function getAllAdmin()
 	{
 		$admin=User::where(['is_reported'=>false,'admin'=>1])->get();
-
-
+		$index=1;
 		return view('admin.users.admin')->with([
-			'admin' => $admin
+			'admin' => $admin,'index' => $index
 		]);
 	}
 
 	public function addNewAdmin(Request $request)
 	{
+	
 		$validator = Validator::make($request->all(), [
-            'name'=>'required',
-            'email'=>'required',
-            'password'=> 'required',
+            'name'=>'required|max:255',
+            'email'=>'required|email|max:255|unique:users',
+            'password'=> 'required|min:6',
+            'confirm_password' => 'required|min:6|same:password' ,   
             'admin_type'  => 'required'
         ]);
-		$admin_type= serialize($request->admin_type);
-		
+
        
         if ($validator->fails()) {
 
             return redirect()->back()->withErrors($validator, 'adminadderror');
         }else {
-        	
+        	$admin_type= base64_encode(serialize($request->admin_type));
+			$username=$request['name'];
+			$email=$request['eamil'];
+			$password=$request['password'];
+    		$user =  User::create([
+	            'name' => $request['name'],
+	            'email' => $request['email'],
+	            'admin'   =>true,
+	            'admin_type' =>$admin_type,
+	            'password' => bcrypt(request()['password'])
+
+	        ]);
+    		 
+    		Session::flash('added_confirmation','Admin added successfully');
+    		return redirect()->back();
         }
 	}
 }

@@ -11,9 +11,12 @@ class UserSeeder extends Seeder
      */
     public function run()
     { 
+        $arry=[1,2,3];
+        $admin_type= base64_encode(serialize($arry));
          $user=new \App\User([
        	'name'=>'ishman',
         'admin'=>1,
+        'admin_type'=>$admin_type,
        	'email'=>'admin@admin.com',
       	'password'=>bcrypt(111111),
 
@@ -23,23 +26,6 @@ class UserSeeder extends Seeder
  
        	$user->save();
 
-         $user=new \App\User([
-        'name'=>'rubi',
-        'email'=>'marchent@marchent.com',
-        'password'=>bcrypt(111111),
-        'marchent'=>1,
-        'is_active'=>  true
         
-        ]);
-        $user->save();
-
-         $user=new \App\User([
-        'name'=>'kanak',
-        'email'=>'user@user.com',
-        'password'=>bcrypt(111111),
-        'is_active'=>  false
-        
-        ]);
-        $user->save();
     }
 }
