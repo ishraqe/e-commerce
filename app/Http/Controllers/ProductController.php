@@ -13,6 +13,7 @@ use App\Brand;
 use App\Category;
 use App\Review;
 use DB;
+use App\ProductCount;
 use Session;
 use Auth;
 use App\WishList;
@@ -63,6 +64,9 @@ class ProductController extends Controller
                     ->orderBy('created_at','desc')
                     ->take(8)
                     ->get();
+
+           
+
                     
         return view('pages.product-details')->with([
             'productDetails' => $productDetails,
@@ -178,9 +182,23 @@ class ProductController extends Controller
 
         return view('pages.checkout',['total'=>$total]);
     }
-    public function updateCart(Request $request){
-        return "update cart";
+
+    public function updatIncreaseCart(Request $request){
+
+        $input = $request->input();
+        $numberOfProduct=ProductCount::where('product_id',$input['id'])->first();
+
+      
+
+       if ($input['increasedProductNumber'] >  $numberOfProduct['number_of_products']) {
+            $data = array(
+                'status' => 500,
+                'msg' => 'Can\'t do that' 
+                );
+            return $data;
+       }
     }
+
     public function categoryAll()
     {
        $category=Category::all();

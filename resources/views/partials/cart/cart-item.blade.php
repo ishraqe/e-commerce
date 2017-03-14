@@ -9,7 +9,6 @@
         <div class="table-responsive cart_info">
         @if(Session::has('cart'))
          
-         <input type="hidden" name="_token" value="{{csrf_token()}}">
             <table class="table table-condensed">
                 <thead>
                     <tr class="cart_menu">
@@ -26,7 +25,7 @@
                  @foreach($product as $products)
                     <tr>
                         <td class="cart_product">
-                            <a href=""><img src="images/cart/one.png" alt=""></a>
+                            <a href="#"><img src="images/cart/one.png" alt=""></a>
                         </td>
                         <td class="cart_description">
                             <h4><a href="">{{$products['item']->title}}</a></h4>
@@ -37,10 +36,10 @@
                             <p>$ {{$products['item']->price}}</p>
                         </td>
                         <td class="cart_quantity">
-                            <div class="cart_quantity_button">
-                                <a class="cart_quantity_up" href=""> + </a>
+                            <div class="cart_quantity_button" data-id="{{$products['item']->id}}">
+                                <a class="cart_quantity_up" onclick="increaseThisQuantity(this)"> + </a>
                                 <input class="cart_quantity_input" type="text" name="quantity" value="{{$products['qty']}}" autocomplete="off" size="2">
-                                <a class="cart_quantity_down" href=""> - </a>
+                                <a class="cart_quantity_down"  onclick="decreaseThisQuantity(this)"> - </a>
                             </div>
                         </td>
                         <td class="cart_total">
@@ -53,11 +52,69 @@
                     @endforeach
                 </tbody>    
             </table>
-            <a class="btn btn-default update" href="#" name="submit"  >Update</a>
        
          @else
          <h2>No, items in cart</h2>
          @endif   
         </div>
     </div>
+
+<script type="text/javascript">
+    function increaseThisQuantity(trigger) {    
+        var trigger = $(trigger),        
+        container = trigger.parents('.cart_quantity_button'),        
+        id = container.attr('data-id'),        
+        target = $('input.cart_quantity_input'),        
+        curVal = parseFloat(target.val()), 
+        param = {
+            "_token": "{{ csrf_token() }}",
+            id : id,
+            'increasedProductNumber' : curVal+1
+
+        }; 
+
+        target.val(curVal+1); 
+        $.ajax({        
+            url: "/cart/update",        
+            method: "post",        
+            data: param,        
+            dataType: "json",        
+            success: function (res) {   
+                if(res.status == 500){
+                    target.val(curVal);
+                    var html = '<p class="errorMsg">'+res.msg+'</p>';
+                    trigger.parents('td').find('.errorMsg').remove();
+                    trigger.parents('td').prepend(html);
+                }     
+            }    
+        })
+    ;}
+
+
+
+    function decreaseThisQuantity(trigger) {    
+        var trigger = $(trigger),        
+        container = trigger.parents('.cart_quantity_button'),         
+        id = container.attr('data-id'),           
+        target = $('input.cart_quantity_input'),        
+        curVal = parseFloat(target.val()),
+        param = {
+            "_token": "{{ csrf_token() }}",
+            id : id
+        };  
+        
+        if (curVal != 0 ) {
+            target.val(curVal-1);
+            $.ajax({            
+                url: "/cart/update",        
+                method: "post",        
+                data: param,        
+                dataType: "json",        
+                success: function (res) {        
+                }     
+            });
+        }
+    ;}
+</script>
+
 </section>

@@ -20,6 +20,7 @@ class ReviewController extends Controller
         ]);
 
        $product=Product::find($id);
+       
        if ($product->id<0) {
         	return redirect()->back()->with('notFound_confirmation','The review can not be added');
         }else{

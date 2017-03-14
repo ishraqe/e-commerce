@@ -101,7 +101,7 @@ Route::get('/checkout',[
 
 Route::post('/checkout-cart','ProductController@checkout');
 
-Route::post('/cart/update/{id}','ProductController@updateCart');
+Route::post('/cart/update','ProductController@updatIncreaseCart');
 
 Route::post('/addReview/{id}',[
 	'uses'=>'ReviewController@storeReview',
