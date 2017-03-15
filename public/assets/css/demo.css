@@ -19,3 +19,22 @@
 .card-header-link{
   font-size: 24px;
 }
+
+/*$('#blah').mouseenter(function() {
+    $(this).css("cursor","pointer");
+    $(this).animate({width: "50%", height: "50%"}, 'slow');
+});
+
+$('#blah').mouseleave(function() {   
+    $(this).animate({width: "28%"}, 'slow');
+});*/
+
+.imagePreview:hover {
+    position:relative;
+    top:-25px;
+    left:-35px;
+    width:500px;
+    height:auto;
+    display:block;
+    z-index:999999;
+}

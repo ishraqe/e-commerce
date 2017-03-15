@@ -1,9 +1,9 @@
 <div class="addProduct">
-    <button id="sessionModal" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+    <button id="sessionModal" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addProduct">
         Add new Product
 	</button>
 </div>
-<div style="color: black" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div style="color: black" class="modal fade" id="addProduct" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
 	  <div class="modal-content">
 	    <form action="{{url('/admin/addProduct')}}" method="post" enctype="multipart/form-data">
@@ -13,76 +13,73 @@
 	        <h4 class="modal-title" id="myModalLabel">Add product</h4>
 	      </div>
 	      <div class="modal-body" style="color: black">
-	        <div class="form-group {{ $errors->has('image') ? ' has-error' : '' }}">
-				<label for="title">Image</label>
-				<input  type="file" name="image">
-				 @if ($errors->has('image'))
-	              <span class="help-block">
-	                  <strong>{{ $errors->first('image') }}</strong>
-	              </span>
-	            @endif
-			</div>
+	      <div class="row">
+	      	<div class="col-md-6">
+	      		
+					<label for="title">Image</label>
+					<input class="form-control" type="file" name="image" id="imgInp">
+	      	</div>
+	      	<div class="col-md-6 image-product-container">
+	      		<div class="form-group image-product" style="margin-top: 24px; max-height: 119px;
+max-width: 51px;">
+	      			<img id="blah" class="img-responsive imagePreview" src="#" style="height: inherit;
+width: 100%;" alt="product image" />
+	      		</div>
+	      		
+	      	</div>
+	      </div>
+	        
 	        <div class="form-group {{ $errors->has('title') ? ' has-error' : '' }}">
 				<label for="title">Title</label>
 				<input class="form-control" type="text" name="title" >
-				 @if ($errors->has('title'))
-	              <span class="help-block">
-	                  <strong>{{ $errors->first('title') }}</strong>
-	              </span>
-	            @endif
+				 
 			</div>
-			<div class="form-group {{ $errors->has('description') ? ' has-error' : '' }}">
+			<div class="form-group ">
                 <label>Description </label>
                 
                 <textarea class="form-control" type="text" name="description" > </textarea>
-                @if ($errors->has('description'))
-                  <span class="help-block">
-                      <strong>{{ $errors->first('description') }}</strong>
-                  </span>
-                @endif
+               
 	        </div>
-
-			<div class="form-group {{ $errors->has('price') ? ' has-error' : '' }}">
-				<label>Price</label>
-				<input class="form-control price-form" type="number" name="price" >
-				 @if ($errors->has('price'))
-	              <span class="help-block">
-	                  <strong>{{ $errors->first('price') }}</strong>
-	              </span>
-	            @endif
-			</div>
-			<div class="form-group ">
-				<ul class="user_info">
-					<li class="single_field {{ $errors->has('category_id') ? ' has-error' : '' }}">
+	        <div class="row">
+	        	<div class="col-md-6">
+	        		<div class="form-group ">
+						<label>Price</label>
+						<input class="form-control price-form" type="number" name="price" >
+						
+					</div>
+	        	</div>
+	        	<div class="col-md-6">
+	        		<div class="form-group">
+						<label>Number of products:</label>
+						<input type="number" name="number_of_products" class="form-control ">
+						
+					</div>
+	        	</div>
+	        </div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
 						<label>Category:</label>
-						<select name="category_id">
+						<select name="category_id" class=" form-control">
 							<option>Select</option>
 							@foreach($category as $c)
 							<option value="{{$c->id}}">{{$c->category_name}}</option>
 							@endforeach
 						</select>
-						 @if ($errors->has('category_id'))
-			              <span class="help-block">
-			                  <strong>{{ $errors->first('category_id') }}</strong>
-			              </span>
-			            @endif
-					</li>
-					<li class="single_field {{ $errors->has('brand_id') ? ' has-error' : '' }}">
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
 						<label>Brand:</label>
-						<select name="brand_id">
+						<select name="brand_id" class="form-control ">
 							<option>Select</option>
 							@foreach($brand as $b)
 							<option value="{{$b->id}}">{{$b->brand_name}}</option>
 							@endforeach
 							
 						</select>
-					 @if ($errors->has('brand_id'))
-		              <span class="help-block">
-		                  <strong>{{ $errors->first('brand_id') }}</strong>
-		              </span>
-		            @endif
-					</li>
-				</ul>
+					</div>
+				</div>
 			</div>         
 	      </div>
 	      <div class="modal-footer">
@@ -93,3 +90,13 @@
 	  </div>
 	</div>
 </div>
+@section('script')
+	@if(!$errors->addProductError->isEmpty())
+		<script>
+	        $(function() {
+	            $('#addProduct').modal('show');
+	        });
+	        
+		</script>
+	@endif
+@endsection

@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
             $table->integer('price');
             $table->integer('rating');
             $table->string('image');
+            $table->integer('number_of_products');
         });
     }
 

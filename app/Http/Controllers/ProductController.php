@@ -13,7 +13,7 @@ use App\Brand;
 use App\Category;
 use App\Review;
 use DB;
-use App\ProductCount;
+
 use Session;
 use Auth;
 use App\WishList;
@@ -187,7 +187,7 @@ class ProductController extends Controller
     public function updatIncreaseCart(Request $request){
 
         $input = $request->input();
-        $numberOfProduct=ProductCount::where('product_id',$input['id'])->first();
+        $numberOfProduct=Product::where('id',$input['id'])->first();
 
       
 

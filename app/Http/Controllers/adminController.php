@@ -66,50 +66,59 @@ class adminController extends Controller
 
 	public function addProduct(Request $request)
 	{
-		$this->validate($request, [
+		
+		$validator = Validator::make($request->all(), [
             'title' => 'required|max:25|min:4',
             'description' => 'required',
             'price' => 'required|int',
             'category_id' => 'required',
             'brand_id' => 'required',
-            'image' =>'required'
+            'image' =>'required',
+            'number_of_products' => 'required|int'
         ]);
 
-		$image = $request->file('image');
-		try{
-			 if ($image) {
-	            $image_name = str_random(20);
-	            $ext = strtolower($image->getClientOriginalExtension());
-	            $image_full_name = $image_name . '.' . $ext;
-	            $destination_path = 'product_images/';
-	            $image_url ='/' .$destination_path . $image_full_name;
-	            $success = $request->file('image')->move($destination_path, $image_full_name);
-	           
-	            if ($success) {
-	                
-	                $product = new Product();
-
-	                $product->title = $request->title;
-	                $product->category_id = $request->category_id;
-	                $product->brand_id = $request->brand_id;
-	                $product->description = $request->description;
-	                $product->price = $request->price;
-	                $product->rating=0;
-	               	$product->image = $image_url;
-
-	               $saveData= $product->save();
-
-	               if ($saveData) {
-	                    Session::flash('added_confirmation','Your data has been added!!');
-	                    return redirect()->back();
-	                }  
-	                
-	            }
-	        }
-		}catch(Exception $e){
-			die($e->getMessage());
-		}
        
+        if ($validator->fails()) {
+
+            return redirect()->back()->withErrors($validator, 'addProductError');
+        }else {
+
+			$image = $request->file('image');
+			try{
+				 if ($image) {
+		            $image_name = str_random(20);
+		            $ext = strtolower($image->getClientOriginalExtension());
+		            $image_full_name = $image_name . '.' . $ext;
+		            $destination_path = 'product_images/';
+		            $image_url ='/' .$destination_path . $image_full_name;
+		            $success = $request->file('image')->move($destination_path, $image_full_name);
+		           
+		            if ($success) {
+		                
+		                $product = new Product();
+
+		                $product->title = $request->title;
+		                $product->category_id = $request->category_id;
+		                $product->brand_id = $request->brand_id;
+		                $product->description = $request->description;
+		                $product->price = $request->price;
+		                $product->rating=0;
+		               	$product->image = $image_url;
+
+		               $saveData= $product->save();
+
+		               if ($saveData) {
+		               	dd($saveData);
+		                    Session::flash('added_confirmation','Your data has been added!!');
+		                    return redirect()->back();
+		                }  
+		                
+		            }
+		        }
+			}catch(Exception $e){
+				die($e->getMessage());
+			}
+        }
 	}
 
 

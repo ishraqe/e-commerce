@@ -13,6 +13,7 @@ class ProductModelSeeder extends Seeder
     {
       $var=10;
       for ($i=0; $i <$var ; $i++) { 
+        
         $product=new \App\Product([
         'title'=>'lol',
         'category_id'=>1,
@@ -22,10 +23,12 @@ class ProductModelSeeder extends Seeder
     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
    ',
         'price'=> 120,
-        'image'=>'http://www.apple.com/uk/pr/products/images/iMac27_iMac21_Photos_PRINT_131020_HERO.jpg'
+        'image'=>'http://www.apple.com/uk/pr/products/images/iMac27_iMac21_Photos_PRINT_131020_HERO.jpg',
+        'number_of_products' => 3
 
 
         ]);
+
        $product->save();
       }
        
