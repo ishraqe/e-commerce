@@ -103,6 +103,8 @@ Route::post('/checkout-cart','ProductController@checkout');
 
 Route::post('/cart/update','ProductController@updatIncreaseCart');
 
+Route::post('cart/submitUpdate','ProductController@updateCart');
+
 Route::post('/addReview/{id}',[
 	'uses'=>'ReviewController@storeReview',
 	'as'=>'review.store'

@@ -131,6 +131,7 @@ class ProductController extends Controller
         }else{
             
             $oldcart=Session::get('cart');
+          
             $cart = new Cart($oldcart);
             
             return view('pages.cart',[
@@ -196,6 +197,21 @@ class ProductController extends Controller
                 'msg' => 'Can\'t do that' 
                 );
             return $data;
+
+       }else{
+
+            if (!Session::has('cart')) {
+                return view('pages.cart');
+            }
+            $oldcart=Session::get('cart');
+            $cart=new Cart($oldcart);
+            dd($oldcart);
+            $total=$cart->totalPrice;
+            $added=$total*$input['increasedProductNumber'] ;
+            return [
+               'status' => 200,
+
+            ];
        }
     }
 
