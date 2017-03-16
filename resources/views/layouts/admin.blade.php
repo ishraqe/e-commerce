@@ -87,14 +87,23 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
                   <i class="lnr lnr-alarm"></i>
-                  <span class="badge bg-danger">5</span>
+                  <span class="badge bg-danger">{{count($notification)}}</span>
                 </a>
                 <ul class="dropdown-menu notifications">
-                  <li><a href="#" class="notification-item"><span class="dot bg-warning"></span>System space is almost full</a></li>
-                  <li><a href="#" class="notification-item"><span class="dot bg-danger"></span>You have 9 unfinished tasks</a></li>
-                  <li><a href="#" class="notification-item"><span class="dot bg-success"></span>Monthly report is available</a></li>
-                  <li><a href="#" class="notification-item"><span class="dot bg-warning"></span>Weekly meeting in 1 hour</a></li>
-                  <li><a href="#" class="notification-item"><span class="dot bg-success"></span>Your request has been approved</a></li>
+                  @if(count($notification))
+
+                      @foreach($notification as $noti)
+                          @if($noti->product_id==0)
+
+                             <li><a href="{{route('blog.single',['id'=>$noti->blog_id])}}" class="notification-item"><span class="dot bg-info">{{$noti->name }} commented on your blog</span></a></li>
+                          @else
+                             <li><a href="{{route('show',['id'=>$noti->product_id])}}" class="notification-item"><span class="dot bg-info">{{$noti->name }} reviewed on your product</span></a></li>
+                          @endif
+                      @endforeach
+                  @else
+                    <li><a href="#" class="notification-item"><span class="dot bg-info">No notification yet</span></a></li>
+                  @endif
+
                   <li><a href="#" class="more">See all notifications</a></li>
                 </ul>
               </li>

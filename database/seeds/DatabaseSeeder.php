@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
      $this->call(basicInfoseed::class);
      $this->call(messageSeeder::class);
      $this->call(reportSeeder::class);
+     $this->call(NotificationSeed::class);
      
         
     

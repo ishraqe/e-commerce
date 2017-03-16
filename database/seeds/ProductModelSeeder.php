@@ -11,7 +11,7 @@ class ProductModelSeeder extends Seeder
      */
     public function run()
     {
-      $var=10;
+      $var=3;
       for ($i=0; $i <$var ; $i++) { 
         
         $product=new \App\Product([
@@ -24,7 +24,8 @@ class ProductModelSeeder extends Seeder
    ',
         'price'=> 120,
         'image'=>'http://www.apple.com/uk/pr/products/images/iMac27_iMac21_Photos_PRINT_131020_HERO.jpg',
-        'number_of_products' => 3
+        'number_of_products' => 3,
+         'products_user_id'=>1
 
 
         ]);

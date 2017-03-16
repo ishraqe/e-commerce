@@ -11,7 +11,7 @@ use App\Image;
 class Product extends Model
 {
    
-    protected $fillable = array( 'title',  'category_id','brand_id','description','price','rating','image','number_of_products');
+    protected $fillable = array( 'title',  'category_id','brand_id','description','price','rating','image','number_of_products','products_user_id');
     
 
     public function category()

@@ -38,3 +38,8 @@ $('#blah').mouseleave(function() {
     display:block;
     z-index:999999;
 }
+
+.navbar-nav > li > .dropdown-menu {
+    padding: 0;
+    min-width: 232px;
+}

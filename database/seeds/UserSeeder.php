@@ -26,6 +26,21 @@ class UserSeeder extends Seeder
  
        	$user->save();
 
+        $arry=[1,2,3];
+        $admin_type= base64_encode(serialize($arry));
+        $user=new \App\User([
+            'name'=>'ishman',
+            'admin'=>0,
+            'admin_type'=>0,
+            'email'=>'blog@admin.com',
+            'password'=>bcrypt(111111),
+
+
+
+        ]);
+
+        $user->save();
+
         
     }
 }
