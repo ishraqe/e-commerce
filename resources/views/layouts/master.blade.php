@@ -96,7 +96,12 @@
                                 @if(Auth::user())
                                 <li class="dropdown"><a href="#"><i class="fa fa-user"></i> {{ucfirst(Auth::user()->name)}}<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="{{route('user.account')}}"><i class="fa fa-user"></i> My profile</a></li>
+
+                                        @if(!Auth::user()->admin)
+                                            <li><a href="{{route('user.account')}}"><i class="fa fa-user"></i> My profile</a></li>
+                                        @else
+                                            <li><a href="{{route('admin.dashboard')}}"><i class="fa fa-user"></i> Admin panel</a></li>
+                                        @endif
                                         <li><a href="{{action('UserController@getMyblog',[Auth::user()->id])}}"><i class="fa fa-user"></i> My Blogs</a></li>
                                         <li><a href=""><i class="fa fa-user"></i> My products</a></li>
                                          <li><a href="#"><i class="fa fa-user"></i>Account Setting</a></li>

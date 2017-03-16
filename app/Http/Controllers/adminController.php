@@ -350,6 +350,11 @@ class adminController extends Controller
     		return redirect()->back();
         }
 	}
+
+	public function notificationLanding()
+    {
+        return view('admin.notifications');
+    }
 }
 
 

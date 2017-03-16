@@ -241,6 +241,12 @@ Route::group(['prefix'=>'admin'],function(){
 		'as' => 'admin.addAdmin',
 		'middleware' => 'admin'
 	]);
+
+    Route::get('/notification/landing',[
+        'uses' => 'adminController@notificationLanding',
+        'as' => 'admin.notificationLanding',
+        'middleware' => 'admin'
+    ]);
 	
 });
 
@@ -256,9 +262,7 @@ Route::get('/icons',function(){
 return view('admin.icons');
 });
 
-Route::get('/notification',function(){
-return view('admin.notifications');
-});
+
 
 Route::get('/pagelock',function(){
 return view('admin.page-lockscreen');

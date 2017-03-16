@@ -100,11 +100,12 @@
                              <li><a href="{{route('show',['id'=>$noti->product_id])}}" class="notification-item"><span class="dot bg-info">{{$noti->name }} reviewed on your product</span></a></li>
                           @endif
                       @endforeach
+                        <li><a href="{{route('admin.notificationLanding')}}" class="more">See all notifications</a></li>
                   @else
-                    <li><a href="#" class="notification-item"><span class="dot bg-info">No notification yet</span></a></li>
+                    <li><a href="" class="notification-item"><span class="dot bg-info">No notification yet</span></a></li>
                   @endif
 
-                  <li><a href="#" class="more">See all notifications</a></li>
+
                 </ul>
               </li>
               <li class="dropdown">
