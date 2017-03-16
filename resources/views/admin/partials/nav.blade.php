@@ -20,7 +20,7 @@
             </li>
 
             
-            <li><a href="notifications.html" class=""><i class="lnr lnr-alarm"></i> <span>Notifications</span></a></li>
+            <li><a href="{{route('admin.notificationLanding')}}" class=""><i class="lnr lnr-alarm"></i> <span>Notifications</span></a></li>
             <li><a href="{{url('/admin/product')}}" class=""><i class="lnr lnr-alarm"></i> <span>Products</span></a></li>
             
             

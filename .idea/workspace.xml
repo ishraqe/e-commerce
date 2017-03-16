@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d9e9577-da29-433e-8eee-9c385c4016fd" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/adminController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/adminController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Notification.php" afterPath="$PROJECT_DIR$/app/Notification.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/NotificationSeed.php" afterPath="$PROJECT_DIR$/database/seeds/NotificationSeed.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/js/klorofil.js" afterPath="$PROJECT_DIR$/public/assets/js/klorofil.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/notifications.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/notifications.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/partials/nav.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/partials/nav.blade.php" />
     </list>
     <ignored path="craftic.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -52,12 +45,22 @@
       <file leaf-file-name="admin.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/layouts/admin.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="161" column="24" lean-forward="true" selection-start-line="161" selection-start-column="24" selection-end-line="161" selection-end-column="24" />
+            <state relative-caret-position="1080">
+              <caret line="102" column="75" lean-forward="false" selection-start-line="102" selection-start-column="37" selection-end-line="102" selection-end-column="75" />
               <folding>
                 <element signature="e#8304#8598#0#HTML" expanded="false" />
                 <element signature="n#script#10;n#body#0;n#html#0;n#!!top" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="nav.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/admin/partials/nav.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="132">
+              <caret line="22" column="63" lean-forward="false" selection-start-line="22" selection-start-column="63" selection-end-line="22" selection-end-column="63" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -108,9 +111,21 @@
       <file leaf-file-name="notifications.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/admin/notifications.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="369">
+            <state relative-caret-position="450">
               <caret line="25" column="137" lean-forward="false" selection-start-line="25" selection-start-column="137" selection-end-line="25" selection-end-column="137" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Notification.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Notification.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="108">
+              <caret line="6" column="9" lean-forward="false" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+              <folding>
+                <element signature="e#23#62#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -190,6 +205,7 @@
         <option value="$PROJECT_DIR$/resources/views/admin/notifications.blade.php" />
         <option value="$PROJECT_DIR$/public/assets/js/klorofil.js" />
         <option value="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/partials/nav.blade.php" />
       </list>
     </option>
   </component>
@@ -305,7 +321,7 @@
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="admin&#9;FILE&#9;file:///home/batman/Desktop/e-commerce/resources/views/layouts/admin.blade.php&#10;prod&#9;FILE&#9;file:///home/batman/Desktop/e-commerce/app/Http/Controllers/ProductController.php&#10;app&#9;FILE&#9;file:///home/batman/Desktop/e-commerce/app/Providers/AppServiceProvider.php&#10;rou&#9;FILE&#9;file:///home/ish/Desktop/artisan/e-commerce/app/Http/routes.php&#10;mas&#9;FILE&#9;file:///home/ish/Desktop/artisan/e-commerce/resources/views/layouts/master.blade.php&#10;demo&#9;FILE&#9;file:///home/ish/Desktop/artisan/e-commerce/public/assets/css/demo.css&#10;main&#9;FILE&#9;file:///home/ish/Desktop/artisan/e-commerce/public/assets/css/main.min.css&#10;route&#9;FILE&#9;file:///home/ish/Desktop/artisan/e-commerce/app/Http/routes.php&#10;user&#9;FILE&#9;file:///home/batman/Desktop/artisan's story/app/Http/Controllers/UserController.php&#10;edit&#9;FILE&#9;file:///home/batman/Desktop/artisan's story/resources/views/admin/profile/edit-profile.blade.php&#10;master&#9;FILE&#9;file:///home/batman/Desktop/artisan's story/resources/views/layouts/master.blade.php&#10;login&#9;FILE&#9;file:///home/batman/Desktop/artisan's story/resources/views/pages/login.blade.php&#10;bas&#9;FILE&#9;file:///home/batman/Desktop/artisan's story/app/BasicInfo.php&#10;userc&#9;null&#9;null&#10;demo.css&#9;FILE&#9;file:///home/batman/Desktop/artisan's story/public/assets/css/demo.css&#10;das&#9;FILE&#9;file:///home/batman/Desktop/artisan's story/resources/views/admin/dashboard.blade.php&#10;profile&#9;FILE&#9;file:///home/batman/Desktop/artisan's story/resources/views/admin/page-profile.blade.php&#10;basic&#9;null&#9;null&#10;data&#9;FILE&#9;file:///home/batman/Desktop/artisan's story/database/seeds/DatabaseSeeder.php&#10;fea&#9;FILE&#9;file:///home/batman/Desktop/artisan's story/resources/views/partials/product/feature.blade.php&#10;blog&#9;FILE&#9;file:///home/batman/Desktop/artisan's story/resources/views/pages/blog/blog.blade.php&#10;adm&#9;null&#9;null&#10;dash&#9;FILE&#9;file:///home/batman/Desktop/artisan's story/resources/views/admin/dashboard.blade.php" />
+    <property name="SearchEverywhereHistoryKey" value="admin&#9;FILE&#9;file:///home/batman/Desktop/e-commerce/resources/views/layouts/admin.blade.php&#10;no&#9;FILE&#9;file:///home/batman/Desktop/e-commerce/app/Notification.php&#10;noti&#9;FILE&#9;file:///home/batman/Desktop/e-commerce/resources/views/admin/notifications.blade.php&#10;nav&#9;FILE&#9;file:///home/batman/Desktop/e-commerce/resources/views/admin/partials/nav.blade.php&#10;prod&#9;FILE&#9;file:///home/batman/Desktop/e-commerce/app/Http/Controllers/ProductController.php&#10;app&#9;FILE&#9;file:///home/batman/Desktop/e-commerce/app/Providers/AppServiceProvider.php&#10;rou&#9;FILE&#9;file:///home/ish/Desktop/artisan/e-commerce/app/Http/routes.php&#10;mas&#9;FILE&#9;file:///home/ish/Desktop/artisan/e-commerce/resources/views/layouts/master.blade.php&#10;demo&#9;FILE&#9;file:///home/ish/Desktop/artisan/e-commerce/public/assets/css/demo.css&#10;main&#9;FILE&#9;file:///home/ish/Desktop/artisan/e-commerce/public/assets/css/main.min.css&#10;route&#9;FILE&#9;file:///home/ish/Desktop/artisan/e-commerce/app/Http/routes.php&#10;user&#9;FILE&#9;file:///home/batman/Desktop/artisan's story/app/Http/Controllers/UserController.php&#10;edit&#9;FILE&#9;file:///home/batman/Desktop/artisan's story/resources/views/admin/profile/edit-profile.blade.php&#10;master&#9;FILE&#9;file:///home/batman/Desktop/artisan's story/resources/views/layouts/master.blade.php&#10;login&#9;FILE&#9;file:///home/batman/Desktop/artisan's story/resources/views/pages/login.blade.php&#10;bas&#9;FILE&#9;file:///home/batman/Desktop/artisan's story/app/BasicInfo.php&#10;userc&#9;null&#9;null&#10;demo.css&#9;FILE&#9;file:///home/batman/Desktop/artisan's story/public/assets/css/demo.css&#10;das&#9;FILE&#9;file:///home/batman/Desktop/artisan's story/resources/views/admin/dashboard.blade.php&#10;profile&#9;FILE&#9;file:///home/batman/Desktop/artisan's story/resources/views/admin/page-profile.blade.php&#10;basic&#9;null&#9;null&#10;data&#9;FILE&#9;file:///home/batman/Desktop/artisan's story/database/seeds/DatabaseSeeder.php&#10;fea&#9;FILE&#9;file:///home/batman/Desktop/artisan's story/resources/views/partials/product/feature.blade.php&#10;blog&#9;FILE&#9;file:///home/batman/Desktop/artisan's story/resources/views/pages/blog/blog.blade.php&#10;adm&#9;null&#9;null&#10;dash&#9;FILE&#9;file:///home/batman/Desktop/artisan's story/resources/views/admin/dashboard.blade.php" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
     <property name="js.eslint.eslintPackage" value="" />
   </component>
@@ -396,12 +412,12 @@
       <workItem from="1489250614782" duration="8576000" />
       <workItem from="1489644416873" duration="7467000" />
       <workItem from="1489664049881" duration="2337000" />
-      <workItem from="1489687299459" duration="2799000" />
+      <workItem from="1489687299459" duration="3015000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37863000" />
+    <option name="totallyTimeSpent" value="38079000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -466,14 +482,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Brand.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="11" column="5" lean-forward="false" selection-start-line="11" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Blog.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -709,6 +717,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="14" column="37" lean-forward="false" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -819,16 +828,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Notification.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="9" lean-forward="false" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
-          <folding>
-            <element signature="e#23#62#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Cart.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="236">
@@ -847,14 +846,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/notifications.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="25" column="137" lean-forward="false" selection-start-line="25" selection-start-column="137" selection-end-line="25" selection-end-column="137" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/assets/js/klorofil.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
@@ -863,10 +854,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/partials/nav.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="22" column="63" lean-forward="false" selection-start-line="22" selection-start-column="63" selection-end-line="22" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/notifications.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="25" column="137" lean-forward="false" selection-start-line="25" selection-start-column="137" selection-end-line="25" selection-end-column="137" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Notification.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="9" lean-forward="false" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+          <folding>
+            <element signature="e#23#62#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/layouts/admin.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="161" column="24" lean-forward="true" selection-start-line="161" selection-start-column="24" selection-end-line="161" selection-end-column="24" />
+        <state relative-caret-position="1080">
+          <caret line="102" column="75" lean-forward="false" selection-start-line="102" selection-start-column="37" selection-end-line="102" selection-end-column="75" />
           <folding>
             <element signature="e#8304#8598#0#HTML" expanded="false" />
             <element signature="n#script#10;n#body#0;n#html#0;n#!!top" expanded="false" />
