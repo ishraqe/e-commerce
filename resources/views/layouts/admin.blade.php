@@ -159,7 +159,6 @@
   <script src="/assets/js/plugins/jquery-easypiechart/jquery.easypiechart.min.js"></script>
   <script src="/assets/js/plugins/chartist/chartist.min.js"></script>
   <script src="/assets/js/klorofil.min.js"></script>
-  <script src="/assets/js/plugins/toastr/toastr.min.js"></script>
   <script src="/lightbox/lightbox.js"></script>
   <script>
   // $(document).ready(function(){

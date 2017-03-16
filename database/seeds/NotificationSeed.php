@@ -22,6 +22,7 @@ class NotificationSeed extends Seeder
             'blog_comment_user_id'=>0
         ]);
         $notification->save();
+        
         $notification=new \App\Notification([
             'product_id'=>0,
             'product_user_id'=>0,
