@@ -205,7 +205,7 @@ class ProductController extends Controller
             }
             $oldcart=Session::get('cart');
             $cart=new Cart($oldcart);
-            dd($oldcart);
+
             $total=$cart->totalPrice;
             $added=$total*$input['increasedProductNumber'] ;
             return [
@@ -246,6 +246,19 @@ class ProductController extends Controller
             'brand' => $brand,
             'products' => $products
         ]);
+    }
+
+    public function getProductInfo(Request $request){
+
+        $input = $request->input();
+
+        $product=Product::findorfail($input['id']);
+
+        $data=array(
+            'status' => 200,
+            'product' => $product
+        );
+        return $data;
     }
 
 

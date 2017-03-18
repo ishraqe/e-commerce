@@ -39,13 +39,29 @@
               </div>
             </div>
           </div>
-        <td><h4>{{ucfirst($p->title)}}</h4></td>
+        <td><h4 class="data-class" data-id="{{$p->id}}">{{ucfirst($p->title)}}</h4></td>
         <td><p>{{ucfirst($p->description)}}</p></td>
     	  <td><p>${{ucfirst($p->price)}}</p></td>     
     	  <td><p>{{ucfirst($p->category->category_name)}}</p></td>     
     	  <td><p>{{ucfirst($p->brand->brand_name)	}}</p></td>     
     	  <td>
-    	  	<a href="{{action('adminController@editProductInfo',[$p->id])}}">Edit</a>
+    	  	<a  onclick="editProductInfo(this)">Edit</a>
+              <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                              <h4 class="modal-title" id="myModalLabel">Edit product</h4>
+                          </div>
+                          <div class="modal-body">
+
+                          </div>
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
     		 <a class="cart_quantity_delete" id="confirmationCheck" href=#><i class="fa fa-times"></i></a>
          
                   <h4 class="modal-title" id="myModalLabel">Are you sure  you want to delete this product??</h4>
@@ -64,3 +80,31 @@
   </tbody>
 </table>
 
+<script>
+    function  editProductInfo(trigger) {
+        var trigger=$(trigger);
+        var container=trigger.parents("tr");
+        var dataId = container.find(".data-class").attr("data-id");
+        $('#editModal').modal('show');
+        param = {
+            "_token": "{{ csrf_token() }}",
+            id : dataId
+        };
+
+        $.ajax({
+            url: "/admin/product/update/info",
+            method: "post",
+            data: param,
+            dataType: "json",
+            success: function (res) {
+
+                if(res.status==200){
+                    var productInfo=product;
+                    trigger.parents('tr').find('.').html();
+
+                }
+            }
+        })
+    }
+
+</script>

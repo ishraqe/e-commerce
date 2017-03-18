@@ -203,11 +203,7 @@ Route::group(['prefix'=>'admin'],function(){
 		'as'=>'admin.editProductInfo',
 		'middleware'=>'admin'
 	]);
-	Route::post('/editProduct/{id}',[
-		'uses' =>'adminController@saveProductInfo',
-		'as'=> 'admin.saveProductInfo',
-		'middleware'=>'admin'
-	]);
+    Route::post('/product/update/info','ProductController@getProductInfo');
 
 	Route::get('/deleteProduct/{id}',[
 		'uses'=>'adminController@deleteProduct',
