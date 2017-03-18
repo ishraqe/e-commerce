@@ -54,7 +54,7 @@
                               <h4 class="modal-title" id="myModalLabel">Edit product</h4>
                           </div>
                           <div class="modal-body">
-
+                                @include('admin.partials.editProduct')
                           </div>
                           <div class="modal-footer">
                               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -97,10 +97,9 @@
             data: param,
             dataType: "json",
             success: function (res) {
-
+                var title=title;
                 if(res.status==200){
-                    var productInfo=product;
-                    trigger.parents('tr').find('.').html();
+                    trigger.parents('div').find('productTitle').val(title);
 
                 }
             }

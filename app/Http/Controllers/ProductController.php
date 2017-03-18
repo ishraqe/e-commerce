@@ -256,7 +256,8 @@ class ProductController extends Controller
 
         $data=array(
             'status' => 200,
-            'product' => $product
+            'id' => $product['id'],
+            'title' => $product['title']
         );
         return $data;
     }

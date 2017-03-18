@@ -86,3 +86,8 @@ Artisan's Story
         </div>
     </section>
 @endsection
+
+@section('script')
+
+
+@endsection
