@@ -15,7 +15,7 @@ use App\Order;
 use App\Product;
 use App\Category;
 use App\Brand;
-use App\Image;
+use App\Notification;
 
 use App\Http\Controller\ProductController;
 
@@ -334,9 +334,7 @@ class adminController extends Controller
             return redirect()->back()->withErrors($validator, 'adminadderror');
         }else {
         	$admin_type= base64_encode(serialize($request->admin_type));
-			$username=$request['name'];
-			$email=$request['eamil'];
-			$password=$request['password'];
+
     		$user =  User::create([
 	            'name' => $request['name'],
 	            'email' => $request['email'],
@@ -353,8 +351,17 @@ class adminController extends Controller
 
 	public function notificationLanding()
     {
-        return view('admin.notifications');
+
+        $notification=new Notification();
+
+       $notification=  $notification->getNotification();
+
+        return view('admin.notifications')->with([
+            'notification' => $notification
+        ]);
     }
+
+
 }
 
 
