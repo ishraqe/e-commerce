@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0d9e9577-da29-433e-8eee-9c385c4016fd" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/adminController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/adminController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/notifications.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/notifications.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" />
-    </list>
+    <list default="true" id="0d9e9577-da29-433e-8eee-9c385c4016fd" name="Default" comment="" />
     <ignored path="craftic.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -399,12 +391,12 @@
       <workItem from="1486630835964" duration="8068000" />
       <workItem from="1489250614782" duration="8576000" />
       <workItem from="1489644416873" duration="7467000" />
-      <workItem from="1489664049881" duration="2337000" />
+      <workItem from="1489664049881" duration="2391000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35064000" />
+    <option name="totallyTimeSpent" value="35118000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -417,7 +409,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-6" width="1366" height="774" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10980967" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
