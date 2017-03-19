@@ -14,11 +14,16 @@
 
   <link rel="stylesheet" href="/assets/css/demo.css">
   <link rel="stylesheet" type="text/css" href="/lightbox/lightbox.css">
+
   <!-- GOOGLE FONTS -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
   <!-- ICONS -->
   <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/apple-icon.png">
   <link rel="icon" type="image/png" sizes="96x96" href="/assets/img/favicon.png">
+
+    @yield('style')
+
+
 </head>
 
 <body>
@@ -81,7 +86,7 @@
                   </li>
                     <?php } ?>
                 @endforeach 
-                  <li><a href="#" class="more">See all messages</a></li>
+                  <li><a href="{{route('admin.messages')}}" class="more">See all messages</a></li>
                 </ul>
               </li>
               <li class="dropdown">
@@ -160,6 +165,8 @@
   <script src="/assets/js/plugins/chartist/chartist.min.js"></script>
   <script src="/assets/js/klorofil.min.js"></script>
   <script src="/lightbox/lightbox.js"></script>
+
+
   <script>
   // $(document).ready(function(){
   //     $('.btn-toastr').delay(3000).slideUp(300);

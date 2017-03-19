@@ -243,6 +243,12 @@ Route::group(['prefix'=>'admin'],function(){
         'as' => 'admin.notificationLanding',
         'middleware' => 'admin'
     ]);
+    Route::get('/message/landing',[
+        'uses' => 'adminController@messageLanding',
+        'as' => 'admin.messages',
+        'middleware' => 'admin'
+    ]);
+
 	
 });
 

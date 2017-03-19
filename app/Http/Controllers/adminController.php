@@ -360,7 +360,9 @@ class adminController extends Controller
             'notification' => $notification
         ]);
     }
-
+    public function messageLanding(){
+        return view('admin.message');
+    }
 
 }
 
