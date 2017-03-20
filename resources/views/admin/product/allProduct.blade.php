@@ -99,7 +99,11 @@
             success: function (res) {
                 var title=title;
                 if(res.status==200){
-                    trigger.parents('div').find('productTitle').val(title);
+                    var source   = $("#edit-form-modal").html();
+                    var template = Handlebars.compile(source);
+                    var context = {'info':res.info,'category':res.category,brand:res.brand};
+                    var html    = template(context);
+                    $('#edit-form-info').html(html);
 
                 }
             }

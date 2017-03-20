@@ -253,12 +253,23 @@ class ProductController extends Controller
         $input = $request->input();
 
         $product=Product::findorfail($input['id']);
+        $category=Category::all();
+        $brand=Brand::all();
 
         $data=array(
             'status' => 200,
-            'id' => $product['id'],
-            'title' => $product['title']
+            'info' => array(
+                'id' => $product['id'],
+                'title' => $product['title']
+            ),
+            'category' => array(
+              'category' => $category
+            ),
+            'brand' => array(
+                'brand' => $brand
+            )
         );
+
         return $data;
     }
 

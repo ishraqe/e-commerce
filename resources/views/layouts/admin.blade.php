@@ -21,6 +21,10 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/apple-icon.png">
   <link rel="icon" type="image/png" sizes="96x96" href="/assets/img/favicon.png">
 
+  <script src="/assets/js/jquery/jquery-2.1.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
+
+
     @yield('style')
 
 
@@ -158,7 +162,6 @@
   </div>
   <!-- END WRAPPER -->
   <!-- Javascript -->
-  <script src="/assets/js/jquery/jquery-2.1.0.min.js"></script>
   <script src="/assets/js/bootstrap/bootstrap.min.js"></script>
   <script src="/assets/js/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
   <script src="/assets/js/plugins/jquery-easypiechart/jquery.easypiechart.min.js"></script>
