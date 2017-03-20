@@ -11,7 +11,7 @@ use App\Image;
 class Product extends Model
 {
    
-    protected $fillable = array( 'title',  'category_id','brand_id','description','price','rating','image','number_of_products','products_user_id');
+    protected $fillable = array( 'title',  'category_id','brand_id','description','price','rating','image','number_of_products','products_user_id','is_available','is_sold');
     
 
     public function category()
@@ -21,6 +21,9 @@ class Product extends Model
 
     public function brand(){
          return $this->belongsTo(Brand::class);
+    }
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 
     public function order(){

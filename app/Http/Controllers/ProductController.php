@@ -260,7 +260,15 @@ class ProductController extends Controller
             'status' => 200,
             'info' => array(
                 'id' => $product['id'],
-                'title' => $product['title']
+                'title' => $product['title'],
+                'description'=>$product['description'],
+                'price' => $product['price'],
+                'number_of_product'=>$product['number_of_products'],
+                'is_available' => $product['is_available'],
+                'is_sold' => $product['is_sold'],
+                'image'=>$product['image'],
+                'category_id'=>$product['category_id'],
+                'brand_id' => $product['brand_id']
             ),
             'category' => array(
               'category' => $category
@@ -272,6 +280,8 @@ class ProductController extends Controller
 
         return $data;
     }
-
+    public function editProductInfo($id){
+        return $id;
+    }
 
 }

@@ -25,7 +25,8 @@ class ProductModelSeeder extends Seeder
         'price'=> 120,
         'image'=>'http://www.apple.com/uk/pr/products/images/iMac27_iMac21_Photos_PRINT_131020_HERO.jpg',
         'number_of_products' => 3,
-         'products_user_id'=>1
+         'products_user_id'=>1,
+          'is_sold' => false
 
 
         ]);

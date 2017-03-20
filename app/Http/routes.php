@@ -199,7 +199,7 @@ Route::group(['prefix'=>'admin'],function(){
 	]);
 
 	Route::get('/product/edit/{id}',[
-		'uses'=>'adminController@editProductInfo',
+		'uses'=>'ProductController@editProductInfo',
 		'as'=>'admin.editProductInfo',
 		'middleware'=>'admin'
 	]);
