@@ -249,6 +249,13 @@ Route::group(['prefix'=>'admin'],function(){
         'middleware' => 'admin'
     ]);
 
+    Route::post('/product/saveUpdate',[
+        'uses' => 'ProductController@saveupdateproduct',
+        'as' => 'admin.updateProductInfo',
+        'middleware' => 'admin'
+    ]);
+
+
 	
 });
 

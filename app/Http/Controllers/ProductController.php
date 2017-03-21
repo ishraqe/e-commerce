@@ -280,8 +280,10 @@ class ProductController extends Controller
 
         return $data;
     }
-    public function editProductInfo($id){
-        return $id;
+    public function saveupdateproduct(Request $request){
+        dd($request->all());
+       $product=Product::find($request['id']);
+       return $product;
     }
 
 }
