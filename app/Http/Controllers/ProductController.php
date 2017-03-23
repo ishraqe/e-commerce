@@ -13,7 +13,7 @@ use App\Brand;
 use App\Category;
 use App\Review;
 use DB;
-
+use Validator;
 use Session;
 use Auth;
 use App\WishList;
@@ -252,6 +252,7 @@ class ProductController extends Controller
 
         $input = $request->input();
 
+
         $product=Product::findorfail($input['id']);
         $category=Category::all();
         $brand=Brand::all();
@@ -281,9 +282,60 @@ class ProductController extends Controller
         return $data;
     }
     public function saveupdateproduct(Request $request){
-        dd($request->all());
-       $product=Product::find($request['id']);
-       return $product;
+
+        $input = $request->input();
+        $files = $request->allFiles();
+
+        $validator = Validator::make($input, [
+            'title' => 'required',
+            'description' => 'required',
+            'price' => 'required|int',
+            'category_id' => 'required',
+            'brand_id' => 'required',
+            'number_of_products' => 'required|int'
+        ]);
+        if ($validator->fails()) {
+            $error=$validator->errors()->all();
+
+            $data=array(
+                'status' => 500,
+                'error' =>$error
+            );
+            return $data;
+        }else {
+
+
+            $updateData = array(
+                'title' => $input['title'],
+                'price' => $input['price'],
+                'brand_id' => $input['brand_id'],
+                'category_id' => $input['category_id'],
+                'number_of_products' => $input['number_of_products'],
+                'is_sold' => $input['is_sold'],
+                'description' => $input['description']
+            );
+
+            $product = new Product();
+
+            $saveData=  $product->where('id',$input['id'])->update($updateData);
+            if ($saveData){
+
+                $updateData['id']=$input['id'];
+                $image = DB::table('products')
+                    ->where('id',$input['id'])
+                    ->select('image')->get();
+
+                $data=array(
+                    'status' => 200,
+                    'product' =>$updateData,
+                    'image' => $image[0]->image
+                );
+                return $data;
+            }
+
+
+        }
+
     }
 
 }
