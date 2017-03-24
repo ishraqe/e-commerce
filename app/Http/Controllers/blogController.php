@@ -14,6 +14,7 @@ use DB;
 use Validator;
 use Auth;
 use Session;
+
 class blogController extends Controller
 {
     public function getBlog()
@@ -36,7 +37,6 @@ class blogController extends Controller
 
     public function  showBlog($id){
         $blogDesc=Blog::findOrfail($id);
-
         
 
         $comment = DB::table('blog_comments')
@@ -97,28 +97,65 @@ class blogController extends Controller
         }
     }
 
-    public function addComment(Request $request,$id)
+    public function addComment(Request $request)
     {
-        $this->validate($request,[
-            'comment_body' => 'required'
+       $input = $request->input();
 
-        ]);
-        $comment_user_id=Auth::user()->id;
-        $blog_id=$id;
-        $comment_body=$request->comment_body;
-
-        try{
-                 $bloComment=BlogComment::create([
-                    'comment_user_id' => $comment_user_id,
-                    'blog_id' => $blog_id,
-                    'comment_body' => $comment_body
-                ]);
-
-                Session::flash('added_confirmation','Your comment has been added');
-                return redirect()->back();
-        }catch(Exception $e){
-            return $e;
-        }
+       $comment=$input['comment'][0]['value'];
         
+        $arrayData=[
+            'comment_body' => $comment
+        ];
+
+        $validator = Validator::make($arrayData, [
+            'comment_body' => 'required'
+        ]);
+
+
+        if ($validator->fails()) {
+            $error=$validator->errors()->all();
+
+            $data=array(
+                'status' => 500,
+                'error' =>$error
+            );
+            return $data;
+        }else {
+            $updateData = array(
+               'comment_user_id' => Auth::user()->id,
+               'blog_id' => $input['id'],
+               'comment_body' => $comment,
+            );
+
+            $username=User::where('id',$updateData['comment_user_id'])->select('name')->get();
+          
+            $comment = new BlogComment();
+            
+            $comment->comment_user_id = $updateData['comment_user_id'];
+            $comment->blog_id=$updateData['blog_id'];
+            $comment->comment_body=$updateData['comment_body'];
+
+            $saveData =  $comment->save();
+
+            if ($saveData){
+
+                $blogComment = DB::table('blog_comments')
+                ->select('*')
+                ->where('blog_id','=',$updateData['blog_id'])
+                ->get();
+
+               
+               $response=count($blogComment);
+               $data=array(
+                   'status' => 200,
+                   'number_of_response' => $response,
+                   'comments' => array(
+                      'comments' => $blogComment
+                    )         
+               );
+               
+               return $data;
+            }
+        }        
     }
 }

@@ -14,6 +14,8 @@
     <link href="/css/main.css" rel="stylesheet">
     <link href="/css/responsive.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/lightbox/lightbox.css">
+    <script src="/js/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>

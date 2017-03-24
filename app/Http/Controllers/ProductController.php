@@ -284,8 +284,9 @@ class ProductController extends Controller
     public function saveupdateproduct(Request $request){
 
         $input = $request->input();
-        $files = $request->allFiles();
 
+        $files = $request->allFiles();
+        
         $validator = Validator::make($input, [
             'title' => 'required',
             'description' => 'required',

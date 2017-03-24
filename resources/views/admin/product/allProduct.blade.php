@@ -76,6 +76,7 @@
                 <div class='row'>
                     <div class='col-sm-12 '>
                         <div class='well' id="edit-form-info">
+
                         </div>
                     </div>
                 </div>
@@ -83,48 +84,6 @@
         </div>
     </div>
 </div>
-
-<script id="eachProduct-template" type="text/x-handlebars-template">
-
-    <tr class="text-center" id="eachProduct-@{{product.id}}">
-        <th scope="row">1</th>
-        <td>
-            <a href="@{{image}}" data-lightbox="@{{image}}" data-title="@{{product.title}}" style=" width: 72px; height: 62px;">
-                <img src="@{{image}}" style=" width: 72px; height: 62px;">
-            </a>
-        </td>
-        <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Image preview</h4>
-                    </div>
-                    <div class="modal-body">
-                        <img src="" id="imagepreview" style="width: 400px; height: 264px;" >
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <td><h4 class="data-class" data-id="@{{product.id}}">@{{product.title}}</h4></td>
-        <td><p>@{{product.description}}</p></td>
-        <td><p>@{{product.price}}</p></td>
-        <td><p>@{{product.category_name}}</p></td>
-        <td><p>@{{product.brand_name}}</p></td>
-        <td>
-            <a  onclick="editProductInfo(this)">Edit</a>
-
-            <a class="cart_quantity_delete" id="confirmationCheck" href=#><i class="fa fa-times"></i></a>
-
-            <h4 class="modal-title" id="myModalLabel">Are you sure  you want to delete this product??</h4>
-            <button class="btn btn-danger" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </td>
-    </tr>
-</script>
-
 <script id="edit-form-modal" type="text/x-handlebars-template">
 
     <form   id="editProfductform" class="text-left">
@@ -211,6 +170,50 @@
         </div>
     </form>
 </script>
+
+
+<script id="eachProduct-template" type="text/x-handlebars-template">
+
+    <tr class="text-center" id="eachProduct-@{{product.id}}">
+        <th scope="row">1</th>
+        <td>
+            <a href="@{{image}}" data-lightbox="@{{image}}" data-title="@{{product.title}}" style=" width: 72px; height: 62px;">
+                <img src="@{{image}}" style=" width: 72px; height: 62px;">
+            </a>
+        </td>
+        <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Image preview</h4>
+                    </div>
+                    <div class="modal-body">
+                        <img src="" id="imagepreview" style="width: 400px; height: 264px;" >
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <td><h4 class="data-class" data-id="@{{product.id}}">@{{product.title}}</h4></td>
+        <td><p>@{{product.description}}</p></td>
+        <td><p>@{{product.price}}</p></td>
+        <td><p>@{{product.category_name}}</p></td>
+        <td><p>@{{product.brand_name}}</p></td>
+        <td>
+            <a  onclick="editProductInfo(this)">Edit</a>
+
+            <a class="cart_quantity_delete" id="confirmationCheck" href=#><i class="fa fa-times"></i></a>
+
+            <h4 class="modal-title" id="myModalLabel">Are you sure  you want to delete this product??</h4>
+            <button class="btn btn-danger" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </td>
+    </tr>
+</script>
+
+
 <script>
     function  editProductInfo(trigger) {
         var trigger=$(trigger);

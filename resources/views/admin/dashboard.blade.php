@@ -4,6 +4,34 @@
 Dashboard
 @endsection
 
+@section('head-script')
+  <script type="text/javascript">
+
+
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+          var data = google.visualization.arrayToDataTable([
+              ['Year', 'Sales'],
+              ['2013',  1000],
+              ['2014',  1170],
+              ['2015',  560],
+              ['2016',  1030]
+          ]);
+
+          var options = {
+              title: 'Company Performance',
+              hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
+              vAxis: {minValue: 0}
+          };
+
+          var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+          chart.draw(data, options);
+      }
+  </script>
+@endsection
+
 @section('content')
 
 	<div class="main-content">
@@ -55,7 +83,9 @@ Dashboard
               </div>
               <div class="row">
                 <div class="col-md-9">
-                  <div id="headline-chart" class="ct-chart"></div>
+                  <div id="chart_div" style="width: 100%; height: 500px;"></div>
+
+                  {{--<div id="headline-chart" class="ct-chart"></div>--}}
                 </div>
                 <div class="col-md-3">
                   <div class="weekly-summary text-right">

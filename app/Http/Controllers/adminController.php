@@ -55,12 +55,14 @@ class adminController extends Controller
 		$brand=Brand::all();
 		$product=$pro->getAllProduct();
 
+        $users=User::where(['is_reported'=>false,'admin'=>0,'is_active'=>true])->get();
 
 
 		return view('admin.dashboard')->with([
 			'product'=>$product,
 			'category'=>$category,
-			'brand'=>$brand
+			'brand'=>$brand,
+            'users' => $users
 		]);
 	}
 

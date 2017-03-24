@@ -1,3 +1,5 @@
+
+
 $(document).ready(function() {
 
 	/*-----------------------------------/
@@ -172,7 +174,7 @@ $(document).ready(function() {
 		var data = {
 			labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
 			series: [
-				[23, 29, 24, 40, 25, 24, 35],
+				[3, 29, 24, 40, 25, 24, 35],
 				[14, 25, 18, 34, 29, 38, 44],
 			]
 		};
