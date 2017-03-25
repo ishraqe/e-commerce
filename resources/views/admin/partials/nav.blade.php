@@ -22,7 +22,7 @@
             
             <li><a href="{{route('admin.notificationLanding')}}" class=""><i class="lnr lnr-alarm"></i> <span>Notifications</span></a></li>
             <li><a href="{{url('/admin/product')}}" class=""><i class="lnr lnr-alarm"></i> <span>Products</span></a></li>
-            
+            <li><a href="{{route('admin.to-do')}}" class=""><i class="lnr lnr-linearicons"></i> <span>To do</span></a></li>
             
 
             <li>

@@ -11,6 +11,7 @@ use League\Flysystem\Exception;
 use Session;
 use DB;
 use Validator;
+use App\Todo;
 use App\Order;
 use App\Product;
 use App\Category;
@@ -364,6 +365,71 @@ class adminController extends Controller
     }
     public function messageLanding(){
         return view('admin.message');
+    }
+
+    public function getTodo(){
+        $data=new Todo();
+
+        $allTodo= $data->allTodo();
+
+        $id=Auth::user()->id;
+
+        $status=array(
+            'todo'=>0,
+            'done'=>1
+        );
+        $myTodo=$data->getbyId($id,$status['todo']);
+        $myDone=$data->getbyId($id,$status['done']);
+
+        return view('admin.todo.todo')->with([
+            'allTodo'=> $allTodo,
+            'myTodo' => $myTodo,
+            'myDone' => $myDone
+        ]);
+
+    }
+
+    public function changeTodoStatus(Request $request){
+        $input=$request->all();
+
+         $todoId= $input['id'][0];
+        dd($todoId);
+         $todo=new Todo();
+
+         $individualTodo = $todo->getByOnlyId($todoId);
+
+            $updateData = array(
+                'status' => 1
+            );
+
+
+        $saveData =  $individualTodo->update($updateData);
+
+
+        if ($saveData){
+            $id=Auth::user()->id;
+
+            $status=array(
+                'todo'=>0,
+                'done'=>1
+            );
+            $data=new Todo();
+            $myTodo=$data->getbyId($id,$status['todo']);
+            $myDone=$data->getbyId($id,$status['done']);
+            $data=array(
+                'status' => 200,
+
+                'todo'   =>array(
+                    'todo' => $myTodo
+                ),
+                'done' => array(
+                    'done' => $myDone
+                )
+            );
+            return $data;
+        }
+
+
     }
 
 }

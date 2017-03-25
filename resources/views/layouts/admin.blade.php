@@ -69,6 +69,13 @@
             </form>
             <ul class="nav navbar-nav navbar-right">
               <li class="dropdown">
+                <a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown" alt="to do">
+                  <i class="fa fa-bars" aria-hidden="true"></i>
+
+                  <span class="badge bg-danger">{{count($message)}}</span>
+                </a>
+              </li>
+              <li class="dropdown">
                 <a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
                   <i class="fa fa-envelope-o" aria-hidden="true"></i>
 

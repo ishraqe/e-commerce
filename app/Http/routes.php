@@ -262,6 +262,16 @@ Route::group(['prefix'=>'admin'],function(){
         'middleware' => 'admin'
     ]);
 
+    Route::get('/todo',[
+        'uses' => 'adminController@getTodo',
+        'as' => 'admin.to-do',
+        'middleware' => 'admin'
+    ]);
+    Route::post('/todo/status',[
+        'uses' => 'adminController@changeTodoStatus',
+        'as' => 'admin.status',
+        'middleware' => 'admin'
+    ]);
 
 	
 });
