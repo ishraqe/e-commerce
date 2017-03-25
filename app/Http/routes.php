@@ -147,7 +147,11 @@ Route::group(['prefix'=>'user'],function(){
 		'as' => 'create.blog'
 	]);
 
-
+    Route::post('/blog/update/info',[
+        'uses'=> 'blogController@editMyBlog',
+        'as' => 'user.editMyBlog',
+        'middleware'=>'auth'
+    ]);
 });
 
 

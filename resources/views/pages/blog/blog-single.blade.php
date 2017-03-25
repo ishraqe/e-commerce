@@ -1,4 +1,10 @@
 @extends('layouts.master')
+@section('title')
+	<?php
+    $result = substr($blogDesc->title, 0,5);
+	echo  "Blog-".$result;
+	?>
+@endsection
 @section('content')
 	<section>
 		<div class="container">
@@ -10,12 +16,32 @@
 					<div class="blog-post-area" >
 						<h2 class="title text-center">Latest From our Blog</h2>
 
-						<div class="single-blog-post" >
+						<div class="single-blog-post" id="blog-data" >
 
 							<h3 id="id" data-id="{{$blogDesc->id}}">{{$blogDesc->title}}</h3>
 							@if(!Auth::guest())
 								@if(Auth::user()->id === $blogDesc->user->id)
-									 <button id="blog-edit" class="btn btn-primary pull-right">Edit (open modal)</button>
+									<a onclick="editBlogInfo(this)" type="button" id="blog-edit" class="btn btn-primary pull-right" data-toggle="modal" >
+										Edit
+									</a>
+									<div class="modal fade" id="myEditBlogmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+										<div class="modal-dialog" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+													<h4 class="modal-title" id="myModalLabel">Add your blog content here:  (ajax form validation)</h4>
+												</div>
+												<div class="modal-body" id="edit-blog-info">
+
+													@include('partials.edit-blog')
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+												</div>
+											</div>
+										</div>
+									</div>
+
 								@endif
 							@endif	
 							
@@ -197,6 +223,42 @@
             })
 
 
+        }
+	</script>
+
+	<script>
+		function editBlogInfo(trigger) {
+
+            var  comment=[];
+            var trigger = $(trigger),
+                container = trigger.parents('#trigger-area'),
+                id = container.find('#id').attr('data-id');
+
+            $('#myEditBlogmodal').modal('show');
+
+            param = {
+                "_token": "{{ csrf_token() }}",
+                id : id
+            };
+
+            $.ajax({
+                url: "/user/blog/update/info",
+                method: "post",
+                data: param,
+                dataType: "json",
+                success: function (res) {
+
+                    if(res.status==200){
+
+                        var source   = $("#edit-form-modal").html();
+                        var template = Handlebars.compile(source);
+                        var context = {'info':res.info};
+                        var html    = template(context);
+                        $('#edit-blog-info').html(html);
+
+                    }
+                }
+            })
         }
 	</script>
 @endsection

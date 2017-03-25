@@ -158,4 +158,27 @@ class blogController extends Controller
             }
         }        
     }
+
+    public function editMyBlog(Request $request){
+        $input=$request->all();
+
+        $blogDesc=Blog::findOrfail($input['id']);
+
+
+
+
+        $data=[
+            'status' => 200,
+            'info'   => array(
+                'title'  => $blogDesc->title,
+                'user_id' => $blogDesc->user_id,
+                'short_description' => $blogDesc->short_description,
+                'blog_header_image' => $blogDesc->blog_header_image,
+                'blog_body' => $blogDesc->blog_body
+            )
+        ];
+
+        return $data;
+
+    }
 }
