@@ -18,7 +18,7 @@ class CreateBasicInfosTable extends Migration
             $table->integer('mobile_number');
             $table->text('about');
             $table->string('website');
-            $table->string('user_image');
+            $table->string('user_image')->default(null);
             $table->timestamps();
         });
     }

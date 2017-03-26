@@ -216,6 +216,7 @@
 
 <script>
     function  editProductInfo(trigger) {
+
         var trigger=$(trigger);
         var container=trigger.parents("tr");
         var dataId = container.find(".data-class").attr("data-id");

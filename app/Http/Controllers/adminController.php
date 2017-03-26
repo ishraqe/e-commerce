@@ -393,7 +393,8 @@ class adminController extends Controller
         $input=$request->all();
 
          $todoId= $input['id'][0];
-        dd($todoId);
+
+
          $todo=new Todo();
 
          $individualTodo = $todo->getByOnlyId($todoId);
@@ -432,6 +433,87 @@ class adminController extends Controller
 
     }
 
+    public function editTodo(Request $request){
+       $id=$request['id'];
+       $data=new Todo();
+       $user=new User();
+
+       $getTodo=$data->getByOnlyId($id);
+
+       $admin= $user->getAdmin();
+
+
+        $adminInfo=[];
+        $mainInfo=[];
+       foreach ($admin as $a){
+
+           $adminInfo['id']=$a->id;
+           $adminInfo['name'] = $a->name;
+
+           if($a->basicInfo['user_image'] != null){
+             $adminInfo['image'] =$a->basicInfo['user_image'];
+           }
+           else{
+               $adminInfo['image'] =0;
+           }
+
+           array_push($mainInfo,$adminInfo);
+
+
+       }
+       $data=[
+         'status' => 200,
+           'info' =>array(
+               "id"             =>$getTodo->id,
+               "todo_title"     => $getTodo->todo_title,
+               "todo_body"      => $getTodo->todo_body,
+               "assigned_by"    => $getTodo->assigned_by,
+               "created_by"     => $getTodo->created_by,
+               "assigned_to"    => $getTodo->assigned_to,
+               "status"         => $getTodo->status,
+               "due_date"       => $getTodo->due_date
+           ),
+           'adminInfo'=>array(
+
+               'adminInfo'=>$mainInfo
+           )
+       ];
+       return $data;
+    }
+    public function updateTodo(Request $request){
+            $input=$request->all();
+            $data=new Todo();
+            $getTodo=$data->getByOnlyId($input['id']);
+
+            $arrayData=[
+                'todo_title'    => $input['todo_title'],
+                'todo_body'     => $input['todo_body'],
+                'assigned_by'   => $getTodo->assigned_by,
+                'assigned_to'   => $input['assigned_to'],
+                'status'        => $getTodo->status,
+                'due_date'      => $input['todo_title']
+            ];
+
+            $validator = Validator::make($arrayData, [
+                'todo_title'    => 'required',
+                'todo_body'     => 'required',
+                'assigned_to'   => 'required',
+                'due_date'      => 'required'
+            ]);
+
+
+            if ($validator->fails()) {
+                $error=$validator->errors()->all();
+
+                $data=array(
+                    'status' => 500,
+                    'error' =>$error
+                );
+                return $data;
+            }else {
+                
+            }
+    }
 }
 
 

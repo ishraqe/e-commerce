@@ -25,6 +25,13 @@
   <script src="/assets/js/jquery/jquery-2.1.0.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
   <script type="text/javascript" src="/assets/js/chart.js"></script>
+  <script src="/date.js"></script>
+
+  <script>
+      $("#dpd1").datepicker({
+          minDate: 0
+      });
+  </script>
   @yield('head-script')
   @yield('style')
 
@@ -176,6 +183,7 @@
   <script src="/assets/js/plugins/chartist/chartist.min.js"></script>
   <script src="/assets/js/klorofil.min.js"></script>
   <script src="/lightbox/lightbox.js"></script>
+
 
   <script type="text/javascript">
       $.ajaxSetup({

@@ -55,4 +55,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Todo::class);
     }
+
+    public function getAdmin(){
+        return User::where('admin',1)->get();
+    }
 }

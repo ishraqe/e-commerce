@@ -272,6 +272,16 @@ Route::group(['prefix'=>'admin'],function(){
         'as' => 'admin.status',
         'middleware' => 'admin'
     ]);
+    Route::post('/edit/todo',[
+        'uses' => 'adminController@editTodo',
+        'as' => 'admin.editTodo',
+        'middleware' => 'admin'
+    ]);
+    Route::post('/todo/saveUpdate',[
+        'uses' => 'adminController@updateTodo',
+        'as' => 'admin.updateTodo',
+        'middleware' => 'admin'
+    ]);
 
 	
 });

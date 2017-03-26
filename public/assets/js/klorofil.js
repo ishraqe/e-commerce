@@ -324,7 +324,10 @@ $(document).ready(function() {
 	/*-----------------------------------/
 	/* TOASTR NOTIFICATION
 	/*----------------------------------*/
+    $("#dpd1").datepicker({
+        minDate: 0
 
+    });
 	
 });
 

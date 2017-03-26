@@ -18,7 +18,7 @@ class CreateTodosTable extends Migration
             $table->text('todo_body');
             $table->integer('assigned_by');
             $table->integer('created_by');
-            $table->integer('assigned_to');
+            $table->integer('assigned_to')->default(null);
             $table->boolean('status')->comment('0=>not_done ,1=>done');
             $table->timestamp('due_date');
             $table->timestamps();
