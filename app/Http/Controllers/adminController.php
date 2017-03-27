@@ -511,7 +511,7 @@ class adminController extends Controller
                 );
                 return $data;
             }else {
-                
+
             }
     }
 }

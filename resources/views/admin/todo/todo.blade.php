@@ -13,7 +13,7 @@
             <div class="col-md-12">
                 <div class="panel">
                     <div class="panel-body">
-                        <a >Add new</a>
+                       @
                     </div>
                 </div>
                 <!-- END TODO LIST -->
@@ -34,7 +34,7 @@
                             @foreach($myTodo as $m)
                                 <li>
                                     <label class="control-inline fancy-checkbox id"  >
-                                        <input id="todoId" data-id="{{$m->id}}"  name="mark-done" type="checkbox"><span></span>
+                                        <input id="todoId" data-id="{{$m->id}}" onclick="editStatus(this)"  name="mark-done" type="checkbox"><span></span>
                                     </label>
                                     <p>
                                         <span class="title">{{$m->todo_title}}</span>
@@ -157,103 +157,51 @@
         </div>
         <!-- END TODO LIST -->
     </div>
-    <script id="mytodo-template" type="text/x-handlebars-template">
-        <ul class="list-unstyled todo-list" >
 
-            @{{#each todo.todo}}
-                <li>
-                    <label class="control-inline fancy-checkbox">
-                        <input  id="todoId" data-id="@{{ this.id }}" name="mark-done" type="checkbox"><span></span>
-
-                    </label>
-                    <p>
-                        <span class="title">@{{ this.todo_title }}</span>
-                        <span class="short-description">@{{ this.todo_body }}</span>
-
-
-                        <span class="date">@{{this.created_at}}</span>
-                    </p>
-                    <div class="controls">
-                        <a style="color: green"; href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                        <a style="color: red"; href="#"><i class="fa fa-trash" aria-hidden="true"></i></a>
-
-                    </div>
-                </li>
-            @{{/each}}
-        </ul>
-    </script>
-
-    <script id="mydone-template" type="text/x-handlebars-template">
-        <ul class="list-unstyled todo-list" >
-
-            @{{#each done.done}}
-            <li  id="todoId" data-id="@{{ this.id }}">
-                <label class="control-inline fancy-checkbox">
-                    <input name="mark-done" type="checkbox"><span></span>
-
-                </label>
-                <p>
-                    <span class="title">@{{ this.todo_title }}</span>
-                    <span class="short-description">@{{ this.todo_body }}</span>
-
-
-                    <span class="date">@{{this.created_at}}</span>
-                </p>
-                <div class="controls">
-                    <a style="color: green"; href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                    <a style="color: red"; href="#"><i class="fa fa-trash" aria-hidden="true"></i></a>
-
-                </div>
-            </li>
-            @{{/each}}
-        </ul>
-    </script>
-    <script id="edit-todo-template" type="text/x-handlebars-template">
-        @include('admin.partials.editTodo')
-    </script>
+    @include('admin.todo.templatefile')
 
     <script>
+        function  editStatus(trigger) {
+            $('input[type="checkbox"][name="mark-done"]').change(function () {
+                if (this.checked) {
 
-        $('input[type="checkbox"][name="mark-done"]').change(function() {
-            if(this.checked) {
-
-                var id = [];
-                id.push($(this).attr('data-id'));
-
-
-                param = {
-                    "_token": "{{ csrf_token() }}",
-                    id : id
-                };
-
-                $.ajax({
-                    url: "/admin/todo/status",
-                    method: "post",
-                    data: param,
-                    dataType: "json",
-                    success: function (res) {
-
-                        if(res.status==200){
-
-                            var source   = $("#mytodo-template").html();
-                            var template = Handlebars.compile(source);
-                            var context = {'todo':res.todo};
-                            var html    = template(context);
-                            $('#todolist').html(html);
+                    var id = [];
+                    id.push($(this).attr('data-id'));
 
 
-                            var source1   = $("#mydone-template").html();
-                            var template1 = Handlebars.compile(source1);
-                            var context1 = {'done':res.done};
-                            var html1    = template1(context1);
-                            $('#donelist').html(html1);
+                    param = {
+                        "_token": "{{ csrf_token() }}",
+                        id: id
+                    };
 
+                    $.ajax({
+                        url: "/admin/todo/status",
+                        method: "post",
+                        data: param,
+                        dataType: "json",
+                        success: function (res) {
+
+                            if (res.status == 200) {
+
+                                var source = $("#mytodo-template").html();
+                                var template = Handlebars.compile(source);
+                                var context = {'todo': res.todo};
+                                var html = template(context);
+                                $('#todolist').html(html);
+
+
+                                var source1 = $("#mydone-template").html();
+                                var template1 = Handlebars.compile(source1);
+                                var context1 = {'done': res.done};
+                                var html1 = template1(context1);
+                                $('#donelist').html(html1);
+
+                            }
                         }
-                    }
-                })
-            }
-        });
-
+                    })
+                }
+            });
+        }
     </script>
     <script>
         function  editTodo(trigger) {
