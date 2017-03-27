@@ -32,9 +32,17 @@
 </div>
 
 <div class="form-group row">
-    <label for="example-url-input" class="col-2 col-form-label">Due date:</label>
+    <label for="example-url-input"  class="col-2 col-form-label">Due date:</label>
     <div class="col-10">
-        <input type="text" class="form-control" id="dpd1" placeholder="Choose date" value="@{{ info.due_date }}"  name="due_date">
+        <input type="text" class="form-control" id="flatpickr" placeholder="Choose date" value="@{{ info.due_date }}"  name="due_date">
     </div>
 </div>
+<script>
+    flatpickr('#flatpickr',{
+        dateFormat: 'd.m.Y',
+        minDate: "today",
+        prevArrow: '&lt;',
+        nextArrow: '&gt;'
+    });
 
+</script>
