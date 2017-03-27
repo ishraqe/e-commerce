@@ -87,7 +87,6 @@
 <script id="edit-form-modal" type="text/x-handlebars-template">
 
     <form   id="editProfductform" class="text-left">
-
         <ul class="errorMsg">
         </ul>
         <input id="id" data-id="@{{ info.id }}" type="hidden" name="_token" value="{{csrf_token()}}">

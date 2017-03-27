@@ -72,3 +72,22 @@
 <script id="edit-todo-template" type="text/x-handlebars-template">
         @include('admin.partials.editTodo')
 </script>
+<script id="eachTodo-template" type="text/x-handlebars-template">
+    <li id="eachTodo-@{{todo.id}}">
+        <label class="control-inline fancy-checkbox id"  >
+            <input id="todoId" data-id="@{{todo.id}}" onclick="editStatus(this)"  name="mark-done" type="checkbox"><span></span>
+        </label>
+        <p>
+            <span class="title">@{{todo.todo_title}}</span>
+            <span class="short-description">@{{todo.todo_body}}</span>
+
+
+            <span class="date">@{{todo.created_at}}</span>
+        </p>
+        <div class="controls">
+            <a style="color: green"; data-id="@{{todo.id}}" onclick="editTodo(this)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+            <a style="color: red";><i class="fa fa-trash" aria-hidden="true"></i></a>
+
+        </div>
+    </li>
+</script>

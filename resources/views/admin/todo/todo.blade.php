@@ -13,7 +13,7 @@
             <div class="col-md-12">
                 <div class="panel">
                     <div class="panel-body">
-                       @
+                       @include('admin.todo.add')
                     </div>
                 </div>
                 <!-- END TODO LIST -->
@@ -32,7 +32,7 @@
                     <div class="panel-body" id="todolist">
                         <ul class="list-unstyled todo-list"  >
                             @foreach($myTodo as $m)
-                                <li>
+                                <li id="eachTodo-{{$m->id}}">
                                     <label class="control-inline fancy-checkbox id"  >
                                         <input id="todoId" data-id="{{$m->id}}" onclick="editStatus(this)"  name="mark-done" type="checkbox"><span></span>
                                     </label>
@@ -160,6 +160,7 @@
 
     @include('admin.todo.templatefile')
 
+
     <script>
         function  editStatus(trigger) {
             $('input[type="checkbox"][name="mark-done"]').change(function () {
@@ -255,6 +256,7 @@
                             value: value
                         };
                     }
+
                 } else {
                     var eachPro = {
                         name: name,
@@ -285,15 +287,14 @@
                             container.find('.errorMsg').prepend(html);
 
                         });
-
-
                     }else if(res.status==200){
-                        var source   = $("#eachProduct-template").html();
+
+                        var source   = $("#eachTodo-template").html();
                         var template = Handlebars.compile(source);
-                        var context = {product:res.product};
+                        var context = {todo:res.todo};
                         var html    = template(context);
-                        $('#editModal').modal('hide');
-                        $('#eachProduct-'+res.product.id).replaceWith(html);
+                        $('#editTodoModal').modal('hide');
+                        $('#eachTodo-'+res.todo.id).replaceWith(html);
 
 
                     }
@@ -303,6 +304,11 @@
 
 
 
+        }
+    </script>
+    <script>
+        function addTodo(trigger) {
+            $('#addTodoModal').modal('show');
         }
     </script>
 @endsection

@@ -38,7 +38,7 @@
     </div>
 </div>
 <script>
-    flatpickr('#flatpickr',{
+  var date=  flatpickr('#flatpickr',{
         dateFormat: 'd.m.Y',
         minDate: "today",
         prevArrow: '&lt;',

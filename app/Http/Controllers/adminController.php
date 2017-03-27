@@ -22,405 +22,415 @@ use App\Http\Controller\ProductController;
 
 class adminController extends Controller
 {
-   public function getLogin()
-   {
-   		return view('admin.login');
-   }
-   public function postLogin(Request $request){
-   	 	$this->validate($request, [
+    public function getLogin()
+    {
+        return view('admin.login');
+    }
+
+    public function postLogin(Request $request)
+    {
+        $this->validate($request, [
             'email' => 'required|email',
             'password' => 'required'
         ]);
 
-	    if (Auth::attempt(['email'=> $request['email'],'password'=>$request['password']])) {
+        if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
 
-	        if(Auth::user()->admin){
+            if (Auth::user()->admin) {
 
-	            return redirect('/admin/dashboard');
-	        }else{
-	             Session::flash('login_message','Something wrong with your credientials!');
-	        }
-	        
-	    }else{
-	       
-	        Session::flash('login_message','Something wrong with your credientials!');
-	    }
-	    
-	    return redirect()->back();
-	}
+                return redirect('/admin/dashboard');
+            } else {
+                Session::flash('login_message', 'Something wrong with your credientials!');
+            }
 
-	public function getDasborad()
-	{
-		$pro=new Product();
-		$category=Category::all();
-		$brand=Brand::all();
-		$product=$pro->getAllProduct();
+        } else {
 
-        $users=User::where(['is_reported'=>false,'admin'=>0,'is_active'=>true])->get();
+            Session::flash('login_message', 'Something wrong with your credientials!');
+        }
+
+        return redirect()->back();
+    }
+
+    public function getDasborad()
+    {
+        $pro = new Product();
+        $category = Category::all();
+        $brand = Brand::all();
+        $product = $pro->getAllProduct();
+
+        $users = User::where(['is_reported' => false, 'admin' => 0, 'is_active' => true])->get();
 
 
-		return view('admin.dashboard')->with([
-			'product'=>$product,
-			'category'=>$category,
-			'brand'=>$brand,
+        return view('admin.dashboard')->with([
+            'product' => $product,
+            'category' => $category,
+            'brand' => $brand,
             'users' => $users
-		]);
-	}
+        ]);
+    }
 
-	public function addProduct(Request $request)
-	{
-		
-		$validator = Validator::make($request->all(), [
+    public function addProduct(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
             'title' => 'required|max:25|min:4',
             'description' => 'required',
             'price' => 'required|int',
             'category_id' => 'required',
             'brand_id' => 'required',
-            'image' =>'required',
+            'image' => 'required',
             'number_of_products' => 'required|int'
         ]);
 
-       
+
         if ($validator->fails()) {
 
             return redirect()->back()->withErrors($validator, 'addProductError');
-        }else {
+        } else {
 
-			$image = $request->file('image');
-			try{
-				 if ($image) {
-		            $image_name = str_random(20);
-		            $ext = strtolower($image->getClientOriginalExtension());
-		            $image_full_name = $image_name . '.' . $ext;
-		            $destination_path = 'product_images/';
-		            $image_url ='/' .$destination_path . $image_full_name;
-		            $success = $request->file('image')->move($destination_path, $image_full_name);
-		           
-		            if ($success) {
-		                
-		                $product = new Product();
+            $image = $request->file('image');
+            try {
+                if ($image) {
+                    $image_name = str_random(20);
+                    $ext = strtolower($image->getClientOriginalExtension());
+                    $image_full_name = $image_name . '.' . $ext;
+                    $destination_path = 'product_images/';
+                    $image_url = '/' . $destination_path . $image_full_name;
+                    $success = $request->file('image')->move($destination_path, $image_full_name);
 
-		                $product->title = $request->title;
-		                $product->category_id = $request->category_id;
-		                $product->brand_id = $request->brand_id;
-		                $product->description = $request->description;
-		                $product->price = $request->price;
-		                $product->rating=0;
-		               	$product->image = $image_url;
+                    if ($success) {
 
-		               $saveData= $product->save();
+                        $product = new Product();
 
-		               if ($saveData) {
-		               	dd($saveData);
-		                    Session::flash('added_confirmation','Your data has been added!!');
-		                    return redirect()->back();
-		                }  
-		                
-		            }
-		        }
-			}catch(Exception $e){
-				die($e->getMessage());
-			}
+                        $product->title = $request->title;
+                        $product->category_id = $request->category_id;
+                        $product->brand_id = $request->brand_id;
+                        $product->description = $request->description;
+                        $product->price = $request->price;
+                        $product->rating = 0;
+                        $product->image = $image_url;
+
+                        $saveData = $product->save();
+
+                        if ($saveData) {
+                            dd($saveData);
+                            Session::flash('added_confirmation', 'Your data has been added!!');
+                            return redirect()->back();
+                        }
+
+                    }
+                }
+            } catch (Exception $e) {
+                die($e->getMessage());
+            }
         }
-	}
+    }
 
 
-	public function showProduct()
-	{
-		$pro=new Product();
-		$category=Category::all();
-		$brand=Brand::all();
-		$product=$pro->getAllProduct();
+    public function showProduct()
+    {
+        $pro = new Product();
+        $category = Category::all();
+        $brand = Brand::all();
+        $product = $pro->getAllProduct();
 
-		return view('admin.product')->with([
-			'product'=>$product,
-			'category'=>$category,
-			'brand'=>$brand
-		]);
-	}
+        return view('admin.product')->with([
+            'product' => $product,
+            'category' => $category,
+            'brand' => $brand
+        ]);
+    }
 
-	public function editProductInfo($id)
-	{
-		$product=Product::findOrfail($id);
-		$category=Category::all();
-		$brand=Brand::all();
+    public function editProductInfo($id)
+    {
+        $product = Product::findOrfail($id);
+        $category = Category::all();
+        $brand = Brand::all();
 
-		return view('admin.product.edit')->with([
-			'product' =>$product,
-			'category'=>$category,
-			'brand'=>$brand
-		]);
-	}
+        return view('admin.product.edit')->with([
+            'product' => $product,
+            'category' => $category,
+            'brand' => $brand
+        ]);
+    }
 
-	public function saveProductInfo(Request $request,$id)
-	{
-		$this->validate($request, [
+    public function saveProductInfo(Request $request, $id)
+    {
+        $this->validate($request, [
             'title' => 'required|max:25|min:4',
             'description' => 'required',
             'price' => 'required|int',
             'category_id' => 'required|int',
             'brand_id' => 'required|int',
-            'image' =>'required'
+            'image' => 'required'
         ]);
-        
+
         $image = $request->file('image');
-		try{
-			 if ($image) {
-	            $image_name = str_random(20);
-	            $ext = strtolower($image->getClientOriginalExtension());
-	            $image_full_name = $image_name . '.' . $ext;
-	            $destination_path = 'product_images/';
-	            $image_url ='/' .$destination_path . $image_full_name;
-	            $success = $request->file('image')->move($destination_path, $image_full_name);
+        try {
+            if ($image) {
+                $image_name = str_random(20);
+                $ext = strtolower($image->getClientOriginalExtension());
+                $image_full_name = $image_name . '.' . $ext;
+                $destination_path = 'product_images/';
+                $image_url = '/' . $destination_path . $image_full_name;
+                $success = $request->file('image')->move($destination_path, $image_full_name);
 
-	           
-	            if ($success) {
-	                
-	               $product=Product::findOrfail($id);
 
-	                $product->title = $request->title;
-	                $product->category_id = $request->category_id;
-	                $product->brand_id = $request->brand_id;
-	                $product->description = $request->description;
-	                $product->price = $request->price;
-	               	$product->image = $image_url;
+                if ($success) {
 
-	               $saveData=  $product->update();
+                    $product = Product::findOrfail($id);
 
-	               if ($saveData) {
-				        Session::flash('update_confirmation','Your product info has been updated');
-				        return redirect('/admin/product');
-	                }  
-	                
-	            }
-	        }
-		}catch(Exception $e){
-			die($e->getMessage());
-		}     
-	}
+                    $product->title = $request->title;
+                    $product->category_id = $request->category_id;
+                    $product->brand_id = $request->brand_id;
+                    $product->description = $request->description;
+                    $product->price = $request->price;
+                    $product->image = $image_url;
 
-	public function deleteProduct($id)
-	{
+                    $saveData = $product->update();
 
-	    try{
+                    if ($saveData) {
+                        Session::flash('update_confirmation', 'Your product info has been updated');
+                        return redirect('/admin/product');
+                    }
+
+                }
+            }
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function deleteProduct($id)
+    {
+
+        try {
             Product::findOrfail($id)->delete();
-            Session::flash('delete_confirmation','Your Product has been deleted');
+            Session::flash('delete_confirmation', 'Your Product has been deleted');
             return redirect()->back();
-        }catch (Exception $e){
-	        return $e;
+        } catch (Exception $e) {
+            return $e;
         }
 
-	}
+    }
 
-	public function getProfile(){
+    public function getProfile()
+    {
 
 
-		return view('admin.page-profile');
-	}
-    public  function  editBasicProfile(Request $request){
+        return view('admin.page-profile');
+    }
+
+    public function editBasicProfile(Request $request)
+    {
 
         $validator = Validator::make($request->all(), [
-            'mobile_number'=>'required|numeric',
-            'website'=>'required',
-            'user_image'=> 'mimes:jpeg,jpg,png',
-            'about'    => 'required|max:100'
+            'mobile_number' => 'required|numeric',
+            'website' => 'required',
+            'user_image' => 'mimes:jpeg,jpg,png',
+            'about' => 'required|max:100'
         ]);
 
-       
+
         if ($validator->fails()) {
 
             return redirect()->back()->withErrors($validator, 'editBasicError');
-        }else {
+        } else {
 
-        	try{
-        			$image=$request['user_image'];
+            try {
+                $image = $request['user_image'];
 
-        			if (!empty($image)) {
-        				$image_name = str_random(20);
-			            $ext = strtolower($image->getClientOriginalExtension());
-			            $image_full_name = $image_name . '.' . $ext;
-			            $destination_path = 'product_images/';
-			            $image_url ='/' .$destination_path . $image_full_name;
-
-
-			            $success = $request->file('user_image')->move($destination_path, $image_full_name);
-
-			          
-			            $basicInfo = BasicInfo::where('user_id', Auth::user()->id)->first();
+                if (!empty($image)) {
+                    $image_name = str_random(20);
+                    $ext = strtolower($image->getClientOriginalExtension());
+                    $image_full_name = $image_name . '.' . $ext;
+                    $destination_path = 'product_images/';
+                    $image_url = '/' . $destination_path . $image_full_name;
 
 
-			            
-		            	$basic=BasicInfo::findOrfail($basicInfo->id);
+                    $success = $request->file('user_image')->move($destination_path, $image_full_name);
 
-	                    $basic->mobile_number = $request['mobile_number'];
-	                    $basic->about = $request['about'];
-	                    $basic->website = $request['website'];
-	                    $basic->user_image = $image_url;
-	                    
 
-	                    $saveData  = $basic->update();
-		                
-		               
-		             
-		               if ($saveData) {
-					        Session::flash('update_confirmation','Your basic info has been updated');
-					        return redirect()->back();
-		                }
-        			}else{
-        				$basicInfo = BasicInfo::where('user_id', Auth::user()->id)->first();
-		            	$basic=BasicInfo::findOrfail($basicInfo->id);
+                    $basicInfo = BasicInfo::where('user_id', Auth::user()->id)->first();
 
-	                    $basic->mobile_number = $request['mobile_number'];
-	                    $basic->about = $request['about'];
-	                    $basic->website = $request['website'];
-	                    
-	                    $saveData  = $basic->update();
-		           
-		             
-		               if ($saveData) {
-					        Session::flash('update_confirmation','Your basic info has been updated');
-					        return redirect()->back();
-		                }
-        			} 
-			}catch(Exception $e){
-				die($e->getMessage());
-			}
+
+                    $basic = BasicInfo::findOrfail($basicInfo->id);
+
+                    $basic->mobile_number = $request['mobile_number'];
+                    $basic->about = $request['about'];
+                    $basic->website = $request['website'];
+                    $basic->user_image = $image_url;
+
+
+                    $saveData = $basic->update();
+
+
+                    if ($saveData) {
+                        Session::flash('update_confirmation', 'Your basic info has been updated');
+                        return redirect()->back();
+                    }
+                } else {
+                    $basicInfo = BasicInfo::where('user_id', Auth::user()->id)->first();
+                    $basic = BasicInfo::findOrfail($basicInfo->id);
+
+                    $basic->mobile_number = $request['mobile_number'];
+                    $basic->about = $request['about'];
+                    $basic->website = $request['website'];
+
+                    $saveData = $basic->update();
+
+
+                    if ($saveData) {
+                        Session::flash('update_confirmation', 'Your basic info has been updated');
+                        return redirect()->back();
+                    }
+                }
+            } catch (Exception $e) {
+                die($e->getMessage());
+            }
         }
     }
-	public function showUsers()
-	{
-		$users=User::where(['is_reported'=>false,'admin'=>0,'is_active'=>true])->take(8)->get();
-		$reported_user=User::where(['is_reported'=>true,'admin'=>0])->get();
-		$admin=User::where(['is_reported'=>false,'admin'=>1])->take(8)->get();
-		$pending=User::where('is_active',false)->get();
+
+    public function showUsers()
+    {
+        $users = User::where(['is_reported' => false, 'admin' => 0, 'is_active' => true])->take(8)->get();
+        $reported_user = User::where(['is_reported' => true, 'admin' => 0])->get();
+        $admin = User::where(['is_reported' => false, 'admin' => 1])->take(8)->get();
+        $pending = User::where('is_active', false)->get();
 
 
-		return view('admin.users.index')->with([
-			'users' => $users,
-			'reported_user' => $reported_user,
-			'admin' => $admin,
-			'pending' => $pending
-		]);
-	}
-	public function getAlluser()
-	{
-		$users=User::where(['is_reported'=>false,'admin'=>0,'is_active'=>true])->paginate(12);
+        return view('admin.users.index')->with([
+            'users' => $users,
+            'reported_user' => $reported_user,
+            'admin' => $admin,
+            'pending' => $pending
+        ]);
+    }
+
+    public function getAlluser()
+    {
+        $users = User::where(['is_reported' => false, 'admin' => 0, 'is_active' => true])->paginate(12);
 
 
-		return view('admin.users.users')->with([
-			'users' => $users
-		]);
-	}
-	public function getAllAdmin()
-	{
-		$admin=User::where(['is_reported'=>false,'admin'=>1])->get();
-		$index=1;
-		return view('admin.users.admin')->with([
-			'admin' => $admin,'index' => $index
-		]);
-	}
+        return view('admin.users.users')->with([
+            'users' => $users
+        ]);
+    }
 
-	public function addNewAdmin(Request $request)
-	{
-	
-		$validator = Validator::make($request->all(), [
-            'name'=>'required|max:255',
-            'email'=>'required|email|max:255|unique:users',
-            'password'=> 'required|min:6',
-            'confirm_password' => 'required|min:6|same:password' ,   
-            'admin_type'  => 'required'
+    public function getAllAdmin()
+    {
+        $admin = User::where(['is_reported' => false, 'admin' => 1])->get();
+        $index = 1;
+        return view('admin.users.admin')->with([
+            'admin' => $admin, 'index' => $index
+        ]);
+    }
+
+    public function addNewAdmin(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6',
+            'confirm_password' => 'required|min:6|same:password',
+            'admin_type' => 'required'
         ]);
 
-       
+
         if ($validator->fails()) {
 
             return redirect()->back()->withErrors($validator, 'adminadderror');
-        }else {
-        	$admin_type= base64_encode(serialize($request->admin_type));
+        } else {
+            $admin_type = base64_encode(serialize($request->admin_type));
 
-    		$user =  User::create([
-	            'name' => $request['name'],
-	            'email' => $request['email'],
-	            'admin'   =>true,
-	            'admin_type' =>$admin_type,
-	            'password' => bcrypt(request()['password'])
+            $user = User::create([
+                'name' => $request['name'],
+                'email' => $request['email'],
+                'admin' => true,
+                'admin_type' => $admin_type,
+                'password' => bcrypt(request()['password'])
 
-	        ]);
-    		 
-    		Session::flash('added_confirmation','Admin added successfully');
-    		return redirect()->back();
+            ]);
+
+            Session::flash('added_confirmation', 'Admin added successfully');
+            return redirect()->back();
         }
-	}
+    }
 
-	public function notificationLanding()
+    public function notificationLanding()
     {
 
-        $notification=new Notification();
+        $notification = new Notification();
 
-       $notification=  $notification->getNotification();
+        $notification = $notification->getNotification();
 
         return view('admin.notifications')->with([
             'notification' => $notification
         ]);
     }
-    public function messageLanding(){
+
+    public function messageLanding()
+    {
         return view('admin.message');
     }
 
-    public function getTodo(){
-        $data=new Todo();
+    public function getTodo()
+    {
+        $data = new Todo();
 
-        $allTodo= $data->allTodo();
+        $allTodo = $data->allTodo();
 
-        $id=Auth::user()->id;
+        $id = Auth::user()->id;
 
-        $status=array(
-            'todo'=>0,
-            'done'=>1
+        $status = array(
+            'todo' => 0,
+            'done' => 1
         );
-        $myTodo=$data->getbyId($id,$status['todo']);
-        $myDone=$data->getbyId($id,$status['done']);
+        $myTodo = $data->getbyId($id, $status['todo']);
+        $myDone = $data->getbyId($id, $status['done']);
 
         return view('admin.todo.todo')->with([
-            'allTodo'=> $allTodo,
+            'allTodo' => $allTodo,
             'myTodo' => $myTodo,
             'myDone' => $myDone
         ]);
 
     }
 
-    public function changeTodoStatus(Request $request){
-        $input=$request->all();
+    public function changeTodoStatus(Request $request)
+    {
+        $input = $request->all();
 
-         $todoId= $input['id'][0];
+        $todoId = $input['id'][0];
 
 
-         $todo=new Todo();
+        $todo = new Todo();
 
-         $individualTodo = $todo->getByOnlyId($todoId);
+        $individualTodo = $todo->getByOnlyId($todoId);
 
-            $updateData = array(
-                'status' => 1
+        $updateData = array(
+            'status' => 1
+        );
+
+
+        $saveData = $individualTodo->update($updateData);
+
+
+        if ($saveData) {
+            $id = Auth::user()->id;
+
+            $status = array(
+                'todo' => 0,
+                'done' => 1
             );
-
-
-        $saveData =  $individualTodo->update($updateData);
-
-
-        if ($saveData){
-            $id=Auth::user()->id;
-
-            $status=array(
-                'todo'=>0,
-                'done'=>1
-            );
-            $data=new Todo();
-            $myTodo=$data->getbyId($id,$status['todo']);
-            $myDone=$data->getbyId($id,$status['done']);
-            $data=array(
+            $data = new Todo();
+            $myTodo = $data->getbyId($id, $status['todo']);
+            $myDone = $data->getbyId($id, $status['done']);
+            $data = array(
                 'status' => 200,
 
-                'todo'   =>array(
+                'todo' => array(
                     'todo' => $myTodo
                 ),
                 'done' => array(
@@ -433,86 +443,112 @@ class adminController extends Controller
 
     }
 
-    public function editTodo(Request $request){
-       $id=$request['id'];
-       $data=new Todo();
-       $user=new User();
+    public function editTodo(Request $request)
+    {
+        $id = $request['id'];
+        $data = new Todo();
+        $user = new User();
 
-       $getTodo=$data->getByOnlyId($id);
+        $getTodo = $data->getByOnlyId($id);
 
-       $admin= $user->getAdmin();
-
-
-        $adminInfo=[];
-        $mainInfo=[];
-       foreach ($admin as $a){
-
-           $adminInfo['id']=$a->id;
-           $adminInfo['name'] = $a->name;
-
-           if($a->basicInfo['user_image'] != null){
-             $adminInfo['image'] =$a->basicInfo['user_image'];
-           }
-           else{
-               $adminInfo['image'] =0;
-           }
-
-           array_push($mainInfo,$adminInfo);
+        $admin = $user->getAdmin();
 
 
-       }
-       $data=[
-         'status' => 200,
-           'info' =>array(
-               "id"             =>$getTodo->id,
-               "todo_title"     => $getTodo->todo_title,
-               "todo_body"      => $getTodo->todo_body,
-               "assigned_by"    => $getTodo->assigned_by,
-               "created_by"     => $getTodo->created_by,
-               "assigned_to"    => $getTodo->assigned_to,
-               "status"         => $getTodo->status,
-               "due_date"       => $getTodo->due_date
-           ),
-           'adminInfo'=>array(
+        $adminInfo = [];
+        $mainInfo = [];
+        foreach ($admin as $a) {
 
-               'adminInfo'=>$mainInfo
-           )
-       ];
-       return $data;
-    }
-    public function updateTodo(Request $request){
-            $input=$request->all();
-            $data=new Todo();
-            $getTodo=$data->getByOnlyId($input['id']);
+            $adminInfo['id'] = $a->id;
+            $adminInfo['name'] = $a->name;
 
-            $arrayData=[
-                'todo_title'    => $input['todo_title'],
-                'todo_body'     => $input['todo_body'],
-                'assigned_by'   => $getTodo->assigned_by,
-                'assigned_to'   => $input['assigned_to'],
-                'status'        => $getTodo->status,
-                'due_date'      => $input['todo_title']
-            ];
-
-            $validator = Validator::make($arrayData, [
-                'todo_title'    => 'required',
-                'todo_body'     => 'required',
-                'assigned_to'   => 'required',
-                'due_date'      => 'required'
-            ]);
-
-
-            if ($validator->fails()) {
-                $error=$validator->errors()->all();
-
-                $data=array(
-                    'status' => 500,
-                    'error' =>$error
-                );
-                return $data;
-            }else {
-
+            if ($a->basicInfo['user_image'] != null) {
+                $adminInfo['image'] = $a->basicInfo['user_image'];
+            } else {
+                $adminInfo['image'] = 0;
             }
+
+            array_push($mainInfo, $adminInfo);
+
+
+        }
+        $data = [
+            'status' => 200,
+            'info' => array(
+                "id" => $getTodo->id,
+                "todo_title" => $getTodo->todo_title,
+                "todo_body" => $getTodo->todo_body,
+                "assigned_by" => $getTodo->assigned_by,
+                "created_by" => $getTodo->created_by,
+                "assigned_to" => $getTodo->assigned_to,
+                "status" => $getTodo->status,
+                "due_date" => $getTodo->due_date
+            ),
+            'adminInfo' => array(
+
+                'adminInfo' => $mainInfo
+            )
+        ];
+        return $data;
+    }
+
+    public function updateTodo(Request $request)
+    {
+        $input = $request->all();
+
+        $data = new Todo();
+        $getTodo = $data->getByOnlyId($input['id']);
+
+        $arrayData = [
+            'todo_title' => $input['todo_title'],
+            'todo_body' => $input['todo_body'],
+            'assigned_by' => $getTodo->assigned_by,
+            'assigned_to' => $input['assigned_to'],
+            'status' => $getTodo->status,
+            'due_date' => $input['todo_title']
+        ];
+
+        $validator = Validator::make($arrayData, [
+            'todo_title' => 'required',
+            'todo_body' => 'required',
+            'assigned_to' => 'required',
+            'due_date' => 'required'
+        ]);
+
+
+        if ($validator->fails()) {
+            $error = $validator->errors()->all();
+
+            $data = array(
+                'status' => 500,
+                'error' => $error
+            );
+            return $data;
+        } else {
+
+            $newData = array(
+                'id' => $input['id'],
+                'todo_title' => $input['todo_title'],
+                'todo_body' => $input['todo_body'],
+                'due_date' => $input['due_date'],
+                'assigned_to' => $input['assigned_to'],
+                'assigned_by' => Auth::user()->id,
+                'created_by' => Auth::user()->id,
+                'status' => 0
+            );
+            $todo = new Todo();
+
+            $saveData = $todo->where('id', $input['id'])->update($newData);
+            if ($saveData) {
+
+                $data = array(
+                    'status' => 200,
+                    'todo' => $newData
+                );
+
+
+                return $data;
+            }
+        }
     }
 }
 

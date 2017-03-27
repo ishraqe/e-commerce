@@ -1,5 +1,5 @@
-<a>Add new</a>
-<div class="modal fade" id="editTodoModal">
+<a onclick="addTodo(this)">Add new</a>
+<div class="modal fade" id="addTodoModal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
