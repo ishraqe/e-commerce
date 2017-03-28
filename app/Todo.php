@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Auth;
 
 class Todo extends Model
 {
@@ -24,7 +25,9 @@ class Todo extends Model
 
         return Todo::where(['assigned_to'=>$id,'status'=>$status])->get();
     }
-
+    public function getByAssignedTo(){
+        return Todo::where('assigned_to',Auth::user()->id)->get();
+    }
     public function getByOnlyId($id){
 
         return Todo::findOrfail($id);

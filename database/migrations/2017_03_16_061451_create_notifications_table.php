@@ -23,6 +23,7 @@ class CreateNotificationsTable extends Migration
             $table->integer('blog_user_id');
             $table->integer('blog_comment_id');
             $table->integer('blog_comment_user_id');
+            $table->boolean('status')->default(false)->comment("1: read,0:unread");
             $table->timestamps();
         });
     }

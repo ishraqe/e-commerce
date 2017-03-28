@@ -23,17 +23,14 @@
   <link rel="icon" type="image/png" sizes="96x96" href="/assets/img/favicon.png">
 
   <script src="/assets/js/jquery/jquery-2.1.0.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
+  <script src="/assets/handlebars-v4.0.5.js"></script>
+  <script src="/assets/js/handelBarhelper.js" ></script>
   <script type="text/javascript" src="/assets/js/chart.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
   <script src="https://unpkg.com/flatpickr"></script>
 
 
-  <script>
-      $("#dpd1").datepicker({
-          minDate: 0
-      });
-  </script>
+
   @yield('head-script')
   @yield('style')
 
@@ -77,11 +74,10 @@
               </div>
             </form>
             <ul class="nav navbar-nav navbar-right">
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown" alt="to do">
+              <li>
+                <a href="{{route('admin.to-do')}}" onclick="makeTodoRead(this)" class=" icon-menu"  alt="to do">
                   <i class="fa fa-bars" aria-hidden="true"></i>
-
-                  <span class="badge bg-danger">{{count($message)}}</span>
+                  <span class="badge bg-danger">{{count($todoNoti)}}</span>
                 </a>
               </li>
               <li class="dropdown">
@@ -110,14 +106,13 @@
                   <li><a href="{{route('admin.messages')}}" class="more">See all messages</a></li>
                 </ul>
               </li>
-              <li class="dropdown">
+              <li class="dropdown" id="noti-holder"  onclick="makeNotificationRead(this)">
                 <a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
                   <i class="lnr lnr-alarm"></i>
                   <span class="badge bg-danger">{{count($notification)}}</span>
                 </a>
-                <ul class="dropdown-menu notifications">
+                <ul class="dropdown-menu notifications" onclick="makeNotificationRead(this)">
                   @if(count($notification))
-
                       @foreach($notification as $noti)
                           @if($noti->product_id==0)
 
@@ -130,8 +125,6 @@
                   @else
                     <li><a href="" class="notification-item"><span class="dot bg-info">No notification yet</span></a></li>
                   @endif
-
-
                 </ul>
               </li>
               <li class="dropdown">
@@ -186,7 +179,16 @@
   <script src="/assets/js/klorofil.min.js"></script>
   <script src="/lightbox/lightbox.js"></script>
 
+  <script id="noti-template" type="text/x-handlebars-template">
+    <a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
+      <i class="lnr lnr-alarm"></i>
+      <span class="badge bg-danger">@{{noti}}</span>
+    </a>
+    <ul class="dropdown-menu notifications" >
+        <li><a href="" class="notification-item"><span class="dot bg-info">No notification yet</span></a></li>
+    </ul>
 
+  </script>
   <script type="text/javascript">
       $.ajaxSetup({
           headers: {
@@ -203,7 +205,7 @@
 
 
 </script>
-<script type="text/javascript">
+  <script type="text/javascript">
 
   $("#pop").on("click", function() {
    $('#imagepreview').attr('src', $('#imageresource').attr('src')); // here asign the image to the modal when the user click the enlarge link
@@ -211,7 +213,7 @@
 });
 </script>
 
-<script type="text/javascript">
+  <script type="text/javascript">
 var productTitle=null;
 
 $('.action_button').find('.interaction').find('.edit').on('click', function(event){
@@ -232,7 +234,7 @@ $('.action_button').find('.interaction').find('.edit').on('click', function(even
 });
 </script>
 
-<script>
+  <script>
   function readURL(input) {
 
       if (input.files && input.files[0]) {
@@ -250,7 +252,30 @@ $('.action_button').find('.interaction').find('.edit').on('click', function(even
       readURL(this);
   });
   </script>
+  <script>
 
+    function  makeNotificationRead(trigger) {
+        var  param = {
+              "_token": "{{ csrf_token() }}",
+          };
+
+        $.ajax({
+            url: "/admin/notification/makeRead",
+            method: "post",
+            data: param,
+            dataType: "json",
+            success: function (res) {
+                if (res.status==200){
+                    var source   = $("#noti-template").html();
+                    var template = Handlebars.compile(source);
+                    var context = {noti:res.notification};
+                    var html    = template(context);
+                    $('#noti-holder').replaceWith(html);
+                }
+            }
+        })
+    }
+  </script>
 @yield('script')
 
 </body>

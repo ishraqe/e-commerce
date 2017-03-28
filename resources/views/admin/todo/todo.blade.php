@@ -31,30 +31,34 @@
                     </div>
                     <div class="panel-body" id="todolist">
                         <ul class="list-unstyled todo-list"  >
-                            @foreach($myTodo as $m)
-                                <li id="eachTodo-{{$m->id}}">
-                                    <label class="control-inline fancy-checkbox id"  >
-                                        <input id="todoId" data-id="{{$m->id}}" onclick="editStatus(this)"  name="mark-done" type="checkbox"><span></span>
-                                    </label>
-                                    <p>
-                                        <span class="title">{{$m->todo_title}}</span>
-                                        <span class="short-description">{{$m->todo_body}}</span>
-                                        <?php
+                            @if(count($myTodo)>0)
+                                @foreach($myTodo as $m)
+                                    <li id="eachTodo-{{$m->id}}">
+                                        <label class="control-inline fancy-checkbox id"  >
+                                            <input id="todoId" data-id="{{$m->id}}" onclick="editStatus(this)"  name="mark-done" type="checkbox"><span></span>
+                                        </label>
+                                        <p>
+                                            <span class="title">{{$m->todo_title}}</span>
+                                            <span class="short-description">{{$m->todo_body}}</span>
+                                            <?php
 
-                                            $old_date = $m->created_at;
-                                            $old_date_timestamp = strtotime($old_date);
-                                            $new_date = date('F d, Y ', $old_date_timestamp);
-                                        ?>
+                                                $old_date = $m->created_at;
+                                                $old_date_timestamp = strtotime($old_date);
+                                                $new_date = date('F d, Y ', $old_date_timestamp);
+                                            ?>
 
-                                        <span class="date">{{$new_date}}</span>
-                                    </p>
-                                    <div class="controls">
-                                        <a style="color: green"; data-id="{{$m->id}}" onclick="editTodo(this)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                        <a style="color: red";><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                            <span class="date">{{$new_date}}</span>
+                                        </p>
+                                        <div class="controls">
+                                            <a style="color: green"; data-id="{{$m->id}}" onclick="editTodo(this)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                            <a style="color: red";><i class="fa fa-trash" aria-hidden="true"></i></a>
 
-                                    </div>
-                                </li>
-                            @endforeach()
+                                        </div>
+                                    </li>
+                                @endforeach()
+                            @else
+                                <p>No work to show</p>
+                            @endif
                         </ul>
                         <div class="modal fade" id="editTodoModal">
                             <div class="modal-dialog">
@@ -66,7 +70,7 @@
                                     <div class="modal-body">
                                         <div class='row'>
                                             <div class='col-sm-12 '>
-                                                <div class='well' id="editTodoModal-body">
+                                                <div class='well' id="edit-TodoModal-body">
 
                                                 </div>
                                             </div>
@@ -230,8 +234,8 @@
                         var template = Handlebars.compile(source);
                         var context = {'info':res.info,'adminInfo':res.adminInfo};
                         var html    = template(context);
-                        $('#editTodoModal-body').html(html);
 
+                        $('#edit-TodoModal-body').html(html);
                     }
                 }
             })
@@ -295,8 +299,6 @@
                         var html    = template(context);
                         $('#editTodoModal').modal('hide');
                         $('#eachTodo-'+res.todo.id).replaceWith(html);
-
-
                     }
 
                 }
@@ -311,4 +313,5 @@
             $('#addTodoModal').modal('show');
         }
     </script>
+
 @endsection

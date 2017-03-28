@@ -282,6 +282,11 @@ Route::group(['prefix'=>'admin'],function(){
         'as' => 'admin.updateTodo',
         'middleware' => 'admin'
     ]);
+    Route::post('/notification/makeRead',[
+        'uses' => 'adminController@notificationMakeRead',
+        'as' => 'admin.notificationMakeRead',
+        'middleware' => 'admin'
+    ]);
 
 	
 });

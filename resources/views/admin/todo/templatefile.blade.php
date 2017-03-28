@@ -71,6 +71,7 @@
 </script>
 <script id="edit-todo-template" type="text/x-handlebars-template">
         @include('admin.partials.editTodo')
+
 </script>
 <script id="eachTodo-template" type="text/x-handlebars-template">
     <li id="eachTodo-@{{todo.id}}">

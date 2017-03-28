@@ -19,7 +19,8 @@ class NotificationSeed extends Seeder
             'blog_id'=>0,
             'blog_user_id'=>0,
             'blog_comment_id'=>0,
-            'blog_comment_user_id'=>0
+            'blog_comment_user_id'=>0,
+            'status'  =>0
         ]);
         $notification->save();
         
@@ -31,7 +32,8 @@ class NotificationSeed extends Seeder
             'blog_id'=>1,
             'blog_user_id'=>1,
             'blog_comment_id'=>1,
-            'blog_comment_user_id'=>2
+            'blog_comment_user_id'=>2,
+            'status' =>0
         ]);
         $notification->save();
     }

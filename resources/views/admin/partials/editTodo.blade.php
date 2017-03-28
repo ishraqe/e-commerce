@@ -19,7 +19,11 @@
     <label for="example-email-input" class="col-2 col-form-label">Assign to:</label><br>
     @{{#each adminInfo.adminInfo }}
     <label class="radio-inline">
+        @{{#ifCustom info.assigned_to this.id operator="=="}}
+        <input type="radio" style="margin-left: -51px;"  class="form-control" name="assigned_to" value="@{{ this.id }}" checked/>
+        @{{/ifCustom}}
         <input type="radio" style="margin-left: -51px;" class="form-control" name="assigned_to" value="@{{ this.id }}"/>
+
         <div class="thumbnail" style="background-color:inherit; border: none"; >
             <img style="height: 41px; width: 38px;" src="@{{ this.image }}" title="">
             <div class="caption">
@@ -38,7 +42,7 @@
     </div>
 </div>
 <script>
-  var date=  flatpickr('#flatpickr',{
+    flatpickr('#flatpickr',{
         dateFormat: 'd.m.Y',
         minDate: "today",
         prevArrow: '&lt;',

@@ -18,6 +18,7 @@ use App\Category;
 use App\Brand;
 use App\Notification;
 
+
 use App\Http\Controller\ProductController;
 
 class adminController extends Controller
@@ -530,7 +531,7 @@ class adminController extends Controller
                 'todo_title' => $input['todo_title'],
                 'todo_body' => $input['todo_body'],
                 'due_date' => $input['due_date'],
-                'assigned_to' => $input['assigned_to'],
+                'assigned_to' => isset($input['assigned_to']) ? $input['assigned_to'] : null,
                 'assigned_by' => Auth::user()->id,
                 'created_by' => Auth::user()->id,
                 'status' => 0
@@ -549,6 +550,30 @@ class adminController extends Controller
                 return $data;
             }
         }
+    }
+    public function notificationMakeRead(Request $request){
+        $noti =new Notification();
+        $notification=$noti->getNotification();
+
+
+
+        foreach ($notification as $n){
+
+            $affected = DB::table('notifications')
+                ->where('id', $n->id)
+                ->update(['status' => 1]);
+        }
+
+            $noti =new Notification();
+            $notification=$noti->getNotification();
+
+            $data=[
+              'status' => 200,
+                'notification'=>count($notification)
+
+            ];
+            return $data;
+
     }
 }
 

@@ -14,7 +14,9 @@ class messageSeeder extends Seeder
        $message=new \App\Message([
        	'sender_id'=>2,
        	'receiver_id'=>1,
-       	'message_body' => 'having trobule'
+       	'message_body' => 'having trobule',
+           'status' => 0
+
       
        	]);
 
@@ -24,7 +26,8 @@ class messageSeeder extends Seeder
        $message=new \App\Message([
        	'sender_id'=>3,
        	'receiver_id'=>1,
-       	'message_body' => 'having awesome time'
+       	'message_body' => 'having awesome time',
+           'status' => 0
       
        	]);
 

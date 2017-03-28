@@ -17,6 +17,7 @@ class CreateMessagesTable extends Migration
             $table->integer('sender_id');
             $table->integer('receiver_id');
             $table->text('message_body');
+            $table->boolean('status')->default(false)->comment("1: read,0:unread");
             $table->timestamps();
         });
     }
