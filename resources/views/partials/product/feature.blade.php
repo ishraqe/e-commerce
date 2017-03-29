@@ -1,7 +1,7 @@
 <div class="features_items"><!--features_items-->
     <h2 class="title text-center">Features Items</h2>
     
-@foreach($product as $p)
+@foreach($featured as $p)
     <div class="col-sm-4">
         <div class="product-image-wrapper">
             <div class="single-products">
@@ -21,7 +21,6 @@
             </div>
             <div class="choose">
                 <ul class="nav nav-pills nav-justified">
-
                     <li><a href="{{route('product.addToWishlist',['id'=>$p->id])}}"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
                 </ul>
             </div>

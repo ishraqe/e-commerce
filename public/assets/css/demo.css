@@ -44,3 +44,13 @@ $('#blah').mouseleave(function() {
     min-width: 232px;
 }
 
+#actionProduct a{
+    padding: 3px;
+    cursor: pointer;
+    cursor: hand;
+}
+
+#actionProduct a i {
+    font-size: 20px;
+}
+

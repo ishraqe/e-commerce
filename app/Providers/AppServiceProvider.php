@@ -23,7 +23,8 @@ class AppServiceProvider extends ServiceProvider
         view()->composer(['layouts.master','layouts.admin'],function($view){
             $message=[];
             $notification=[];
-            $todo=[];
+
+            $todoNoti=[];
             $category=Category::all()->take(9);
 
             if (!Auth::guest()) {

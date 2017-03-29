@@ -75,7 +75,6 @@ Artisan's Story
                 <div class="col-sm-3">
                     @include('partials.left-sidebar')
                 </div>
-                
                 <div class="col-sm-9 padding-right">
                    @include('partials.product.feature')
                    @include('partials.product.categorized')

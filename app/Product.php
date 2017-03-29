@@ -3,15 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Category;
-use App\Brand;
-use App\Order;
-use App\Image;
+
+use DB;
 
 class Product extends Model
 {
    
-    protected $fillable = array( 'title',  'category_id','brand_id','description','price','rating','image','number_of_products','products_user_id','is_available','is_sold');
+    protected $fillable = array( 'title',  'category_id','brand_id','description','price','rating','image','number_of_products','products_user_id','is_available','is_sold','is_featured');
     
 
     public function category()
@@ -38,5 +36,22 @@ class Product extends Model
        $product =Product::orderBy('created_at', 'desc')
                ->paginate(20);
         return $product;
+    }
+
+    public function getFeaturedProduct(){
+        $featuredProduct=Product::where('is_featured',1)->get();
+
+        return $featuredProduct;
+    }
+
+    public function recommended(){
+        $recommended = DB::table('products')
+            ->join('ratings', 'products.id', '=', 'ratings.product_id')
+            ->join('images', 'products.id', '=', 'images.product_id')
+            ->select('*')
+            ->orderBy('ratings.rating','desc')
+            ->take(3)
+            ->get();
+        return $recommended;
     }
 }

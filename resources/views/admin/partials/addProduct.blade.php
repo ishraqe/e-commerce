@@ -44,14 +44,13 @@ width: 100%;" alt="product image" />
 	        	<div class="col-md-6">
 	        		<div class="form-group ">
 						<label>Price</label>
-						<input class="form-control price-form" type="number" name="price" >
-						
+						<input class="form-control price-form" min="1" type="number" name="price" >
 					</div>
 	        	</div>
 	        	<div class="col-md-6">
 	        		<div class="form-group">
 						<label>Number of products:</label>
-						<input type="number" name="number_of_products" class="form-control ">
+						<input type="number" name="number_of_products" min="1" class="form-control ">
 						
 					</div>
 	        	</div>
@@ -76,11 +75,24 @@ width: 100%;" alt="product image" />
 							@foreach($brand as $b)
 							<option value="{{$b->id}}">{{$b->brand_name}}</option>
 							@endforeach
-							
 						</select>
 					</div>
 				</div>
-			</div>         
+			</div>
+			<div class="row">
+
+				<div class="col-md-12">
+					<div class="form-group">
+						<legend>Featured:</legend>
+						<label class="radio-inline">
+							<input type="radio" name="is_featured" value="1">Yes
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="is_featured" value="0" checked>No
+						</label>
+					</div>
+				</div>
+			</div>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\BasicInfo;
+use App\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests;
 use App\User;
 use League\Flysystem\Exception;
 use Session;
@@ -72,7 +72,6 @@ class adminController extends Controller
 
     public function addProduct(Request $request)
     {
-
         $validator = Validator::make($request->all(), [
             'title' => 'required|max:25|min:4',
             'description' => 'required',
@@ -80,7 +79,8 @@ class adminController extends Controller
             'category_id' => 'required',
             'brand_id' => 'required',
             'image' => 'required',
-            'number_of_products' => 'required|int'
+            'number_of_products' => 'required|int',
+
         ]);
 
 
@@ -92,29 +92,23 @@ class adminController extends Controller
             $image = $request->file('image');
             try {
                 if ($image) {
-                    $image_name = str_random(20);
-                    $ext = strtolower($image->getClientOriginalExtension());
-                    $image_full_name = $image_name . '.' . $ext;
-                    $destination_path = 'product_images/';
-                    $image_url = '/' . $destination_path . $image_full_name;
-                    $success = $request->file('image')->move($destination_path, $image_full_name);
+                     $im=new Image();
+                    $data= $im->imageProcessing($image);
 
-                    if ($success) {
-
+                    if ($data['success']) {
                         $product = new Product();
-
                         $product->title = $request->title;
                         $product->category_id = $request->category_id;
                         $product->brand_id = $request->brand_id;
                         $product->description = $request->description;
                         $product->price = $request->price;
                         $product->rating = 0;
-                        $product->image = $image_url;
+                        $product->image = $data['image_url'];
+                        $product->is_featured=$request['is_featured'];
 
                         $saveData = $product->save();
 
                         if ($saveData) {
-                            dd($saveData);
                             Session::flash('added_confirmation', 'Your data has been added!!');
                             return redirect()->back();
                         }
@@ -169,15 +163,9 @@ class adminController extends Controller
         $image = $request->file('image');
         try {
             if ($image) {
-                $image_name = str_random(20);
-                $ext = strtolower($image->getClientOriginalExtension());
-                $image_full_name = $image_name . '.' . $ext;
-                $destination_path = 'product_images/';
-                $image_url = '/' . $destination_path . $image_full_name;
-                $success = $request->file('image')->move($destination_path, $image_full_name);
-
-
-                if ($success) {
+                $im=new Image();
+                $data= $im->imageProcessing($image);
+                if ($data['success']) {
 
                     $product = Product::findOrfail($id);
 
@@ -186,10 +174,8 @@ class adminController extends Controller
                     $product->brand_id = $request->brand_id;
                     $product->description = $request->description;
                     $product->price = $request->price;
-                    $product->image = $image_url;
-
+                    $product->image = $data['image_url'];
                     $saveData = $product->update();
-
                     if ($saveData) {
                         Session::flash('update_confirmation', 'Your product info has been updated');
                         return redirect('/admin/product');
@@ -202,16 +188,16 @@ class adminController extends Controller
         }
     }
 
-    public function deleteProduct($id)
+    public function deleteProduct(Request $request)
     {
-
-        try {
-            Product::findOrfail($id)->delete();
-            Session::flash('delete_confirmation', 'Your Product has been deleted');
-            return redirect()->back();
-        } catch (Exception $e) {
-            return $e;
-        }
+        dd($request->all());
+//        try {
+//            Product::findOrfail($id)->delete();
+//            Session::flash('delete_confirmation', 'Your Product has been deleted');
+//            return redirect()->back();
+//        } catch (Exception $e) {
+//            return $e;
+//        }
 
     }
 
@@ -242,26 +228,16 @@ class adminController extends Controller
                 $image = $request['user_image'];
 
                 if (!empty($image)) {
-                    $image_name = str_random(20);
-                    $ext = strtolower($image->getClientOriginalExtension());
-                    $image_full_name = $image_name . '.' . $ext;
-                    $destination_path = 'product_images/';
-                    $image_url = '/' . $destination_path . $image_full_name;
-
-
-                    $success = $request->file('user_image')->move($destination_path, $image_full_name);
-
+                    $im=new Image();
+                    $data= $im->imageProcessing($image);
 
                     $basicInfo = BasicInfo::where('user_id', Auth::user()->id)->first();
 
-
                     $basic = BasicInfo::findOrfail($basicInfo->id);
-
                     $basic->mobile_number = $request['mobile_number'];
                     $basic->about = $request['about'];
                     $basic->website = $request['website'];
-                    $basic->user_image = $image_url;
-
+                    $basic->user_image = $data['image_url'];
 
                     $saveData = $basic->update();
 

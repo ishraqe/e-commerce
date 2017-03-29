@@ -26,6 +26,7 @@ class CreateProductsTable extends Migration
             $table->integer('products_user_id');
             $table->integer('is_available')->default(true);
             $table->boolean('is_sold')->default(false);
+            $table->boolean('is_featured')->default(false);
         });
     }
 

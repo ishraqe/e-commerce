@@ -22,29 +22,26 @@ class ProductController extends Controller
 {
      public function getIndex()
     {
-        
-       
-    	$product=Product::all()->take(6);
-            
-        $category=Category::all(); 
+        $productData=new Product();
+        $featured=$productData->getFeaturedProduct()->take(6);
 
-        $brand=Brand::all();
-        
-               
-         $recomended = DB::table('products')
-            ->join('ratings', 'products.id', '=', 'ratings.product_id')
-            ->join('images', 'products.id', '=', 'images.product_id')
-            ->select('*')
-            ->orderBy('ratings.rating','desc')
-            ->take(3)
-            ->get();
+        $categoryData=new Category();
+        $category=$categoryData->getCateory();
+
+        $recommended = $productData->recommended();
+
+        $brandData=new Brand();
+        $brand=$brandData->getBrand();
 
     	return view('pages.index')->with([
-    		'product' => $product,
+
             'category' => $category,
             'brand'  => $brand,
-            'recomended'=>$recomended
+            'recomended'=>$recommended,
+            'featured' => $featured
     	]);
+
+
     }
 
 
@@ -269,7 +266,8 @@ class ProductController extends Controller
                 'is_sold' => $product['is_sold'],
                 'image'=>$product['image'],
                 'category_id'=>$product['category_id'],
-                'brand_id' => $product['brand_id']
+                'brand_id' => $product['brand_id'],
+                'is_featured' => $product['is_featured']
             ),
             'category' => array(
               'category' => $category
@@ -312,8 +310,8 @@ class ProductController extends Controller
                 'brand_id' => $input['brand_id'],
                 'category_id' => $input['category_id'],
                 'number_of_products' => $input['number_of_products'],
-                'is_sold' => $input['is_sold'],
-                'description' => $input['description']
+                'description' => $input['description'],
+                'is_featured' => $input['is_featured']
             );
 
             $product = new Product();
