@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Search;
-use App\Http\Requests;
+
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Input;
+
 
 class searchController extends Controller
 {
@@ -15,23 +18,32 @@ class searchController extends Controller
         if ($query == null) {
             return redirect()->back();
         }
+        $page = Input::get('page', 1);
+        $paginate = 2;
+
         $data= '%'.$request->input('query').'%';
 
         $started = microtime(true);
-        $result=$search->searchAll($data);
+
+        $resultAll=$search->searchAll($data);
+
         $end = microtime(true);
 
         $difference = $end - $started;
 
         $queryTime = number_format($difference, 10);
 
-        $time= count($result)." in $queryTime seconds.";
+        $time= count($resultAll)." in $queryTime seconds.";
+
+
+        $slice = array_slice($resultAll, $paginate * ($page - 1), $paginate);
+        $result = new Paginator($slice, count($resultAll), $paginate);
 
         $resultData=[
             'time' => $time,
             'result'=>$result
         ];
-        
+
         return view('pages.searchresult')->with([
             'resultData' => $resultData
         ]);
