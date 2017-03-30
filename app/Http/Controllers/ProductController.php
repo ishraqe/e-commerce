@@ -87,7 +87,20 @@ class ProductController extends Controller
         ]);
     }
 
+    public function categoriesProduct($id){
+        $products=Product::where('category_id',$id)->paginate(12);
 
+        return view('pages.category-product')->with([
+            'product' => $products
+        ]);
+    }
+    public function brandsProduct($id){
+        $products=Product::where('brand_id',$id)->paginate(12);
+
+        return view('pages.brand-product')->with([
+            'product' => $products
+        ]);
+    }
     public function getAddToCart(Request $request,$id){
         
         $product=Product::findOrfail($id);

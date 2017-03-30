@@ -58,6 +58,19 @@ Route::get('/product/show/{id}', [
 
 ]);
 
+Route::get('/categories/product/{id}', [
+    'uses' => 'ProductController@categoriesProduct',
+    'as' => 'categories.products'
+]);
+
+Route::get('/brands/product/{id}', [
+    'uses' => 'ProductController@brandsProduct',
+    'as' => 'brands.products'
+]);
+
+
+
+
 Route::get('/shop', [
 	'uses' => 'ProductController@shop',
 	'as' => 'shop'

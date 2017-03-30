@@ -11,10 +11,15 @@ Categories
 		<div class="product-image-wrapper">
 			<div class="single-products">
 				<div class="productinfo text-center">
-					<li class="list-group-item justify-content-between">
-						{{$c->category_name}}
-						<span class="badge badge-default badge-pill">14</span>
-					</li>
+					<a href="{{route('categories.products',['id'=>$c->id])}}">
+						<li class="list-group-item justify-content-between">
+							{{$c->category_name}}
+                            <?php
+                            $products= DB::table('products')->where('category_id',$c->id)->count();
+                            ?>
+							<span class="badge badge-default badge-pill">{{$products}}</span>
+						</li>
+					</a>
 				</div>
 			</div>
 		</div>
