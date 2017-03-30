@@ -11,7 +11,9 @@ class ProductModelSeeder extends Seeder
      */
     public function run()
     {
-      $var=3;
+      $var=10;
+      $value = rand(0,1) == 1;
+
       for ($i=0; $i <$var ; $i++) { 
         
         $product=new \App\Product([
@@ -27,9 +29,10 @@ class ProductModelSeeder extends Seeder
         'number_of_products' => 3,
         'products_user_id'=>1,
         'is_sold' => false,
-        'is_featured'=>false
+        'is_featured'=>$value
 
-        ]);
+
+          ]);
 
        $product->save();
       }

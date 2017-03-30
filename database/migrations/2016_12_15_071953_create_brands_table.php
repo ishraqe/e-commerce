@@ -18,6 +18,7 @@ class CreateBrandsTable extends Migration
             $table->integer('category_id');
             $table->text('brand_description');
             $table->string('in_market_from');
+            $table->string('table_name')->default('brands');
             $table->timestamps();
         });
     }

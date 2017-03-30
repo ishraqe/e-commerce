@@ -27,6 +27,7 @@ class CreateProductsTable extends Migration
             $table->integer('is_available')->default(true);
             $table->boolean('is_sold')->default(false);
             $table->boolean('is_featured')->default(false);
+            $table->string('table_name')->default('products');
         });
     }
 

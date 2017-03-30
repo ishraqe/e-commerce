@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->boolean('marchent')->default(false);
             $table->boolean('is_reported')->default(false);
             $table->boolean('is_active')->default(false);
+            $table->string('table_name')->default('users');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -20,6 +20,7 @@ class CreateBlogsTable extends Migration
             $table->longText('blog_body');
             $table->string('blog_header_image')->nullable();
             $table->integer('vote');
+            $table->string('table_name')->default('blogs');
             $table->timestamps();
         });
     }

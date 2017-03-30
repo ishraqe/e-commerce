@@ -7,7 +7,7 @@ use App\Product;
 class Category extends Model
 {
    
-         protected $fillable = array(   'type', 'category_name');
+    protected $fillable = array(   'type', 'category_name');
 
      public function product()
     {

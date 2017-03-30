@@ -19,9 +19,6 @@ class UserSeeder extends Seeder
         'admin_type'=>$admin_type,
        	'email'=>'admin@admin.com',
       	'password'=>bcrypt(111111),
-
-
-      	
        	]);
  
        	$user->save();

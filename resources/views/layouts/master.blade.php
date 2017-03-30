@@ -169,7 +169,9 @@
                     </div>
                     <div class="col-sm-3">
                         <div class="search_box pull-right">
-                            <input type="text" autocomplete="off" placeholder="Search"/>
+                            <form action="{{route('all.search')}}" method="get">
+                                <input type="text" name="query" autocomplete="off" placeholder="Search"/>
+                            </form>
                         </div>
                     </div>
                 </div>

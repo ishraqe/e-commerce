@@ -64,11 +64,17 @@ Route::get('/shop', [
 
 ]);
 
+Route::get('/search', [
+    'uses' => 'searchController@getSearch',
+    'as' => 'all.search'
+]);
+
+
 Route::get('/product-details', [
 	'uses' => 'ProductController@productDetails',
 	'as' => 'productDetails'
-
 ]);
+
 Route::get('/add-to-cart/{id}',[
 	'uses'=>'ProductController@getAddToCArt',
 	'as' => 'product.addToCart'
