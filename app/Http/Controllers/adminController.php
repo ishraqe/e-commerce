@@ -190,20 +190,39 @@ class adminController extends Controller
 
     public function deleteProduct(Request $request)
     {
-        dd($request->all());
-//        try {
-//            Product::findOrfail($id)->delete();
-//            Session::flash('delete_confirmation', 'Your Product has been deleted');
-//            return redirect()->back();
-//        } catch (Exception $e) {
-//            return $e;
-//        }
+        $input=$request->all();
+
+         $data=[
+            'status' => 200,
+            'productId'=> $input['id']
+        ];
+        return $data;
+
+    }
+    public function makeDelete(Request $request)
+    {
+        $input=$request->all();
+      
+        $product=Product::findOrfail($input['id']);
+
+        $delete=$product->delete();
+
+        $data=[];
+        if ($delete) {
+            $data=[
+                'status' => 200,
+                'message'=> 'Product deleted successfully!!'
+
+            ];
+            return $data;
+        }
+        
+            
 
     }
 
     public function getProfile()
     {
-
 
         return view('admin.page-profile');
     }

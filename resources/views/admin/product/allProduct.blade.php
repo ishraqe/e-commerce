@@ -1,4 +1,6 @@
-
+<p class="message">
+    
+</p>
 <h1>Product list</h1>
 <table class="table table-hover">
   <thead>
@@ -57,9 +59,6 @@
     	  <td id="actionProduct">
     	  	<a  onclick="editProductInfo(this)" style="color: mediumseagreen"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
             <a onclick="deleteProduct(this)" style="color: red"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-              {{--//deleteProduct--}}
-
-
     	  </td>           
     </tr>
   		@endforeach
@@ -86,28 +85,30 @@
         </div>
     </div>
 </div>
-
-<div class="modal fade" id="deleteProduct">
-    <div class="modal-dialog">
+<div class="modal fade" id="deleteProduct" role="dialog">
+    <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="myModalLabel">Delete product</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Delete Confirmation</h4>
             </div>
-            <div class="modal-body">
-                <div class='row'>
-                    <div class='col-sm-12 '>
-                        <div class='well' id="edit-form-info">
-                            hello
-                        </div>
-                    </div>
-                </div>
+            <div class="modal-body text-center " id="deleteModalBody">
+               
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
 </div>
-
-
+<script id="delete-template" type="text/x-handlebars-template">
+    <div id="idContainer" >
+        <p data-id="@{{id}}">Are you sure you want to delete this product??</p>
+        <a  onclick="makeDelete(this)" class="btn btn-primary">Yes</a>
+        <a class="btn btn-default" data-dismiss="modal">No</a>
+    </div>
+    
+</script>
 <script id="edit-form-modal" type="text/x-handlebars-template">
 
     <form   id="editProfductform" class="text-left">
@@ -357,13 +358,45 @@
             dataType: "json",
             success: function (res) {
                 if(res.status==200){
-
-                    $(document).ajaxStop(function(){
-                        window.location.reload();
-                    });
-
+                    var source   = $("#delete-template").html();
+                    var template = Handlebars.compile(source);
+                    var context = {id:res.productId};
+                    var html    = template(context);
+                    $('#deleteModalBody').replaceWith(html);   
                 }
             }
         })
+    }
+    function makeDelete(trigger){
+        var trigger=$(trigger);
+
+        var container=trigger.parents("#idContainer");
+        var dataId=container.find('p').attr("data-id");
+
+        param = {
+            "_token": "{{ csrf_token() }}",
+            id : dataId
+        };
+
+        $.ajax({
+            url: "/admin/product/makeDelete",
+            method: "post",
+            data: param,
+            dataType: "json",
+            success: function (res) {
+                if(res.status==200){
+                    var message=res.message;
+                    var html =  '<button type="button" class="btn btn-success btn-toastr-callback" id="toastr-callback1" data-context="info" data-position="top-right" data-message="onShown and onHidden callback demo">'+message+'</button>';
+                    $('.message').prepend(html);
+
+                    $('#deleteProduct').modal('hide');
+
+                    setTimeout(function(){
+                           location.reload();
+                      }, 3000);    
+                }
+            }
+        })
+
     }
 </script>

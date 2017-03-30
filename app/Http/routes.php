@@ -231,12 +231,17 @@ Route::group(['prefix'=>'admin'],function(){
 	]);
     Route::post('/product/update/info','ProductController@getProductInfo');
 
-	Route::post('/admin/product/delete',[
+	Route::post('/product/delete',[
 		'uses'=>'adminController@deleteProduct',
 		'as'=>'admin.deleteProduct',
 		'middleware'=>'admin'
 	]);
-
+	Route::post('/product/makeDelete',[
+		'uses'=>'adminController@makeDelete',
+		'as'=>'admin.makeDelete',
+		'middleware'=>'admin'
+	]);
+	
 	Route::get('/getInfo/{id}',[
 		'uses'=>'adminController@showInfo',
 		'as'=>'admin.showInfo',

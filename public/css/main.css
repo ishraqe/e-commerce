@@ -11,6 +11,7 @@ body {
   background:white;
   position: relative;
   font-weight: 400;
+  overflow-x: hidden;
 }
 
 

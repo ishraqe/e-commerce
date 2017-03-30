@@ -57,3 +57,8 @@ $('#blah').mouseleave(function() {
     font-size: 20px;
 }
 
+#deleteProduct a{
+    font-size: 20px;
+    padding: 5px;
+    margin: 6px;
+}

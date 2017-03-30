@@ -33,21 +33,6 @@ class searchController extends Controller
 
         $time= count($resultAll)." in $queryTime seconds.";
 
-
-
-//        $page = Input::get('page', 1);
-//
-//
-//        $perPage = 10;
-//
-//        $offSet = ($page * $perPage) - $perPage;
-//
-//
-//        $itemsForCurrentPage = array_slice($resultAll, $offSet, $perPage, true);
-//
-//
-//       $result=new  LengthAwarePaginator($itemsForCurrentPage, count($resultAll), $perPage, $page);
-
         $resultData=[
             'time' => $time,
             'result'=>$resultAll
