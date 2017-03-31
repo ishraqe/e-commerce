@@ -331,6 +331,7 @@
     };
     tinymce.init(editor_config);
     </script>
+
     @yield('script')
 
 </body>

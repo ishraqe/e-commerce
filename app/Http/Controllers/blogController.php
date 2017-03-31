@@ -79,7 +79,7 @@ class blogController extends Controller
            
                 if ($success){
 
-                    $blog =  Blog::create([
+                    Blog::create([
 
                         'title' => $request['blogTitle'],
                         'user_id' => Auth::user()->id,
@@ -87,7 +87,7 @@ class blogController extends Controller
                         'blog_body' =>  $request['blogBody'],
                         'blog_header_image' => $image_url,
                        
-                     ]);
+                    ]);
 
                     Session::flash('added_confirmation','Your blog has been created successfully');
 

@@ -41,7 +41,7 @@ class ProductController extends Controller
             'featured' => $featured
     	]);
 
-
+       // ?category=<?= //$c->category_name;
     }
 
 

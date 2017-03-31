@@ -9,10 +9,7 @@
 	<section>
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-3">
-					{{--@include('partials.left-sidebar')--}}
-				</div>
-				<div class="col-sm-9" id="trigger-area">
+				<div class="col-sm-12" id="trigger-area">
 					<div class="blog-post-area" >
 						<h2 class="title text-center">Latest From our Blog</h2>
 
@@ -60,10 +57,15 @@
 								</span>
 							</div>
 							<p>{{$blogDesc->short_description}}</p>
-							<a href="">
-								<img src="{{$blogDesc->blog_header_image}}" alt="">
-							</a>
-							<p>{!! $blogDesc->blog_body !!}</p>
+							<div class="centeredImageContainer">
+								<img class="centeredImage" src="{{$blogDesc->blog_header_image}}" alt="">
+							</div>
+							<hr>
+							<div class="centeredImageContainer">
+								<h2>Description</h2>
+								<p class="centeredImage">{!! $blogDesc->blog_body !!}</p>
+							</div>
+
 						</div>
 
 					</div><!--/blog-post-area-->
@@ -101,6 +103,7 @@
 									</ul>
 
 								  <div class="form-group">
+
 								    <textarea name="comment_body" class="form-control" cols="10" rows="11"></textarea>
 								  </div>
 								  <a class="btn btn-primary" onclick="addThoughts(this)" type="submit">Add</a>
@@ -135,10 +138,10 @@
 	</section>
 	<script id="comment-entry-template" type="text/handlebars">
 	 	<div class="response-area">
-			<h2>@{{response}} RESPONSES</h2>
+			<h2> @{{response}} RESPONSES </h2>
 			<ul class="media-list">
 			 @{{#each comment.comments}}
-				<li class="media">	
+				<li class="media">
 					<div class="media-body">
 						<ul class="sinlge-post-meta">
 							<li><i class="fa fa-user"></i>Janis Gallagher</li>
@@ -150,7 +153,7 @@
 					</div>
 				</li>
 			 @{{/each}}
-			</ul>					
+			</ul>
 		</div><!--/Response-area-->
 	</script>
 

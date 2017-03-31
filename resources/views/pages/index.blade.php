@@ -67,7 +67,6 @@ Artisan's Story
             </div>
 
     </section><!--/slider-->
-    
     <section>
         <div class="container">
             <div class="row">

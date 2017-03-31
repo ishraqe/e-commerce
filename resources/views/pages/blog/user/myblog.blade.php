@@ -36,7 +36,12 @@
 										<i class="fa fa-star-half-o"></i>
 								</span>
 							</div>
-							 <p>{{ $b->short_description }}</p>
+							<div class="centeredImageContainer">
+								@if(!empty($b->blog_header_image))
+									<img class="centeredImage" src="{{$b->blog_header_image}}" alt="">
+								@endif
+							</div>
+							 <p>{{implode(' ', array_slice(str_word_count($b->short_description, 2), 0, 42))}}</p>
 							<a  class="btn btn-primary" href="{{action('blogController@showBlog',[$b->id])}}">Read More</a>
 						</div>
 
