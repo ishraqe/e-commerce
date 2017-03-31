@@ -14,6 +14,7 @@
     <link href="/css/main.css" rel="stylesheet">
     <link href="/css/responsive.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/lightbox/lightbox.css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
     <script src="/js/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
     <!--[if lt IE 9]>
@@ -293,6 +294,8 @@
     <script src="/js/main.js"></script>
     <script src="/lightbox/lightbox.js"></script>
     <script src="/tinymce/tinymce.min.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+
     <script>
       $(document).ready(function(){
           $('.flash').delay(3000).slideUp(300);
@@ -333,6 +336,30 @@
     </script>
 
     @yield('script')
+    <script>
+        $(document).ready(function(){
+            $('.owl-carousel').owlCarousel({
+                loop:true,
+                dotsEach:true,
+                nav:true,
+                autoplay:true,
+                autoplayTimeout:1000,
+                autoplayHoverPause:true,
+                responsive:{
+                    0:{
+                        items:1
+                    },
+                    600:{
+                        items:3
+                    },
+                    1000:{
+                        items:4
+                    }
+                }
+            })
+        });
+
+    </script>
 
 </body>
 </html>

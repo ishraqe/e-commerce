@@ -37,7 +37,7 @@ class ProductController extends Controller
 
             'category' => $category,
             'brand'  => $brand,
-            'recomended'=>$recommended,
+            'recommended'=>$recommended,
             'featured' => $featured
     	]);
 
@@ -215,7 +215,7 @@ class ProductController extends Controller
             }
             $oldcart=Session::get('cart');
             $cart=new Cart($oldcart);
-
+            dd($cart);
             $total=$cart->totalPrice;
             $added=$total*$input['increasedProductNumber'] ;
             return [
@@ -224,7 +224,9 @@ class ProductController extends Controller
             ];
        }
     }
+    public function updateDecreaseCart(Request $request){
 
+    }
     public function categoryAll()
     {
        $category=Category::all();

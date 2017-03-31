@@ -172,16 +172,11 @@
                     @endif
 					<b>Rating:
 
-					 <input  class="{{ $errors->has('reviewer_rating') ? ' has-error' : '' }}" type="text" name="reviewer_rating" value="{{old('reviewer_rating')}}">
-					@if ($errors->has('reviewer_rating'))
-                      <span class="help-block alert alert-danger ">
-                          <strong>{{ $errors->first('reviewer_rating') }}</strong>
-                      </span>
-                    @endif
+
+						<div id="rateYo"></div>
 					<button type="submit" class="btn btn-default pull-right">
 						Submit
 					</button>
-
 				</form>
 
 			</div>

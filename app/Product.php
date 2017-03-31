@@ -9,7 +9,7 @@ use DB;
 class Product extends Model
 {
    
-    protected $fillable = array( 'title',  'category_id','brand_id','description','price','rating','image','number_of_products','products_user_id','is_available','is_sold','is_featured');
+    protected $fillable = array( 'title',  'category_id','brand_id','description','price','rating','image','number_of_products','products_user_id','is_available','is_sold','is_featured','is_in_slider');
     
 
     public function category()
@@ -45,13 +45,14 @@ class Product extends Model
     }
 
     public function recommended(){
-        $recommended = DB::table('products')
-            ->join('ratings', 'products.id', '=', 'ratings.product_id')
-            ->join('images', 'products.id', '=', 'images.product_id')
-            ->select('*')
-            ->orderBy('ratings.rating','desc')
-            ->take(3)
-            ->get();
+//        $recommended = DB::table('products')
+//            ->join('ratings', 'products.id', '=', 'ratings.product_id')
+//            ->join('images', 'products.id', '=', 'images.product_id')
+//            ->select('*')
+//            ->orderBy('ratings.rating','desc')
+//            ->take(3)
+//            ->get();
+        $recommended =Product::all()->take(12);
         return $recommended;
     }
 }
