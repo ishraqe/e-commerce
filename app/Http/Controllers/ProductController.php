@@ -20,136 +20,148 @@ use App\WishList;
 
 class ProductController extends Controller
 {
-     public function getIndex()
+    public function getIndex()
     {
-        $productData=new Product();
-        $featured=$productData->getFeaturedProduct()->take(6);
+        $productData = new Product();
+        $featured = $productData->getFeaturedProduct()->take(6);
 
-        $categoryData=new Category();
-        $category=$categoryData->getCateory();
+        $categoryData = new Category();
+        $category = $categoryData->getCateory();
 
         $recommended = $productData->recommended();
 
-        $brandData=new Brand();
-        $brand=$brandData->getBrand();
+        $brandData = new Brand();
+        $brand = $brandData->getBrand();
 
-    	return view('pages.index')->with([
+        return view('pages.index')->with([
 
             'category' => $category,
-            'brand'  => $brand,
-            'recommended'=>$recommended,
+            'brand' => $brand,
+            'recommended' => $recommended,
             'featured' => $featured
-    	]);
+        ]);
 
-       // ?category=<?= //$c->category_name;
+        // ?category=<?= //$c->category_name;
     }
 
 
-    public function show($id){
-       
-       $productDetails=Product::findOrfail($id);
-       
-       $category=Category::all(); 
-       $relatedByCategory=Product::where('category_id',$productDetails->category->id)->take(4)->get();
-       
-       $brand=Brand::all();
-       $relatedByBrand=Product::where('brand_id',$productDetails->brand->id)->take(4)->get();
-       
-       $review=Review::where('product_id',$id)->get();
+    public function show($id)
+    {
 
-       $recomended=Product::where('title' ,'LIKE',$productDetails->title)
-                    ->orderBy('created_at','desc')
-                    ->take(8)
-                    ->get();
+        $productDetails = Product::findOrfail($id);
 
-           
+        $category = Category::all();
+        $relatedByCategory = Product::where('category_id', $productDetails->category->id)->take(4)->get();
 
-                    
+        $brand = Brand::all();
+        $relatedByBrand = Product::where('brand_id', $productDetails->brand->id)->take(4)->get();
+
+        $review = Review::where('product_id', $id)->get();
+
+        $recomended = Product::where('title', 'LIKE', $productDetails->title)
+            ->orderBy('created_at', 'desc')
+            ->take(8)
+            ->get();
+
+
         return view('pages.product-details')->with([
             'productDetails' => $productDetails,
             'category' => $category,
-            'relatedByCategory'=>$relatedByCategory,
-            'brand'  => $brand,
-            'relatedByBrand'=>$relatedByBrand,
-            'review'=>$review
-        ]);
-    }
-   
-    public function shop(){
-        $category=Category::all(); 
-        $brand=Brand::all();
-        $product=Product::paginate(12);
-        
-    	return view('pages.shop')->with([
-            'product'=>$product,
-            'category' => $category,
-            'brand'  => $brand
+            'relatedByCategory' => $relatedByCategory,
+            'brand' => $brand,
+            'relatedByBrand' => $relatedByBrand,
+            'review' => $review
         ]);
     }
 
-    public function categoriesProduct($id){
-        $products=Product::where('category_id',$id)->paginate(12);
+    public function shop()
+    {
+        $category = Category::all();
+        $brand = Brand::all();
+        $product = Product::paginate(12);
+
+        return view('pages.shop')->with([
+            'product' => $product,
+            'category' => $category,
+            'brand' => $brand
+        ]);
+    }
+
+    public function categoriesProduct($id)
+    {
+        $products = Product::where('category_id', $id)->paginate(12);
 
         return view('pages.category-product')->with([
             'product' => $products
         ]);
     }
-    public function brandsProduct($id){
-        $products=Product::where('brand_id',$id)->paginate(12);
+
+    public function brandsProduct($id)
+    {
+        $products = Product::where('brand_id', $id)->paginate(12);
 
         return view('pages.brand-product')->with([
             'product' => $products
         ]);
     }
-    public function getAddToCart(Request $request,$id){
-        
-        $product=Product::findOrfail($id);
-        $oldCart=Session::has('cart') ? Session::get('cart') : null;
-        $cart=new Cart($oldCart);
-        $cart->add($product,$product->id);
 
-        $request->session()->put('cart',$cart);
+    public function getAddToCart(Request $request, $id)
+    {
+
+        $product = Product::findOrfail($id);
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->add($product, $product->id);
+
+        $request->session()->put('cart', $cart);
+
         return redirect()->back();
     }
 
-    public function addToWishlist(Request $request,$id)
+    public function addToWishlist(Request $request, $id)
     {
         if (!Auth::guest()) {
-            $product=Product::findOrfail($id);
+            $product = Product::findOrfail($id);
             $wishlist = WishList::create([
 
                 'product_id' => $product->id,
                 'user_id' => Auth::user()->id,
             ]);
 
-            return redirect()->back(); 
-        }else{
-            $product=Product::findOrfail($id);
-            $oldWishlist=Session::has('wishlist') ? Session::get('wishlist') : null;
-            $wish=new Wish($oldWishlist);
-            $wish->add($product,$product->id);
+            return redirect()->back();
+        } else {
+            $product = Product::findOrfail($id);
+            $oldWishlist = Session::has('wishlist') ? Session::get('wishlist') : null;
+            $wish = new Wish($oldWishlist);
+            $wish->add($product, $product->id);
 
-            $request->session()->put('wish',$wish);  
-            return redirect()->back(); 
+            $request->session()->put('wish', $wish);
+            return redirect()->back();
         }
     }
-    public function getCart(){
-        $oldcart=[];
-        $cart=[];
-        if(!Session::has('cart')){
-            return view('pages.cart');
-        }else{
-            
-            $oldcart=Session::get('cart');
-          
-            $cart = new Cart($oldcart);
-            
-            return view('pages.cart',[
-                'product'=>$cart->items,
-                'totalPrice'=>$cart->totalPrice,
 
-            ]);
+    public function getCart()
+    {
+        $oldcart = [];
+        $cart = [];
+        if (!Session::has('cart')) {
+            return view('pages.cart');
+        } else {
+
+            $oldcart = Session::get('cart');
+
+            $cart = new Cart($oldcart);
+
+
         }
+
+
+        return view('pages.cart', [
+            'product' => $cart->items,
+            'totalPrice' => $cart->totalPrice,
+
+        ]);
+
     }
 
     public function getWishList()
@@ -197,7 +209,8 @@ class ProductController extends Controller
     public function updatIncreaseCart(Request $request){
 
         $input = $request->input();
-        $numberOfProduct=Product::where('id',$input['id'])->first();
+        $id=$input['id'];
+        $numberOfProduct=Product::where('id',$id)->first();
 
       
 
@@ -213,14 +226,27 @@ class ProductController extends Controller
             if (!Session::has('cart')) {
                 return view('pages.cart');
             }
+
             $oldcart=Session::get('cart');
             $cart=new Cart($oldcart);
-            dd($cart);
-            $total=$cart->totalPrice;
-            $added=$total*$input['increasedProductNumber'] ;
+            $product =$cart->items;
+
+            $cart->totalQty=$cart->totalQty - $product[$id]['qty'];
+            $cart->totalPrice=$cart->totalPrice-$product[$id]['price']*$product[$id]['qty'];
+
+            $product[$id]['qty']=$input['increasedProductNumber'];
+
+            $product[$id]['price']= $product[$id]['price']*$product[$id]['qty'];
+
+            $cart->totalQty=$cart->totalQty+ $product[$id]['qty'];
+            $cart->totalPrice=$cart->totalPrice+$product[$id]['price']*$product[$id]['qty'];
+
+            $request->session()->put('cart', $cart);
+
             return [
                'status' => 200,
-
+                'product' => $product[$id],
+                'cart'   => $cart
             ];
        }
     }
