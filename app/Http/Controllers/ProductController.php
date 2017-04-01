@@ -379,8 +379,28 @@ class ProductController extends Controller
 
     }
     public function categorisedProduct(Request $request){
+        
         $input=$request->all();
-        dd($input);
+        $id=$input['id'];
+        $product=Product::where('category_id',$id)->get()->toArray();
+        if (count($product)>0) {
+                $data=[
+                'status' => 200,
+                'product' => [
+                    'product' => $product
+                ]
+            ];
+        }else{
+             $data=[
+                'status' => 500,
+                'message' => 'No products found by this category'
+            ];
+
+
+        }
+        
+
+        return $data;
     }
 
 }

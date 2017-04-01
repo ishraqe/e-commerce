@@ -6,7 +6,7 @@
             @endforeach
         </ul>
     </div>
-    <div class="tab-content">
+    <div class="tab-content" id="cat-product">
         @foreach($category as $k=>$c)
             <div class="tab-pane fade @if($k == 0) active in @endif" id="eachCat-{{$c['id']}}" >
                 <p class="text-center">
@@ -17,6 +17,28 @@
         @endforeach
     </div>
 </div><!--/category-tab-->
+
+<script id="cat-product-template" type="text/x-handlebars-template"> 
+    @{{#each product.product}}
+    <div class="tab-pane fade active in">
+       <div class="col-sm-3">
+            <div class="product-image-wrapper">
+                <div class="single-products">
+                    <div class="productinfo text-center">
+                        <img src="@{{ this.image}}" alt="" />
+                        <h2>$@{{ this.price}}</h2>
+                        <p>@{{ this.title}}</p>
+                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                    </div>            
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @{{/each}}
+</script>
+
+
 
 @section('script')
     <script>
@@ -31,16 +53,14 @@
                 method: "post",
                 data: param,
                 dataType: "json",
-                success: function (res) {
-                    /*var title=title;
+                success: function (res) { 
                     if(res.status==200){
-                        var source   = $("#edit-form-modal").html();
+                        var source   = $("#cat-product-template").html();
                         var template = Handlebars.compile(source);
-                        var context = {'info':res.info,'category':res.category,brand:res.brand};
+                        var context = {'product':res.product};
                         var html    = template(context);
-                        $('#edit-form-info').html(html);
-
-                    }*/
+                        $('#cat-product').html(html);
+                    }
                 }
             });
 
@@ -56,18 +76,18 @@
                     data: param,
                     dataType: "json",
                     success: function (res) {
-                        /*var title=title;
-                         if(res.status==200){
-                         var source   = $("#edit-form-modal").html();
-                         var template = Handlebars.compile(source);
-                         var context = {'info':res.info,'category':res.category,brand:res.brand};
-                         var html    = template(context);
-                         $('#edit-form-info').html(html);
+                        
+                        if(res.status==200){
+                            var source   = $("#cat-product-template").html();
+                            var template = Handlebars.compile(source);
+                            var context = {'product':res.product};
+                            var html    = template(context);
+                            $('#cat-product').html(html);
 
-                         }*/
+                        }
                     }
-                });
-            })
+                })
+            });
 
         });
     </script>
