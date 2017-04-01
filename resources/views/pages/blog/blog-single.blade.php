@@ -106,7 +106,11 @@
 
 								    <textarea name="comment_body" class="form-control" cols="10" rows="11"></textarea>
 								  </div>
+								@if(!Auth::guest())
 								  <a class="btn btn-primary" onclick="addThoughts(this)" type="submit">Add</a>
+									@else
+										<a class="btn btn-primary" href="{{url('/login')}}"  type="submit">Add</a>
+									@endif
 								</form>
 							</div>
 						</div>

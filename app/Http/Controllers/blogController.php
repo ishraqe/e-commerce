@@ -99,64 +99,70 @@ class blogController extends Controller
 
     public function addComment(Request $request)
     {
-       $input = $request->input();
+       if (!Auth::guest()){
+           $input = $request->input();
 
-       $comment=$input['comment'][0]['value'];
-        
-        $arrayData=[
-            'comment_body' => $comment
-        ];
+           $comment=$input['comment'][0]['value'];
 
-        $validator = Validator::make($arrayData, [
-            'comment_body' => 'required'
-        ]);
+           $arrayData=[
+               'comment_body' => $comment
+           ];
+
+           $validator = Validator::make($arrayData, [
+               'comment_body' => 'required'
+           ]);
 
 
-        if ($validator->fails()) {
-            $error=$validator->errors()->all();
+           if ($validator->fails()) {
+               $error=$validator->errors()->all();
 
-            $data=array(
-                'status' => 500,
-                'error' =>$error
-            );
-            return $data;
-        }else {
-            $updateData = array(
-               'comment_user_id' => Auth::user()->id,
-               'blog_id' => $input['id'],
-               'comment_body' => $comment,
-            );
-
-            $username=User::where('id',$updateData['comment_user_id'])->select('name')->get();
-          
-            $comment = new BlogComment();
-            
-            $comment->comment_user_id = $updateData['comment_user_id'];
-            $comment->blog_id=$updateData['blog_id'];
-            $comment->comment_body=$updateData['comment_body'];
-
-            $saveData =  $comment->save();
-
-            if ($saveData){
-
-                $blogComment = DB::table('blog_comments')
-                ->select('*')
-                ->where('blog_id','=',$updateData['blog_id'])
-                ->get();
-
-               
-               $response=count($blogComment);
                $data=array(
-                   'status' => 200,
-                   'number_of_response' => $response,
-                   'comments' => array(
-                      'comments' => $blogComment
-                    )         
+                   'status' => 500,
+                   'error' =>$error
                );
-               
                return $data;
-            }
-        }        
+           }else {
+               $updateData = array(
+                   'comment_user_id' => Auth::user()->id,
+                   'blog_id' => $input['id'],
+                   'comment_body' => $comment,
+               );
+
+               $username=User::where('id',$updateData['comment_user_id'])->select('name')->get();
+
+               $comment = new BlogComment();
+
+               $comment->comment_user_id = $updateData['comment_user_id'];
+               $comment->blog_id=$updateData['blog_id'];
+               $comment->comment_body=$updateData['comment_body'];
+
+               $saveData =  $comment->save();
+
+               if ($saveData){
+
+                   $blogComment = DB::table('blog_comments')
+                       ->select('*')
+                       ->where('blog_id','=',$updateData['blog_id'])
+                       ->get();
+
+
+                   $response=count($blogComment);
+                   $data=array(
+                       'status' => 200,
+                       'number_of_response' => $response,
+                       'comments' => array(
+                           'comments' => $blogComment
+                       )
+                   );
+
+                   return $data;
+               }
+           }
+       }
+
+
+
+
     }
 
     public function editMyBlog(Request $request){

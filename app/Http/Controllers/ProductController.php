@@ -32,7 +32,7 @@ class ProductController extends Controller
 
         $brandData = new Brand();
         $brand = $brandData->getBrand();
-
+//        dd($category);
         return view('pages.index')->with([
 
             'category' => $category,
@@ -241,7 +241,8 @@ class ProductController extends Controller
             $cart->totalQty=$cart->totalQty+ $product[$id]['qty'];
             $cart->totalPrice=$cart->totalPrice+$product[$id]['price']*$product[$id]['qty'];
 
-            $request->session()->put('cart', $cart);
+             $request->session()->push('cart', $cart);
+             $request->session()->save();
 
             return [
                'status' => 200,
@@ -376,6 +377,10 @@ class ProductController extends Controller
 
         }
 
+    }
+    public function categorisedProduct(Request $request){
+        $input=$request->all();
+        dd($input);
     }
 
 }

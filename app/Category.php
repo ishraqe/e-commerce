@@ -16,7 +16,7 @@ class Category extends Model
 
     public function getCateory(){
 
-        $category=Category::all();
+        $category=Category::all()->toArray();
 
       return $category;
     }

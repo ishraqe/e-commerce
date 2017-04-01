@@ -67,7 +67,7 @@ Route::get('/brands/product/{id}', [
     'uses' => 'ProductController@brandsProduct',
     'as' => 'brands.products'
 ]);
-
+Route::post('/categorisedProduct', 'ProductController@categorisedProduct');
 
 
 
