@@ -124,7 +124,10 @@ Route::post('/cart/update','ProductController@updatIncreaseCart');
 
 Route::post('/cart/decreaseProduct','ProductController@updateDecreaseCart');
 
-Route::post('cart/submitUpdate','ProductController@updateCart');
+Route::get('cart/deleteItem/{id}',[
+    'uses'=>'ProductController@deleteCartItem',
+    'as' => 'cart.deleteItem'
+]);
 
 Route::post('/addReview/{id}',[
 	'uses'=>'ReviewController@storeReview',

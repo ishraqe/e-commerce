@@ -1,9 +1,6 @@
 @extends('layouts.master')
  @section('title')
 Shopping Cart
-    
-                            
-
 @endsection  
 @section('content')
     <section id="cart_items">
@@ -15,7 +12,7 @@ Shopping Cart
                 </ol>
             </div>
             <div class="table-responsive cart_info">
-                @if(Cart::content() !=null)
+                @if(Cart::count() !=0)
 
                     <table class="table table-condensed">
                         <thead>
@@ -46,15 +43,15 @@ Shopping Cart
                                 <input type="hidden" name="id">
                                 <div class="cart_quantity_button" data-id="{{$row->rowId}}">
                                     <a class="cart_quantity_up" data-id="{{$row->id}}" onclick="increaseThisQuantity(this)"> + </a>
-                                    <input class="cart_quantity_input" type="text" name="quantity" value="{{$row->qty}}" autocomplete="off" size="2">
-                                    <a class="cart_quantity_down"  onclick="decreaseThisQuantity(this)"> - </a>
+                                    <input class="cart_quantity_input" data-id="{{$row->id}}" type="text" onchange="changedQuantity(this)" name="quantity" value="{{$row->qty}}" autocomplete="off" size="2">
+                                    <a class="cart_quantity_down" data-id="{{$row->id}}"  onclick="decreaseThisQuantity(this)"> - </a>
                                 </div>
                             </td>
                             <td class="cart_total">
                                 <p id="totalPriceOf" class="cart_total_price">${{$row->qty*$row->price}}</p>
                             </td>
                             <td class="cart_delete">
-                                <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+                                <a  href="{{route('cart.deleteItem',['rowId'=>$row->rowId])}}" class="cart_quantity_delete" onclick="removeItem(this)"><i class="fa fa-times"></i></a>
                             </td>
                         </tr>
                         @endforeach
@@ -67,7 +64,7 @@ Shopping Cart
             </div>
         </div>
     </section>
-    @if(Cart::content() !=null)
+    @if(Cart::count() !=0)
         <section id="do_action">
             <div class="container">
                 <div class="heading">
@@ -78,10 +75,10 @@ Shopping Cart
                     <div class="col-sm-12">
                         <div class="total_area">
                             <ul>
-                                <li>Cart Sub Total <span>${{Cart::subtotal()}}</span></li>
-                                <li>Eco Tax <span>Free</span></li>
-                                <li>Shipping Cost <span>Free</span></li>
-                                <li>Total <span>${{Cart::subtotal()}}</span></li>
+                                <li id="firstSubtotal">Cart Sub Total <span>${{Cart::subtotal()}}</span></li>
+                                <li id="tax">Eco Tax <span>Free</span></li>
+                                <li id="shippingCost">Shipping Cost <span>Free</span></li>
+                                <li id="endSubTotal">Total <span>${{Cart::subtotal()}}</span></li>
                             </ul>
 
                             <a class="btn btn-default check_out" href="{{route('cart.checkout')}}">Check Out</a>
@@ -133,6 +130,19 @@ Shopping Cart
                     }else if(res.status==200){
                         var totalPrice = price*(curVal+1);
                         trigger.parents('tr').find('.cart_total_price').html('$'+totalPrice);
+
+                        var totalSubPrice=res.totalPrice;
+                        var numberOfProducts=res.numberOfProducts;
+
+                        $('#firstSubtotal').html( 'Cart Sub Total <span>$'+totalSubPrice+'</span>');
+                        $('#endSubTotal').html('Total <span>$'+totalSubPrice+'</span>');
+                        var cartHeader="<span class='cart-amunt'>Cart-"
+                            +totalSubPrice +
+                            "</span><i class='fa fa-shopping-cart'>" +
+                            "</i> <span class='badge'>"+numberOfProducts+" " +
+                            "</span>";
+                        $('#header-cart-item').html(cartHeader);
+
                     }
                 }
             })
@@ -143,29 +153,52 @@ Shopping Cart
         function decreaseThisQuantity(trigger) {
             var trigger = $(trigger),
                 container = trigger.parents('.cart_quantity_button'),
-                id = container.attr('data-id'),
+                raw = container.attr('data-id'),
+                id=trigger.attr('data-id');
                 target = trigger.parents('tr').find('input.cart_quantity_input'),
                 curVal = parseFloat(target.val()),
                 price= parseFloat(trigger.parents('tr').find('.cart_price .value').html()),
                 param = {
                     "_token": "{{ csrf_token() }}",
+                    raw : raw,
                     id : id,
-                    'increasedProductNumber' : curVal-1
+                    'deccreasedProductNumber' : curVal-1
 
                 };
 
-            if (curVal != 0 ) {
-                target.val(curVal-1);
-                $.ajax({
-                    url: "/cart/decreaseProduct",
-                    method: "post",
-                    data: param,
-                    dataType: "json",
-                    success: function (res) {
+                if (curVal > 1 ) {
+                    target.val(curVal-1);
+                    $.ajax({
+                        url: "/cart/decreaseProduct",
+                        method: "post",
+                        data: param,
+                        dataType: "json",
+                        success: function (res) {
+                            if(res.status==200){
+                                var totalPrice = price*(curVal-1);
+                                trigger.parents('tr').find('.cart_total_price').html('$'+totalPrice);
 
-                    }
-                });
-            }
-            ;}
+                                var totalSubPrice=res.totalPrice;
+                                var numberOfProducts=res.numberOfProducts;
+
+                                $('#firstSubtotal').html( 'Cart Sub Total <span>$'+totalSubPrice+'</span>');
+                                $('#endSubTotal').html('Total <span>$'+totalSubPrice+'</span>');
+                                var cartHeader="<span class='cart-amunt'>Cart-"
+                                    +totalSubPrice +
+                                    "</span><i class='fa fa-shopping-cart'>" +
+                                    "</i> <span class='badge'>"+numberOfProducts+" " +
+                                    "</span>";
+                                $('#header-cart-item').html(cartHeader);
+
+                            }
+                        }
+                    });
+                }else {
+                    var html = '<p class="errorMsg">'+"Can't decrease more "+'</p>';
+                    trigger.parents('td').find('.errorMsg').remove();
+                    trigger.parents('td').prepend(html);
+                }
+        ;}
+
     </script>
 @endsection

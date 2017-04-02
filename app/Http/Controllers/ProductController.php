@@ -5,10 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Wish;
-use App\Http\Requests;
 use App\Product;
-use App\Order;
-use App\User;
 use App\Brand;
 use App\Category;
 use App\Review;
@@ -159,7 +156,6 @@ class ProductController extends Controller
 
     public function getCart()
     {
-
         return view('pages.cart');
 
     }
@@ -196,20 +192,17 @@ class ProductController extends Controller
         
     }
     public function getCheckOut(Request $request){
-        if (!Session::has('cart')) {
-            return view('pages.cart');
-        }
-        $oldcart=Session::get('cart');
-        $cart=new Cart($oldcart);
-        $total=$cart->totalPrice;
 
-        return view('pages.checkout',['total'=>$total]);
+
+        return view('pages.checkout');
     }
 
     public function updatIncreaseCart(Request $request){
 
         $input = $request->input();
+
         $id=$input['id'];
+        $rowId=$input['raw'];
 
 
         $numberOfProduct=Product::where('id',$id)->first();
@@ -224,17 +217,48 @@ class ProductController extends Controller
             return $data;
 
        }else{
+           $product=Cart::get($rowId);
 
-          $product=Cart::get('7543f7d495ff3a39ea9c7a537af0480b');
+           Cart::update($rowId, [
+               'qty' => $input['increasedProductNumber']
+           ]);
+
 
             return [
                'status' => 200,
-                'product' =>$product,
-                'cart'   => 'lol'
+                'totalPrice' => Cart::subtotal(),
+                'numberOfProducts'=>Cart::count()
             ];
        }
     }
     public function updateDecreaseCart(Request $request){
+        $input = $request->input();
+
+        $rowId=$input['raw'];
+        $product=Cart::get($rowId);
+
+        Cart::update($rowId, [
+            'qty' => $input['deccreasedProductNumber']
+        ]);
+
+
+        return [
+            'status' => 200,
+            'totalPrice' => Cart::subtotal(),
+            'numberOfProducts'=>Cart::count()
+        ];
+
+
+    }
+    public function deleteCartItem($rowId){
+        if ($rowId !=null){
+            Cart::remove($rowId);
+
+            Session::flash('delete_confirmation', 'Your item is deleted from the cart!');
+            return redirect()->back();
+           
+        }
+
 
     }
     public function categoryAll()

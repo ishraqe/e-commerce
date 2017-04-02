@@ -86,7 +86,7 @@
                                 </li>
                                 <li><a href="{{route('cart.checkout')}}"><i class="fa fa-crosshairs"></i> Checkout</a></li>
                                 <li> 
-                                    <a href="{{route('product.shoppingCart')}}">Cart - 
+                                    <a id="header-cart-item" href="{{route('product.shoppingCart')}}">Cart -
                                         <span class="cart-amunt">
                                             {{Cart::subtotal()}}
                                         </span>
@@ -180,7 +180,7 @@
     </header><!--/header-->
    
    
-       
+       @include('partials.message')
 
 @yield('content')
    
