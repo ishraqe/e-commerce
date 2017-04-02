@@ -72,12 +72,29 @@ Shopping Cart
                     <p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
                 </div>
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-6">
                         <div class="total_area">
                             <ul>
                                 <li id="firstSubtotal">Cart Sub Total <span>${{Cart::subtotal()}}</span></li>
-                                <li id="tax">Eco Tax <span>Free</span></li>
-                                <li id="shippingCost">Shipping Cost <span>Free</span></li>
+                                <li id="shippingCost">
+                                  
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                              Shipping Cost
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="radio">
+                                              <label><input id="insideDhaka" type="radio" name="location" value="{{$shippingCost->insideDhaka}}" checked>Inside Dhaka($ 50)</label>
+                                            </div>
+                                            <div class="radio">
+                                              <label><input type="radio" name="location" value="{{$shippingCost->outsideDhaka}}">Outside Dhaka($ 100) </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span>${{$shippingCost->insideDhaka}}</span>
+                                        </div>        
+                                    </div>
+                                </li>
                                 <li id="endSubTotal">Total <span>${{Cart::subtotal()}}</span></li>
                             </ul>
 
@@ -200,5 +217,15 @@ Shopping Cart
                 }
         ;}
 
+    </script>
+    <script>
+
+        $('input:radio[name="location"]').change(
+            function(){
+                if ($(this).is(':checked') && $(this).val() == 50) {
+
+                }
+            }
+        );
     </script>
 @endsection

@@ -4,7 +4,7 @@
         @foreach($category as $c)
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h4 class="panel-title"><a href="{{route('categories.products',['id'=>$c->id])}}">{{$c->category_name}}</a></h4>
+                <h4 class="panel-title"><a href="{{route('categories.products',['id'=>$c['id']])}}">{{$c['category_name']}}</a></h4>
             </div>
         </div>
         

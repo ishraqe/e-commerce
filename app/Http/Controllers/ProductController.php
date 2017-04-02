@@ -15,6 +15,7 @@ use Session;
 use Auth;
 use App\WishList;
 use Cart;
+use App\shippingCost;
 
 class ProductController extends Controller
 {
@@ -24,7 +25,7 @@ class ProductController extends Controller
         $featured = $productData->getFeaturedProduct()->take(6);
 
         $categoryData = new Category();
-        $category = $categoryData->getCateory()->take(8)->toArray();
+        $category = $categoryData->getCateory()->take(10)->toArray();
 
         $recommended = $productData->recommended();
 
@@ -106,28 +107,29 @@ class ProductController extends Controller
     public function getAddToCart(Request $request, $id)
     {
 
-        $product = Product::findOrfail($id);
+        if (Auth::guest) {
+           $product = Product::findOrfail($id);
 
-        Cart::add(['id' => $product->id,
-            'name' =>$product->title,
-            'qty' => 1,
-            'price' => $product->price,
-            'options' => [
-                'category_id'=>$product->category_id ,
-                'brand_id' =>$product->brand_id ,
-                'description' =>$product->description ,
-                'image' => $product->image,
-                'products_user_id' =>$product->products_user_id ,
-                'number_of_products'=>$product->number_of_products
-            ]
+            Cart::add(['id' => $product->id,
+                'name' =>$product->title,
+                'qty' => 1,
+                'price' => $product->price,
+                'options' => [
+                    'category_id'=>$product->category_id ,
+                    'brand_id' =>$product->brand_id ,
+                    'description' =>$product->description ,
+                    'image' => $product->image,
+                    'products_user_id' =>$product->products_user_id ,
+                    'number_of_products'=>$product->number_of_products
+                ]
 
-        ]);
+            ]);
+        }else{
+            echo "string";
+        }
+        
 
-//        $oldCart = Session::has('cart') ? Session::get('cart') : null;
-//        $cart = new Cart($oldCart);
-//        $cart->add($product, $product->id);
-//
-//        $request->session()->put('cart', $cart);
+
 
         return redirect()->back();
     }
@@ -156,7 +158,10 @@ class ProductController extends Controller
 
     public function getCart()
     {
-        return view('pages.cart');
+        $cost=new shippingCost();
+       $shippingCost=$cost->getShippingData();
+
+        return view('pages.cart')->with(['shippingCost'=> $shippingCost]);
 
     }
 
@@ -389,7 +394,7 @@ class ProductController extends Controller
         
         $input=$request->all();
         $id=$input['id'];
-        $product=Product::where('category_id',$id)->get()->toArray();
+        $product=Product::where('category_id',$id)->take(8)->get()->toArray();
         if (count($product)>0) {
                 $data=[
                 'status' => 200,

@@ -71,7 +71,7 @@ Artisan's Story
         <div class="container">
             <div class="row">
                 <div class="col-sm-3">
-{{--                    @include('partials.left-sidebar')--}}
+                    @include('partials.left-sidebar')
                 </div>
                 <div class="col-sm-9 padding-right">
                    @include('partials.product.feature')
