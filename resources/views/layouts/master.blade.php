@@ -88,10 +88,10 @@
                                 <li> 
                                     <a href="{{route('product.shoppingCart')}}">Cart - 
                                         <span class="cart-amunt">
-                                            ${{Session::has('cart') ? Session::get('cart')->totalPrice : ''}}
+                                            {{Cart::subtotal()}}
                                         </span>
                                         <i class="fa fa-shopping-cart"></i>
-                                        <span class="badge">{{Session::has('cart') ? Session::get('cart')->totalQty : ''}}
+                                        <span class="badge">{{Cart::count()}}
                                         </span>
                                     </a>
                                 </li>
@@ -360,6 +360,7 @@
         });
 
     </script>
+
 
 </body>
 </html>

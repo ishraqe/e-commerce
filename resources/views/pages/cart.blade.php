@@ -15,7 +15,7 @@ Shopping Cart
                 </ol>
             </div>
             <div class="table-responsive cart_info">
-                @if(Session::has('cart'))
+                @if(Cart::content() !=null)
 
                     <table class="table table-condensed">
                         <thead>
@@ -30,35 +30,33 @@ Shopping Cart
                         </thead>
                         <tbody>
 
-                        @foreach($product as $products)
-                            <tr>
-                                <td class="cart_product">
-                                    <a href="#"><img src="images/cart/one.png" alt=""></a>
-                                </td>
-                                <td class="cart_description">
-                                    <h4><a href="">{{$products['item']->title}}</a></h4>
+                        @foreach(Cart::content() as $row)
+                        <tr>
+                            <td class="cart_product">
+                                <a href="#"><img src="{{$row->options->image}}" alt=""></a>
+                            </td>
+                            <td class="cart_description">
+                                <h4><a href="">{{$row->name}}</a></h4>
 
-                                    <p>id {{$products['item']->id}}</p>
-                                </td>
-                                <td class="cart_price">
-
-                                    <p>$ <span class="value">{{$products['item']->price}}</span></p>
-                                </td>
-                                <td class="cart_quantity">
-                                    <input type="hidden" name="id">
-                                    <div class="cart_quantity_button" data-id="{{$products['item']->id}}">
-                                        <a class="cart_quantity_up" onclick="increaseThisQuantity(this)"> + </a>
-                                        <input class="cart_quantity_input" type="text" name="quantity" value="{{$products['qty']}}" autocomplete="off" size="2">
-                                        <a class="cart_quantity_down"  onclick="decreaseThisQuantity(this)"> - </a>
-                                    </div>
-                                </td>
-                                <td class="cart_total">
-                                    <p id="totalPriceOf" class="cart_total_price">${{$products['item']->price*$products['qty']}}</p>
-                                </td>
-                                <td class="cart_delete">
-                                    <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-                                </td>
-                            </tr>
+                            </td>
+                            <td class="cart_price">
+                                <p>$ <span class="value">{{$row->price}}</span></p>
+                            </td>
+                            <td class="cart_quantity">
+                                <input type="hidden" name="id">
+                                <div class="cart_quantity_button" data-id="{{$row->rowId}}">
+                                    <a class="cart_quantity_up" data-id="{{$row->id}}" onclick="increaseThisQuantity(this)"> + </a>
+                                    <input class="cart_quantity_input" type="text" name="quantity" value="{{$row->qty}}" autocomplete="off" size="2">
+                                    <a class="cart_quantity_down"  onclick="decreaseThisQuantity(this)"> - </a>
+                                </div>
+                            </td>
+                            <td class="cart_total">
+                                <p id="totalPriceOf" class="cart_total_price">${{$row->qty*$row->price}}</p>
+                            </td>
+                            <td class="cart_delete">
+                                <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+                            </td>
+                        </tr>
                         @endforeach
                         </tbody>
                     </table>
@@ -69,7 +67,7 @@ Shopping Cart
             </div>
         </div>
     </section>
-    @if(Session::has('cart'))
+    @if(Cart::content() !=null)
         <section id="do_action">
             <div class="container">
                 <div class="heading">
@@ -80,10 +78,10 @@ Shopping Cart
                     <div class="col-sm-12">
                         <div class="total_area">
                             <ul>
-                                <li>Cart Sub Total <span>${{$totalPrice}}</span></li>
+                                <li>Cart Sub Total <span>${{Cart::subtotal()}}</span></li>
                                 <li>Eco Tax <span>Free</span></li>
                                 <li>Shipping Cost <span>Free</span></li>
-                                <li>Total <span>${{$totalPrice}}</span></li>
+                                <li>Total <span>${{Cart::subtotal()}}</span></li>
                             </ul>
 
                             <a class="btn btn-default check_out" href="{{route('cart.checkout')}}">Check Out</a>
@@ -105,12 +103,14 @@ Shopping Cart
 
             var trigger = $(trigger),
                 container = trigger.parents('.cart_quantity_button'),
-                id = container.attr('data-id'),
+                raw = container.attr('data-id'),
+                id=trigger.attr('data-id');
                 target = trigger.parents('tr').find('input.cart_quantity_input'),
                 curVal = parseFloat(target.val()),
                 price= parseFloat(trigger.parents('tr').find('.cart_price .value').html()),
                 param = {
                     "_token": "{{ csrf_token() }}",
+                    raw : raw,
                     id : id,
                     'increasedProductNumber' : curVal+1
 

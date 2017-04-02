@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Cart;
+
 use App\Wish;
 use App\Http\Requests;
 use App\Product;
@@ -17,6 +17,7 @@ use Validator;
 use Session;
 use Auth;
 use App\WishList;
+use Cart;
 
 class ProductController extends Controller
 {
@@ -26,7 +27,7 @@ class ProductController extends Controller
         $featured = $productData->getFeaturedProduct()->take(6);
 
         $categoryData = new Category();
-        $category = $categoryData->getCateory();
+        $category = $categoryData->getCateory()->take(8)->toArray();
 
         $recommended = $productData->recommended();
 
@@ -109,11 +110,27 @@ class ProductController extends Controller
     {
 
         $product = Product::findOrfail($id);
-        $oldCart = Session::has('cart') ? Session::get('cart') : null;
-        $cart = new Cart($oldCart);
-        $cart->add($product, $product->id);
 
-        $request->session()->put('cart', $cart);
+        Cart::add(['id' => $product->id,
+            'name' =>$product->title,
+            'qty' => 1,
+            'price' => $product->price,
+            'options' => [
+                'category_id'=>$product->category_id ,
+                'brand_id' =>$product->brand_id ,
+                'description' =>$product->description ,
+                'image' => $product->image,
+                'products_user_id' =>$product->products_user_id ,
+                'number_of_products'=>$product->number_of_products
+            ]
+
+        ]);
+
+//        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+//        $cart = new Cart($oldCart);
+//        $cart->add($product, $product->id);
+//
+//        $request->session()->put('cart', $cart);
 
         return redirect()->back();
     }
@@ -142,25 +159,8 @@ class ProductController extends Controller
 
     public function getCart()
     {
-        $oldcart = [];
-        $cart = [];
-        if (!Session::has('cart')) {
-            return view('pages.cart');
-        } else {
 
-            $oldcart = Session::get('cart');
-
-            $cart = new Cart($oldcart);
-
-
-        }
-
-
-        return view('pages.cart', [
-            'product' => $cart->items,
-            'totalPrice' => $cart->totalPrice,
-
-        ]);
+        return view('pages.cart');
 
     }
 
@@ -210,9 +210,11 @@ class ProductController extends Controller
 
         $input = $request->input();
         $id=$input['id'];
+
+
         $numberOfProduct=Product::where('id',$id)->first();
 
-      
+
 
        if ($input['increasedProductNumber'] >  $numberOfProduct['number_of_products']) {
             $data = array(
@@ -223,31 +225,12 @@ class ProductController extends Controller
 
        }else{
 
-            if (!Session::has('cart')) {
-                return view('pages.cart');
-            }
-
-            $oldcart=Session::get('cart');
-            $cart=new Cart($oldcart);
-            $product =$cart->items;
-
-            $cart->totalQty=$cart->totalQty - $product[$id]['qty'];
-            $cart->totalPrice=$cart->totalPrice-$product[$id]['price']*$product[$id]['qty'];
-
-            $product[$id]['qty']=$input['increasedProductNumber'];
-
-            $product[$id]['price']= $product[$id]['price']*$product[$id]['qty'];
-
-            $cart->totalQty=$cart->totalQty+ $product[$id]['qty'];
-            $cart->totalPrice=$cart->totalPrice+$product[$id]['price']*$product[$id]['qty'];
-
-             $request->session()->push('cart', $cart);
-             $request->session()->save();
+          $product=Cart::get('7543f7d495ff3a39ea9c7a537af0480b');
 
             return [
                'status' => 200,
-                'product' => $product[$id],
-                'cart'   => $cart
+                'product' =>$product,
+                'cart'   => 'lol'
             ];
        }
     }

@@ -17,6 +17,7 @@
         @endforeach
     </div>
 </div><!--/category-tab-->
+<hr>
 
 <script id="cat-product-template" type="text/x-handlebars-template"> 
     @{{#each product.product}}
@@ -28,14 +29,35 @@
                         <img src="@{{ this.image}}" alt="" />
                         <h2>$@{{ this.price}}</h2>
                         <p>@{{ this.title}}</p>
-                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                    </div>            
+                        <a  class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                        <a  class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>View Details</a>
+                    </div>
+                </div>
+                <div class="choose">
+                    <ul class="nav nav-pills nav-justified">
+                        <li><a ><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
-
     @{{/each}}
+</script>
+
+<script id="cat-product-notFound-template" type="text/x-handlebars-template">
+    <div class="tab-pane fade active in">
+        <div class="col-sm-12">
+            <div class="product-image-wrapper">
+                <div class="single-products">
+                    <div class="productinfo text-center">
+                        <div class="alert alert-info">
+                            <strong>Info!</strong> @{{ message }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </script>
 
 
@@ -58,6 +80,12 @@
                         var source   = $("#cat-product-template").html();
                         var template = Handlebars.compile(source);
                         var context = {'product':res.product};
+                        var html    = template(context);
+                        $('#cat-product').html(html);
+                    }else if(res.status=500){
+                        var source   = $("#cat-product-notFound-template").html();
+                        var template = Handlebars.compile(source);
+                        var context = {'message':res.message};
                         var html    = template(context);
                         $('#cat-product').html(html);
                     }
@@ -84,6 +112,12 @@
                             var html    = template(context);
                             $('#cat-product').html(html);
 
+                        }else if(res.status==500){
+                            var source   = $("#cat-product-notFound-template").html();
+                            var template = Handlebars.compile(source);
+                            var context = {'message':res.message};
+                            var html    = template(context);
+                            $('#cat-product').html(html);
                         }
                     }
                 })
