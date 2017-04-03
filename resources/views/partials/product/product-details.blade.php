@@ -5,36 +5,53 @@
               <img src="{{$productDetails->image}}" >
             </a>
 			<h3>Click to enlarge</h3>
+			<section id="default" class="padding-top0">
+				<div class="row">
+					<div class="large-12 column"><h3>Default options</h3></div>
+					<div class="large-5 column">
+						<div class="xzoom-container">
+							<img class="xzoom" id="xzoom-default" src="{{$productDetails->image}}" xoriginal="{{$productDetails->image}}" />
+							<div class="xzoom-thumbs">
+								<a href="{{$productDetails->image}}"><img class="xzoom-gallery" width="80" src="{{$productDetails->image}}"  xpreview="{{$productDetails->image}}" title="The description goes here"></a>
+								<a href="{{$productDetails->image}}"><img class="xzoom-gallery" width="80" src="{{$productDetails->image}}" title="The description goes here"></a>
+								<a href="{{$productDetails->image}}"><img class="xzoom-gallery" width="80" src="{{$productDetails->image}}" title="The description goes here"></a>
+								<a href="{{$productDetails->image}}"><img class="xzoom-gallery" width="80" src="{{$productDetails->image}}" title="The description goes here"></a>
+							</div>
+						</div>
+					</div>
+					<div class="large-7 column"></div>
+				</div>
+			</section>
 		</div>
 		<div id="similar-product" class="carousel slide" data-ride="carousel">
-			
-			  <!-- Wrapper for slides -->
-			    <!-- <div class="carousel-inner">
-					<div class="item active">
-					  <a href=""><img src="images/product-details/similar1.jpg" alt=""></a>
-					  <a href=""><img src="images/product-details/similar2.jpg" alt=""></a>
-					  <a href=""><img src="images/product-details/similar3.jpg" alt=""></a>
-					</div>
-					<div class="item">
-					  <a href=""><img src="images/product-details/similar1.jpg" alt=""></a>
-					  <a href=""><img src="images/product-details/similar2.jpg" alt=""></a>
-					  <a href=""><img src="images/product-details/similar3.jpg" alt=""></a>
-					</div>
-					<div class="item">
-					  <a href=""><img src="images/product-details/similar1.jpg" alt=""></a>
-					  <a href=""><img src="images/product-details/similar2.jpg" alt=""></a>
-					  <a href=""><img src="images/product-details/similar3.jpg" alt=""></a>
-					</div>
-					
-				</div> -->
 
-			  <!-- Controls -->
-			  <!-- <a class="left item-control" href="#similar-product" data-slide="prev">
-				<i class="fa fa-angle-left"></i>
-			  </a>
-			  <a class="right item-control" href="#similar-product" data-slide="next">
-				<i class="fa fa-angle-right"></i>
-			  </a> -->
+			  {{--<!-- Wrapper for slides -->--}}
+			    {{--<!-- <div class="carousel-inner">--}}
+					{{--<div class="item active">--}}
+					  {{--<a href=""><img src="images/product-details/similar1.jpg" alt=""></a>--}}
+					  {{--<a href=""><img src="images/product-details/similar2.jpg" alt=""></a>--}}
+					  {{--<a href=""><img src="images/product-details/similar3.jpg" alt=""></a>--}}
+					{{--</div>--}}
+					{{--<div class="item">--}}
+					  {{--<a href=""><img src="images/product-details/similar1.jpg" alt=""></a>--}}
+					  {{--<a href=""><img src="images/product-details/similar2.jpg" alt=""></a>--}}
+					  {{--<a href=""><img src="images/product-details/similar3.jpg" alt=""></a>--}}
+					{{--</div>--}}
+					{{--<div class="item">--}}
+					  {{--<a href=""><img src="images/product-details/similar1.jpg" alt=""></a>--}}
+					  {{--<a href=""><img src="images/product-details/similar2.jpg" alt=""></a>--}}
+					  {{--<a href=""><img src="images/product-details/similar3.jpg" alt=""></a>--}}
+					{{--</div>--}}
+
+				{{--</div> -->--}}
+
+			  {{--<!-- Controls -->--}}
+			  {{--<!-- <a class="left item-control" href="#similar-product" data-slide="prev">--}}
+				{{--<i class="fa fa-angle-left"></i>--}}
+			  {{--</a>--}}
+			  {{--<a class="right item-control" href="#similar-product" data-slide="next">--}}
+				{{--<i class="fa fa-angle-right"></i>--}}
+			  {{--</a> -->--}}
 		</div>
 
 	</div>
@@ -177,7 +194,7 @@
 					<button type="submit" class="btn btn-default pull-right">
 						Submit
 					</button>
-				</form>
+					</form>
 
 			</div>
 		</div>

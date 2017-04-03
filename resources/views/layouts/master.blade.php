@@ -22,6 +22,8 @@
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
+    <script type="text/javascript" src="/js/xzoom.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/xzoom.css" media="all" />
     <![endif]-->       
     <link rel="shortcut icon" href="/images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/ico/apple-touch-icon-144-precomposed.png">
@@ -288,7 +290,7 @@
     
 
   
-    <script src="/js/jquery.js"></script>
+
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/jquery.scrollUp.min.js"></script>
     <script src="/js/price-range.js"></script>
@@ -297,7 +299,7 @@
     <script src="/lightbox/lightbox.js"></script>
     <script src="/tinymce/tinymce.min.js"></script>
     <script src="/js/owl.carousel.min.js"></script>
-
+    <script src="/js/setup.js"></script>
     <script>
       $(document).ready(function(){
           $('.flash').delay(3000).slideUp(300);
