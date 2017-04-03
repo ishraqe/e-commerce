@@ -96,7 +96,9 @@
         .panel-footer {
             background-color: #fafafa;
         }
-
+        #arrowPanel{
+            margin-top: -17px;
+        }
     </style>
 @endsection
 @section('content')
@@ -109,7 +111,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-              @include('user.product.addProduct')
+              {{--@include('user.product.addProduct')--}}
             </div>
         </div>
         <div class="row">
@@ -117,7 +119,7 @@
                 <div class="panel">
                     <div class="panel-heading">
                         <h3 class="panel-title">Available Products</h3>
-                        <div class="pull-right">
+                        <div class="pull-right" id="arrowPanel">
                             <button type="button"  class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
                         </div>
                     </div>
@@ -130,7 +132,63 @@
                 <div class="panel">
                     <div class="panel-heading">
                         <h3 class="panel-title">Sold products</h3>
-                        <div class="pull-right">
+                        <div class="pull-right" id="arrowPanel">
+                            <button type="button"  class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
+                        </div>
+                    </div>
+                    <div class="panel-body" id="collapseExample">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti doloremque earum fugiat reiciendis sint. Aliquam asperiores deserunt doloribus, earum id ipsam maxime odio officia quas quis temporibus tenetur unde veritatis.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Available Products</h3>
+                        <div class="pull-right" id="arrowPanel">
+                            <button type="button"  class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
+                        </div>
+                    </div>
+                    <div class="panel-body" id="collapseExample">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti doloremque earum fugiat reiciendis sint. Aliquam asperiores deserunt doloribus, earum id ipsam maxime odio officia quas quis temporibus tenetur unde veritatis.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Sold products</h3>
+                        <div class="pull-right" id="arrowPanel">
+                            <button type="button"  class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
+                        </div>
+                    </div>
+                    <div class="panel-body" id="collapseExample">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti doloremque earum fugiat reiciendis sint. Aliquam asperiores deserunt doloribus, earum id ipsam maxime odio officia quas quis temporibus tenetur unde veritatis.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Available Products</h3>
+                        <div class="pull-right" id="arrowPanel">
+                            <button type="button"  class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
+                        </div>
+                    </div>
+                    <div class="panel-body" id="collapseExample">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti doloremque earum fugiat reiciendis sint. Aliquam asperiores deserunt doloribus, earum id ipsam maxime odio officia quas quis temporibus tenetur unde veritatis.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Sold products</h3>
+                        <div class="pull-right" id="arrowPanel">
                             <button type="button"  class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
                         </div>
                     </div>
@@ -147,4 +205,15 @@
 @section('script')
 
     <script src="/assets/js/klorofil.js"></script>
+
+@endsection
+@section('script')
+    @if(!$errors->addProductError->isEmpty())
+        <script>
+            $(function() {
+                $('#addProduct').modal('show');
+            });
+
+        </script>
+    @endif
 @endsection

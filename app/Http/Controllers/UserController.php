@@ -8,6 +8,7 @@ use Validator;
 use App\Brand;
 use App\Category;
 use DB;
+use App\Product;
 use App\Blog;
 use Session;
 use Illuminate\Support\Facades\Auth;
@@ -136,7 +137,7 @@ class UserController extends Controller
 
     public function getMyProduct(){
         $user =new User();
-        $product = $user->getProduct();
+        $product = $user->getAvailableProduct();
 
         $cat=new Category();
         $category=$cat->getCateory();
@@ -152,9 +153,8 @@ class UserController extends Controller
     }
 
     public function addProduct(Request $request){
-        $pro=new Product();
 
-        $pro->addProduct($request);
+
     }
 }
 

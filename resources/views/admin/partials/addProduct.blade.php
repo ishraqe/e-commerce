@@ -6,10 +6,8 @@
 <div style="color: black" class="modal fade" id="addProduct" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
 	  <div class="modal-content">
-		  <?php
-		  	$url='/admin/addProduct';
-		  ?>
-	    <form action="{{url($url)}}" method="post" enctype="multipart/form-data">
+
+	    <form action="{{url('/admin/product/add')}}" method="post" enctype="multipart/form-data">
 	    <input type="hidden" name="_token" value="{{csrf_token()}}">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -23,12 +21,10 @@
 					<input class="form-control" type="file" name="image" id="imgInp">
 	      	</div>
 	      	<div class="col-md-6 image-product-container">
-	      		<div class="form-group image-product" style="margin-top: 24px; max-height: 119px;
-max-width: 51px;">
-	      			<img id="blah" class="img-responsive imagePreview" src="#" style="height: inherit;
-width: 100%;" alt="product image" />
+	      		<div class="form-group image-product" style="margin-top: 24px; max-height: 119px; max-width: 51px;">
+	      			<img id="blah" class="img-responsive imagePreview" src="#" style="height: inherit; width: 100%;" alt="product image" />
 	      		</div>
-	      		
+
 	      	</div>
 	      </div>
 	        
@@ -105,13 +101,3 @@ width: 100%;" alt="product image" />
 	  </div>
 	</div>
 </div>
-@section('script')
-	@if(!$errors->addProductError->isEmpty())
-		<script>
-	        $(function() {
-	            $('#addProduct').modal('show');
-	        });
-	        
-		</script>
-	@endif
-@endsection

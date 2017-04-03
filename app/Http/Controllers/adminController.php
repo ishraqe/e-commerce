@@ -72,9 +72,51 @@ class adminController extends Controller
 
     public function addProduct(Request $request)
     {
-            $pro=new Product();
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|max:25|min:4',
+            'description' => 'required',
+            'price' => 'required|int',
+            'category_id' => 'required',
+            'brand_id' => 'required',
+            'image' => 'required',
+            'number_of_products' => 'required|int',
 
-            $pro->addProduct($request);
+        ]);
+        if ($validator->fails()) {
+
+            return redirect()->back()->withErrors($validator, 'addProductError');
+        } else {
+
+            $image = $request->file('image');
+            try {
+                if ($image) {
+                    $im=new Image();
+                    $data= $im->imageProcessing($image);
+
+                    if ($data['success']) {
+                        $product = new Product();
+                        $product->title = $request->title;
+                        $product->category_id = $request->category_id;
+                        $product->brand_id = $request->brand_id;
+                        $product->description = $request->description;
+                        $product->price = $request->price;
+                        $product->rating = 0;
+                        $product->image = $data['image_url'];
+                        $product->is_featured=$request['is_featured'];
+
+                        $saveData = $product->save();
+
+                        if ($saveData) {
+                            Session::flash('added_confirmation', 'Your data has been added!!');
+                            return redirect()->back();
+                        }
+
+                    }
+                }
+            } catch (Exception $e) {
+                die($e->getMessage());
+            }
+        }
     }
 
 

@@ -61,11 +61,12 @@ class User extends Authenticatable
         return User::where('admin',1)->get();
     }
 
-    public function getProduct(){
+    public function getAvailableProduct(){
         $product= DB::table('products')
             ->select('*')
             ->orderBy('created_at','desc')
             ->where('products_user_id',Auth::user()->id)
+            ->where('is_sold',0)
             ->get();
        return $product;
     }

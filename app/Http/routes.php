@@ -237,7 +237,7 @@ Route::group(['prefix'=>'admin'],function(){
 		'middleware'=>'admin'
 	]);
 
-	Route::post('/addProduct',[
+	Route::post('/product/add',[
 		'uses'=>'adminController@addProduct',
 		'as'=>'admin.addProduct',
 		'middleware'=>'admin'
