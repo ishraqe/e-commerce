@@ -58,10 +58,7 @@ Dashboard
               <!-- TABLE NO PADDING -->
               <div class="panel">
                 <div class="panel-heading">
-
                   <h3 class="panel-title btn btn-info">Admin List <span class="badge">{{count($admin)}}</span></h3>
-
-                 
                 </div>
                 <div class="panel-body no-padding">
                   <table class="table">

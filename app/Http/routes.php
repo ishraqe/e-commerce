@@ -176,6 +176,20 @@ Route::group(['prefix'=>'user'],function(){
         'as' => 'user.editMyBlog',
         'middleware'=>'auth'
     ]);
+    Route::get('/my-products',[
+       'uses' => 'UserController@getMyProduct',
+        'as' => 'user.getProduct',
+        'middleware' => 'auth'
+
+    ]);
+
+    Route::post('/user/addProduct',[
+        'uses' => 'UserController@addProduct',
+        'as' => 'user.addProduct',
+        'middleware' => 'auth'
+
+    ]);
+
 });
 
 

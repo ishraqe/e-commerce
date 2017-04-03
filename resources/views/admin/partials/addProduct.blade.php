@@ -6,7 +6,10 @@
 <div style="color: black" class="modal fade" id="addProduct" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
 	  <div class="modal-content">
-	    <form action="{{url('/admin/addProduct')}}" method="post" enctype="multipart/form-data">
+		  <?php
+		  	$url='/admin/addProduct';
+		  ?>
+	    <form action="{{url($url)}}" method="post" enctype="multipart/form-data">
 	    <input type="hidden" name="_token" value="{{csrf_token()}}">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>

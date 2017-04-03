@@ -29,8 +29,6 @@
   <link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
   <script src="https://unpkg.com/flatpickr"></script>
 
-
-
   @yield('head-script')
   @yield('style')
 

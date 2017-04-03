@@ -5,6 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 use DB;
+use Illuminate\Http\Request;
+use Session;
+use Validator;
 
 class Product extends Model
 {
@@ -28,9 +31,6 @@ class Product extends Model
          return $this->hasMany(Order::class);
     }
 
-
-    
-
     public function getAllProduct()
     {
        $product =Product::orderBy('created_at', 'desc')
@@ -45,14 +45,57 @@ class Product extends Model
     }
 
     public function recommended(){
-//        $recommended = DB::table('products')
-//            ->join('ratings', 'products.id', '=', 'ratings.product_id')
-//            ->join('images', 'products.id', '=', 'images.product_id')
-//            ->select('*')
-//            ->orderBy('ratings.rating','desc')
-//            ->take(3)
-//            ->get();
+
         $recommended =Product::all()->take(12);
         return $recommended;
+    }
+
+    public function addProduct(Request $request){
+
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|max:25|min:4',
+            'description' => 'required',
+            'price' => 'required|int',
+            'category_id' => 'required',
+            'brand_id' => 'required',
+            'image' => 'required',
+            'number_of_products' => 'required|int',
+
+        ]);
+        if ($validator->fails()) {
+
+            return redirect()->back()->withErrors($validator, 'addProductError');
+        } else {
+
+            $image = $request->file('image');
+            try {
+                if ($image) {
+                    $im=new Image();
+                    $data= $im->imageProcessing($image);
+
+                    if ($data['success']) {
+                        $product = new Product();
+                        $product->title = $request->title;
+                        $product->category_id = $request->category_id;
+                        $product->brand_id = $request->brand_id;
+                        $product->description = $request->description;
+                        $product->price = $request->price;
+                        $product->rating = 0;
+                        $product->image = $data['image_url'];
+                        $product->is_featured=$request['is_featured'];
+
+                        $saveData = $product->save();
+
+                        if ($saveData) {
+                            Session::flash('added_confirmation', 'Your data has been added!!');
+                            return redirect()->back();
+                        }
+
+                    }
+                }
+            } catch (Exception $e) {
+                die($e->getMessage());
+            }
+        }
     }
 }

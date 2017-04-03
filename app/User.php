@@ -3,7 +3,8 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+use DB;
+use Auth;
 class User extends Authenticatable
 {
     /**
@@ -58,5 +59,14 @@ class User extends Authenticatable
 
     public function getAdmin(){
         return User::where('admin',1)->get();
+    }
+
+    public function getProduct(){
+        $product= DB::table('products')
+            ->select('*')
+            ->orderBy('created_at','desc')
+            ->where('products_user_id',Auth::user()->id)
+            ->get();
+       return $product;
     }
 }

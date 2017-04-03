@@ -15,8 +15,10 @@
     <link href="/css/responsive.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/lightbox/lightbox.css">
     <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/css/vendor/icon-sets.css">
     <script src="/js/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
+    @yield('style')
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
@@ -105,7 +107,7 @@
                                             <li><a href="{{route('admin.dashboard')}}"><i class="fa fa-user"></i> Admin panel</a></li>
                                         @endif
                                         <li><a href="{{action('UserController@getMyblog',[Auth::user()->id])}}"><i class="fa fa-user"></i> My Blogs</a></li>
-                                        <li><a href=""><i class="fa fa-user"></i> My products</a></li>
+                                        <li><a href="{{route('user.getProduct')}}"><i class="fa fa-user"></i> My products</a></li>
                                          <li><a href="#"><i class="fa fa-user"></i>Account Setting</a></li>
                                           <li><a href="#"><i class="fa fa-user"></i> Account blah blah</a></li>
                                         <li><a href="{{url('/logout')}}"><i class="fa fa-user"></i> Log-out</a></li> 
@@ -304,7 +306,7 @@
     <script type="text/javascript">
         var editor_config = {
         path_absolute : "{{ URL::to('/') }}/",
-        selector: "textarea#blog-body",
+        selector: "#blog-body",
         plugins: [
             "advlist autolink lists link image charmap print preview hr anchor pagebreak",
             "searchreplace wordcount visualblocks visualchars  fullscreen",

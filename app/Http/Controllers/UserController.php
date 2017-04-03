@@ -4,13 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use App\Http\Requests;
 use Validator;
-use App\Product;
-use App\Order;
 use App\Brand;
 use App\Category;
-use App\Review;
 use DB;
 use App\Blog;
 use Session;
@@ -136,6 +132,29 @@ class UserController extends Controller
         'category'=>$category,
         'brand' => $brand
       ]);
+    }
+
+    public function getMyProduct(){
+        $user =new User();
+        $product = $user->getProduct();
+
+        $cat=new Category();
+        $category=$cat->getCateory();
+
+        $br=new Brand();
+        $brand=$br->getBrand();
+
+        return view('user.product.myproducts')->with([
+            'products'=>$product,
+            'category' =>  $category,
+            'brand'  => $brand
+        ]);
+    }
+
+    public function addProduct(Request $request){
+        $pro=new Product();
+
+        $pro->addProduct($request);
     }
 }
 

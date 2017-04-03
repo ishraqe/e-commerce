@@ -32,10 +32,18 @@
                         <a  class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                         <a  class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>View Details</a>
                     </div>
+                    <div class="product-overlay">
+                        <div class="overlay-content">
+                            <h2>$@{{ this.price}}</h2>
+                            <p>@{{ this.title}}</p>
+                            {{--<a href="{{route('product.addToCart',['id'=>$p->id])}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>--}}
+                            {{--<a href="{{action('ProductController@show',[$p->id])}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>View Details</a>--}}
+                        </div>
+                    </div>
                 </div>
-                <div class="choose">
-                    <ul class="nav nav-pills nav-justified">
-                        <li><a ><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+                <div class="choose" style="height: 42px;">
+                    <ul class="nav nav-pills nav-justified" style="background-color: white">
+                        <li><a><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
                     </ul>
                 </div>
             </div>
