@@ -28,6 +28,7 @@
   <script type="text/javascript" src="/assets/js/chart.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
   <script src="https://unpkg.com/flatpickr"></script>
+  <script src="/js/dropzone.js"></script>
 
   @yield('head-script')
   @yield('style')

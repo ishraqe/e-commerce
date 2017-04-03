@@ -15,13 +15,33 @@
                    <li class="list-group-item list-group-item-info">Cras sit amet nibh libero</li>
                </ul>
            </div>
-           <div class="reply-message">
-               <label for="reply">Send message</label>
-               <textarea name="reply" id="" cols="70" rows="10"></textarea>
-               <button>Send</button>
-           </div>
        </div>
    </div>
 
+    <div class="row">
+        <div class="col-md-12">
+            <p>
+                This is the most minimal example of Dropzone. The upload in this example
+                doesn't work, because there is no actual server to handle the file upload.
+            </p>
 
+            <!-- Change /upload-target to your upload address -->
+            <div>
+                hello
+                <div id="myAwesomeDropzone" style="height: 100px; width: 100px; display: inline-block ; background-color: green"></div>
+            </div>
+
+        </div>
+    </div>
+
+
+@endsection
+
+
+@section('script')
+    <script>
+        $("div#myAwesomeDropzone").dropzone({
+            url: "/file/post"
+        });
+    </script>
 @endsection
