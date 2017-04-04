@@ -106,13 +106,17 @@ class ProductController extends Controller
 
     public function getAddToCart(Request $request, $id)
     {
-
-        if (Auth::guest) {
+        if (isset($request['quantity'])){
+            $qty=$request['quantity'];
+        }else{
+            $qty=1;
+        }
+        if (Auth::guest()) {
            $product = Product::findOrfail($id);
 
             Cart::add(['id' => $product->id,
                 'name' =>$product->title,
-                'qty' => 1,
+                'qty' => $qty,
                 'price' => $product->price,
                 'options' => [
                     'category_id'=>$product->category_id ,

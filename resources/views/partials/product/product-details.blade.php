@@ -5,23 +5,6 @@
               <img src="{{$productDetails->image}}" >
             </a>
 			<h3>Click to enlarge</h3>
-			<section id="default" class="padding-top0">
-				<div class="row">
-					<div class="large-12 column"><h3>Default options</h3></div>
-					<div class="large-5 column">
-						<div class="xzoom-container">
-							<img class="xzoom" id="xzoom-default" src="{{$productDetails->image}}" xoriginal="{{$productDetails->image}}" />
-							<div class="xzoom-thumbs">
-								<a href="{{$productDetails->image}}"><img class="xzoom-gallery" width="80" src="{{$productDetails->image}}"  xpreview="{{$productDetails->image}}" title="The description goes here"></a>
-								<a href="{{$productDetails->image}}"><img class="xzoom-gallery" width="80" src="{{$productDetails->image}}" title="The description goes here"></a>
-								<a href="{{$productDetails->image}}"><img class="xzoom-gallery" width="80" src="{{$productDetails->image}}" title="The description goes here"></a>
-								<a href="{{$productDetails->image}}"><img class="xzoom-gallery" width="80" src="{{$productDetails->image}}" title="The description goes here"></a>
-							</div>
-						</div>
-					</div>
-					<div class="large-7 column"></div>
-				</div>
-			</section>
 		</div>
 		<div id="similar-product" class="carousel slide" data-ride="carousel">
 
@@ -64,11 +47,13 @@
 			<span>
 				<span>US ${{$productDetails->price}}</span>
 				<label>Quantity:</label>
-				<input type="number" value="0" />
-				<a href="{{route('product.addToCart',['id'=>$productDetails->id])}}" type="button" class="btn btn-fefault cart">
-					<i class="fa fa-shopping-cart"></i>
-					Add to cart
-				</a>
+				<form action="{{route('product.addToCart',['id'=>$productDetails->id])}}">
+					<input type="number" value="0" name="quantity" />
+					<button  class="btn btn-fefault cart">
+						<i class="fa fa-shopping-cart"></i>
+						Add to cart
+					</button>
+				</form>
 			</span>
 			<p><b>Availability:</b> In Stock</p>
 			<p><b>Condition:</b> New</p>
@@ -103,7 +88,7 @@
 				</ul>
 
 				<p>
-					<h4>Brand description: </h2>{{$productDetails->brand->brand_description}}
+					<h2>Brand description: {{$productDetails->brand->brand_description}}</h2>
 				</p>		
 			</div>
 			<h4>Products from <a href="#">{{$productDetails->brand->brand_name}}</a></h4>
@@ -201,3 +186,4 @@
 		
 	</div>
 </div><!--/category-tab-->
+

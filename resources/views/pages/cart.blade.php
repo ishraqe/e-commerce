@@ -30,7 +30,7 @@ Shopping Cart
                         @foreach(Cart::content() as $row)
                         <tr>
                             <td class="cart_product">
-                                <a href="#"><img src="{{$row->options->image}}" alt=""></a>
+                                <a href="#"><img height="120px"   src="{{$row->options->image}}" alt=""></a>
                             </td>
                             <td class="cart_description">
                                 <h4><a href="">{{$row->name}}</a></h4>
@@ -75,7 +75,7 @@ Shopping Cart
                     <div class="col-sm-6">
                         <div class="total_area">
                             <ul>
-                                <li id="firstSubtotal">Cart Sub Total <span>${{Cart::subtotal()}}</span></li>
+                                <li id="firstSubtotal">Cart Sub Total <span>$<span id="total">{{Cart::subtotal()}}</span></span></li>
                                 <li id="shippingCost">
                                   
                                     <div class="row">
@@ -91,11 +91,11 @@ Shopping Cart
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <span>${{$shippingCost->insideDhaka}}</span>
+                                            <span id="charge">${{$shippingCost->insideDhaka}}</span>
                                         </div>        
                                     </div>
                                 </li>
-                                <li id="endSubTotal">Total <span>${{Cart::subtotal()}}</span></li>
+                                <li id="endSubTotal">Total <span id="endTotal">${{Cart::subtotal()+$shippingCost->insideDhaka}}</span></li>
                             </ul>
 
                             <a class="btn btn-default check_out" href="{{route('cart.checkout')}}">Check Out</a>
@@ -199,7 +199,9 @@ Shopping Cart
                                 var numberOfProducts=res.numberOfProducts;
 
                                 $('#firstSubtotal').html( 'Cart Sub Total <span>$'+totalSubPrice+'</span>');
-                                $('#endSubTotal').html('Total <span>$'+totalSubPrice+'</span>');
+
+                                $('#endSubTotal').html('Total <span>$'+totalSubPrice+50+'</span>');
+
                                 var cartHeader="<span class='cart-amunt'>Cart-"
                                     +totalSubPrice +
                                     "</span><i class='fa fa-shopping-cart'>" +
@@ -216,16 +218,28 @@ Shopping Cart
                     trigger.parents('td').prepend(html);
                 }
         ;}
-
     </script>
+
     <script>
+        $('input[name="location"]').on('change', function(){
+            var val=parseFloat($(this).val());
 
-        $('input:radio[name="location"]').change(
-            function(){
-                if ($(this).is(':checked') && $(this).val() == 50) {
+            if (val=='50') {
+                //change to "show update"
 
-                }
+                $("#charge").html("$50");
+                var price= $('#total').html();
+                var main=parseFloat(price);
+                var totalPrice=main+val;
+                $("#endTotal").html("$"+totalPrice);
+
+            } else  {
+                $("#charge").html("$100");
+                var price= $('#total').html();
+                var main=parseFloat(price);
+                var totalPrice=main+val;
+                $("#endTotal").html("$"+totalPrice);
             }
-        );
+        });
     </script>
 @endsection
