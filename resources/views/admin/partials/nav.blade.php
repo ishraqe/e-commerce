@@ -15,6 +15,7 @@
             <li><a href="{{route('admin.notificationLanding')}}" class=""><i class="lnr lnr-alarm"></i> <span>Notifications</span></a></li>
             <li><a href="{{url('/admin/product')}}" class=""><i class="fa fa-gift" aria-hidden="true"></i><span>Products</span></a></li>
             <li><a href="{{route('admin.to-do')}}" class=""><i class="fa fa-bars" aria-hidden="true"></i><span>To do</span></a></li>
+            <li><a href="{{url('/admin/categories-brands')}}" class=""><i class="fa fa-tags" aria-hidden="true"></i><span>Categories and brand</span></a></li>
             <li><a href="#mail" data-toggle="collapse" class="collapsed"><i class="fa fa-envelope -o" aria-hidden="true"></i></i> <span>MailBox</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
               <div id="mail" class="collapse "><ul class="nav"><li><a href="" class="">Inbox</a></li></ul></div>
             </li>

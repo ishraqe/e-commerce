@@ -331,6 +331,13 @@ Route::group(['prefix'=>'admin'],function(){
         'middleware' => 'admin'
     ]);
 
+    Route::get('/categories-brands',[
+        'uses' => 'adminController@getCatBrand',
+        'as' => ' cat.brand',
+        'middleware' => 'admin'
+    ]);
+
+
 	
 });
 

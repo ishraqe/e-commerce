@@ -568,6 +568,19 @@ class adminController extends Controller
             return $data;
 
     }
+
+    public function getCatBrand(){
+        $cat=new Category();
+        $br=new Brand();
+        $allCategory = $cat->getCateory();
+        $brand=$br->getBrand();
+
+       return view('admin.categoriesAndBrand.index')->with([
+            'categories' => $allCategory,
+            'brand' => $brand
+       ]);
+
+    }
 }
 
 

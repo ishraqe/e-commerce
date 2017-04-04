@@ -36,7 +36,6 @@ class CategorySeeder extends Seeder
        $category=new \App\Category([
        	'type'=>4,
        	'category_name'=>'jute'
-      
        	]);
 
        $category->save();
