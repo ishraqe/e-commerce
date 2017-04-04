@@ -1,10 +1,21 @@
 <div class="product-details"><!--product-details-->
 	<div class="col-sm-5">
 		<div class="view-product">
-			 <a href="{{$productDetails->image}}" data-lightbox="{{$productDetails->image}}" data-title="{{$productDetails->title}}" >
-              <img src="{{$productDetails->image}}" >
-            </a>
-			<h3>Click to enlarge</h3>
+			<img id="img_01" src="{{$productDetails->image}}" data-zoom-image="{{$productDetails->image}}"/>
+			<div id="gal1">
+				<a href="#" data-image="{{$productDetails->image}}" data-zoom-image="{{$productDetails->image}}">
+					<img id="img_01" src="{{$productDetails->image}}" />
+				</a>
+				<a href="#" data-image="{{$productDetails->image}}" data-zoom-image="{{$productDetails->image}}">
+					<img id="img_01" src="{{$productDetails->image}}" />
+				</a>
+				<a href="#" data-image="{{$productDetails->image}}" data-zoom-image="{{$productDetails->image}}">
+					<img id="img_01" src="{{$productDetails->image}}" />
+				</a>
+				<a href="#" data-image="http://www.ford.ie/cs/BlobServer?blobtable=MungoBlobs&blobcol=urldata&blobheader=image%2Fjpeg&blobwhere=1214505722090&blobkey=id" data-zoom-image="http://www.ford.ie/cs/BlobServer?blobtable=MungoBlobs&blobcol=urldata&blobheader=image%2Fjpeg&blobwhere=1214505722090&blobkey=id">
+					<img id="img_01" src="http://www.ford.ie/cs/BlobServer?blobtable=MungoBlobs&blobcol=urldata&blobheader=image%2Fjpeg&blobwhere=1214505722090&blobkey=id" />
+				</a>
+			</div>
 		</div>
 		<div id="similar-product" class="carousel slide" data-ride="carousel">
 

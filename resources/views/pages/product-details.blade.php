@@ -1,6 +1,16 @@
 @extends('layouts.master')
+@section('title')
+Product-Details
+@endsection
+@section('style')
+	<style>
+		#gal1 img{border:2px solid white;}
 
+		/*Change the colour*/
+		.active img{border:2px solid #333 !important;}
+	</style>
 
+@endsection
 @section('content')
 	<section>
 		<div class="container">
@@ -107,4 +117,16 @@
 			</div>
 		</div>
 	</section>
-@endsection	
+@endsection
+@section('script')
+	<script>
+        $("#img_01").elevateZoom({gallery:'gal1', cursor: 'pointer', galleryActiveClass: 'active', imageCrossfade: true, loadingIcon: 'http://www.elevateweb.co.uk/spinner.gif'});
+
+        //pass the images to Fancybox
+        $("#img_01").bind("click", function(e) {
+            var ez =   $('#img_01').data('elevateZoom');
+            $.fancybox(ez.getGalleryList());
+            return false;
+        });
+	</script>
+@endsection

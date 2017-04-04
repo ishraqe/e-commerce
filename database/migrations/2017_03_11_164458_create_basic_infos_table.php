@@ -15,10 +15,15 @@ class CreateBasicInfosTable extends Migration
         Schema::create('basic_infos', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
+            $table->string('first_name');
+            $table->string('last_name');
             $table->integer('mobile_number');
             $table->text('about');
             $table->string('website');
             $table->string('user_image')->default(null);
+            $table->string('address');
+            $table->integer('postal_code');
+            $table->integer('district_id');
             $table->timestamps();
         });
     }
