@@ -111,7 +111,7 @@ class ProductController extends Controller
         }else{
             $qty=1;
         }
-        if (Auth::guest()) {
+
            $product = Product::findOrfail($id);
 
             Cart::add(['id' => $product->id,
@@ -128,9 +128,7 @@ class ProductController extends Controller
                 ]
 
             ]);
-        }else{
-            echo "string";
-        }
+
         
 
 

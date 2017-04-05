@@ -337,6 +337,15 @@ Route::group(['prefix'=>'admin'],function(){
         'middleware' => 'admin'
     ]);
 
+    Route::post('/add-category',[
+        'uses' => 'adminController@addCategory',
+        'as' => 'admin.addCategory',
+        'middleware' => 'admin'
+    ]);
+
+    Route::post('/category/edit','adminController@editCategory');
+
+
 
 	
 });

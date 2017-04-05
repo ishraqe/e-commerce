@@ -62,3 +62,7 @@ $('#blah').mouseleave(function() {
     padding: 5px;
     margin: 6px;
 }
+.addCategory{
+    background: #edeeef;
+    padding: 28px;
+}

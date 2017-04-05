@@ -581,6 +581,47 @@ class adminController extends Controller
        ]);
 
     }
+
+    public function addCategory(Request $request){
+
+
+
+        $this->validate($request,[
+            'category_name' => 'required|alpha|unique:categories|max:50'
+        ]);
+
+
+        $cateName=$request['category_name'];
+
+        $category=new Category();
+
+        try{
+
+            $category->category_name = $cateName;
+
+            $saveData = $category->save();
+            if ($saveData) {
+                Session::flash('added_confirmation', 'Your data has been added!!');
+                return redirect()->back();
+            }
+        }catch (Exception $e){
+            die('Something went wrong!');
+        }
+    }
+
+    public function editCategory(Request $request){
+        $input=$request->all();
+
+        $id=$input['id'];
+
+        $categories=Category::find($id)->toArray();
+
+        $data=[
+          'status' => 200,
+          'category' => $categories
+        ];
+        return $data;
+    }
 }
 
 

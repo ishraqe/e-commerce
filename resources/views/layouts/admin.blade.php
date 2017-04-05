@@ -162,9 +162,7 @@
      
       <!-- END MAIN CONTENT -->
       <footer>
-        <div class="container-fluid">
-          <p class="copyright">&copy; 2016. Designed &amp; Crafted by <a href="https://themeineed.com">The Develovers</a></p>
-        </div>
+
       </footer>
     </div>
     <!-- END MAIN -->
@@ -197,10 +195,9 @@
   </script>
 
   <script>
-  // $(document).ready(function(){
-  //     $('.btn-toastr').delay(3000).slideUp(300);
-  //     console.log('hello');
-  //  });
+   $(document).ready(function(){
+       $('.flash').delay(3000).slideUp(300);
+    });
 
 
 </script>

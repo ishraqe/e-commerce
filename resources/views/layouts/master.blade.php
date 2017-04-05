@@ -18,12 +18,12 @@
     <link rel="stylesheet" href="/assets/css/vendor/icon-sets.css">
     <script src="/js/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
-    <script src="/js/jquery-1.8.3.min.js"></script>
+
     <script src="/js/jquery.elevatezoom.js"></script>
     @yield('style')
     <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/respond.min.js"></script>
+    <script src="/js/html5shiv.js"></script>
+    <script src="/js/respond.min.js"></script>
     <![endif]-->       
     <link rel="shortcut icon" href="/images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/ico/apple-touch-icon-144-precomposed.png">
@@ -183,10 +183,10 @@
         </div><!--/header-bottom-->
     </header><!--/header-->
    
-   
+
        @include('partials.message')
 
-@yield('content')
+       @yield('content')
    
     
     
@@ -299,7 +299,6 @@
     <script src="/lightbox/lightbox.js"></script>
     <script src="/tinymce/tinymce.min.js"></script>
     <script src="/js/owl.carousel.min.js"></script>
-    <script src="/js/setup.js"></script>
     <script>
       $(document).ready(function(){
           $('.flash').delay(3000).slideUp(300);
