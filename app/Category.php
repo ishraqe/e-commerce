@@ -20,4 +20,8 @@ class Category extends Model
 
       return $category;
     }
+
+    public function getCategoryById($id){
+      return $this::find($id);
+    }
 }

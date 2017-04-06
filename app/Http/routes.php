@@ -343,7 +343,22 @@ Route::group(['prefix'=>'admin'],function(){
         'middleware' => 'admin'
     ]);
 
-    Route::post('/category/edit','adminController@editCategory');
+    Route::post('/category/edit',[
+        'uses' => 'adminController@editCategory',
+        'as' => 'admin.editCategory',
+        'middleware' => 'admin'
+    ]);
+
+    Route::post('/category/saveUpdate',[
+        'uses' => 'adminController@saveUpdateCategory',
+        'as' => 'admin.updateCategory',
+        'middleware' => 'admin'
+    ]);
+
+
+
+
+
 
 
 

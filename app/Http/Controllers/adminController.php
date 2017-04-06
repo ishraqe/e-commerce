@@ -622,6 +622,46 @@ class adminController extends Controller
         ];
         return $data;
     }
+
+    public function saveUpdateCategory(Request $req){
+        $input=$req->all();
+
+        $data = new Category();
+        $getCategory = $data->getCategoryById($input['id']);
+
+
+        $arrayData = [
+            'category_name' => $input['category_name']
+        ];
+
+        $validator = Validator::make($arrayData, [
+            'category_name' => 'required|alpha'
+        ]);
+
+        if ($validator->fails()) {
+            $error = $validator->errors()->all();
+
+            $data = array(
+                'status' => 500,
+                'error' => $error
+            );
+            return $data;
+        }else{
+            $newData = array(
+                'id' => $input['id'],
+                'category_name' => $input['category_name']
+            );
+
+
+            $saveData = $getCategory->where('id', $input['id'])->update($newData);
+            if ($saveData) {
+                $data = array(
+                    'status' => 200
+                );
+                return $data;
+            }
+        }
+    }
 }
 
 

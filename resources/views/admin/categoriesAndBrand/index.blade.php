@@ -57,24 +57,13 @@
                                                 </td>
                                             </tr>
                                         @endforeach
-                                        <div class="modal fade" tabindex="-1" role="dialog">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                        <h4 class="modal-title">Modal title</h4>
-                                                    </div>
-                                                    <div class="modal-body" id="editCatModal">
+                                        <div id="editCatModal" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-sm">
+                                                <div class="modal-content" id="editCat-modal-body">
 
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                        <button type="button" class="btn btn-primary">Save changes</button>
-                                                    </div>
-                                                </div><!-- /.modal-content -->
-                                            </div><!-- /.modal-dialog -->
+                                                </div>
+                                            </div>
                                         </div><!-- /.modal -->
-
                                     </tbody>
                                 </table>
                             </div>
@@ -137,8 +126,22 @@
         </div>
     </div>
     <script id="editCategory-template" type="text/x-handlebars-template">
-
-        <input type="text" name="category_name" class="form-control" value="@{{ category.category_name }}">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Edit category info</h4>
+        </div>
+        <div class="modal-body" >
+            <ul class="errorMsg">
+            </ul>
+            <div class="form-group">
+                <label for="category_name">Category name:</label>
+                <input type="text" width="194px" id="category_name" name="category_name" class="form-control" value="@{{ category.category_name }}">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <a type="button" data-id="@{{ category.id }}" onclick="saveUpdateCategory(this)"  class="btn btn-primary">Save changes</a>
+        </div>
 
     </script>
 @endsection
@@ -152,7 +155,7 @@
                     "_token": "{{ csrf_token() }}",
                     id : id
                 };
-
+                $('#editCatModal').modal('show');
             $.ajax({
                 url: "/admin/category/edit",
                 method: "post",
@@ -161,11 +164,45 @@
                 success: function (res) {
 
                     if(res.status==200){
-                        var source   = $("#ditCategory-template").html();
+                        var source   = $("#editCategory-template").html();
                         var template = Handlebars.compile(source);
-                        var context = {'info':res.info,'category':res.category,brand:res.brand};
+                        var context = {'category':res.category};
                         var html    = template(context);
-                        $('#edit-form-info').html(html);
+                        $('#editCat-modal-body').html(html);
+                    }
+                }
+            })
+        }
+
+        function saveUpdateCategory(trigger) {
+            var trigger = $(trigger),
+                id = trigger.attr('data-id'),
+                category_name= $('#category_name').val();
+            param = {
+                "_token": "{{ csrf_token() }}",
+                id : id,
+                category_name: category_name
+            };
+            $('#editCatModal').modal('show');
+            $.ajax({
+                url: "/admin/category/saveUpdate",
+                method: "post",
+                data: param,
+                dataType: "json",
+                success: function (res) {
+
+                    if(res.status==200){
+                        $(document).ajaxStop(function(){
+                            window.location.reload();
+                        });
+                    }else{
+                        var error=res.error;
+
+                        $.each(error,function (i,v) {
+                            $('.errorMsg').prepend(' ');
+                            var html =  "<li style='color:red'>"+v+"</li>";
+                            $('.errorMsg').prepend(html);
+                        });
                     }
                 }
             })
