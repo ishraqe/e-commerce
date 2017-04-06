@@ -662,6 +662,48 @@ class adminController extends Controller
             }
         }
     }
+    public function deleteCategory(Request $req){
+        $input=$req->all();
+        $cat=new Category();
+        $category=$cat->getCategoryById($input['id']);
+
+        if (count($category)>0){
+
+           $pro=new Product();
+
+           $product=$pro->getProductByCategory($input['id'])->toArray();
+
+           $br=new Brand();
+
+           $brand=$br->getBrandByCategory($input['id'])->toArray();
+
+           if (count($product)>0 && count($brand)>0){
+
+               $data=[
+                   'status' => 500,
+                   'message' => 'You can not delete this category cz there are so many products and brands under this category'
+               ];
+               return $data;
+
+           }else{
+
+              $delete= $category->delete();
+
+               if ($delete){
+
+                   $data=[
+                       'status'=> 200,
+                       'message'=> 'Your category had been deleted!!'
+
+                   ];
+
+                   return $data;
+               }
+
+           }
+        }
+
+    }
 }
 
 

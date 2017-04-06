@@ -54,4 +54,9 @@ class Product extends Model
 
 
     }
+
+    public function getProductByCategory($id){
+       return Product::where('category_id',$id)->get();
+
+    }
 }

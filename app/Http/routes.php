@@ -354,7 +354,11 @@ Route::group(['prefix'=>'admin'],function(){
         'as' => 'admin.updateCategory',
         'middleware' => 'admin'
     ]);
-
+    Route::post('/category/delete',[
+        'uses' => 'adminController@deleteCategory',
+        'as' => 'admin.deleteCategory',
+        'middleware' => 'admin'
+    ]);
 
 
 
@@ -376,14 +380,6 @@ return view('admin.elements');
 Route::get('/icons',function(){
 return view('admin.icons');
 });
-
-
-
-Route::get('/pagelock',function(){
-return view('admin.page-lockscreen');
-});
-
-
 
 Route::get('/panel',function(){
 return view('admin.panels');

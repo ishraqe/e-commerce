@@ -13,8 +13,13 @@ class Brand extends Model
     {
         return $this->hasMany(Product::class);
     }
+
     public function getBrand(){
         $brand=Brand::all();
         return $brand;
+    }
+
+    public function getBrandByCategory($id){
+        return Brand::where('category_id',$id)->get();
     }
 }
