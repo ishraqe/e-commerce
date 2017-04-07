@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/assets/css/vendor/icon-sets.css">
     <script src="/js/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
+    <script src="/assets/handlebars-v4.0.5.js"></script>
 
     <script src="/js/jquery.elevatezoom.js"></script>
     @yield('style')

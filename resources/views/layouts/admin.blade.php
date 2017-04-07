@@ -26,8 +26,8 @@
   <script src="/assets/handlebars-v4.0.5.js"></script>
   <script src="/assets/js/handelBarhelper.js" ></script>
   <script type="text/javascript" src="/assets/js/chart.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
-  <script src="https://unpkg.com/flatpickr"></script>
+  <link rel="stylesheet" href="/assets/css/flatpicker.css">
+  <script src="/assets/js/flatpicker.js"></script>
   <script src="/js/dropzone.js"></script>
 
   @yield('head-script')

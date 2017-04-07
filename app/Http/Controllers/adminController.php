@@ -704,6 +704,161 @@ class adminController extends Controller
         }
 
     }
+
+    public function addNewBrand(Request $req){
+        $input=$req->all();
+
+        $arrayData = [
+            'brand_name' => $input['brand'][0]['value'],
+             'category_id' =>$input['brand'][1]['value'],
+            'description' =>$input['brand'][2]['value'],
+            'started_from' =>$input['brand'][3]['value']
+        ];
+        $validator = Validator::make($arrayData, [
+            'brand_name' => 'required',
+            'category_id' =>'required|int',
+            'description' =>'required|max:255',
+            'started_from' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            $error = $validator->errors()->all();
+
+            $data = array(
+                'status' => 500,
+                'error' => $error
+            );
+            return $data;
+        }else{
+            $newData = array(
+                'brand_name' => $arrayData['brand_name'],
+                'category_id' =>$arrayData['category_id'],
+                'brand_description'=>$arrayData['description'],
+                'in_market_from' => $arrayData['started_from']
+            );
+
+            $brand=new Brand();
+            $brand->brand_name = $newData['brand_name'];
+            $brand->category_id=$newData['category_id'];
+            $brand->brand_description=$newData['brand_description'];
+            $brand->in_market_from=$newData['in_market_from'];
+
+            $save= $brand->save();
+
+               if ($save){
+                    $data=[
+                      'status' =>200
+                    ];
+                    return $data;
+               }
+        }
+    }
+    public function editBrand(Request $request){
+        $input=$request->all();
+
+        $id=$input['id'];
+
+        $brand=Brand::find($id)->toArray();
+        $cat=new Category();
+        $categories=$cat->getCateory()->toArray();
+
+        $data=[
+            'status' => 200,
+            'brand' => $brand,
+            'categories'=> $categories
+        ];
+        return $data;
+    }
+    public function saveUpdateBrand(Request $request){
+        $input=$request->all();
+        $id=$input['id'];
+
+
+
+        $arrayData = [
+            'brand_name' => $input['brand'][0]['value'],
+            'category_id' =>$input['brand'][1]['value'],
+            'description' =>$input['brand'][2]['value'],
+            'started_from' =>$input['brand'][3]['value']
+        ];
+
+        $validator = Validator::make($arrayData, [
+            'brand_name' => 'required',
+            'category_id' =>'required|int',
+            'description' =>'required|max:255',
+            'started_from' => 'required'
+        ]);
+        if ($validator->fails()) {
+            $error = $validator->errors()->all();
+
+            $data = array(
+                'status' => 500,
+                'error' => $error
+            );
+            return $data;
+        }else{
+            $newData = array(
+                'brand_name' => $arrayData['brand_name'],
+                'category_id' =>$arrayData['category_id'],
+                'brand_description'=>$arrayData['description'],
+                'in_market_from' => $arrayData['started_from']
+            );
+
+            $brand=Brand::find($id);
+            $brand->brand_name = $newData['brand_name'];
+            $brand->category_id=$newData['category_id'];
+            $brand->brand_description=$newData['brand_description'];
+            $brand->in_market_from=$newData['in_market_from'];
+
+            $save= $brand->save();
+
+            if ($save){
+                $data=[
+                    'status' =>200
+                ];
+                return $data;
+            }
+        }
+    }
+    public function deleteBrand(Request $request){
+        $input=$request->all();
+
+        $br=new Brand();
+        $brand=$br->getBrandById($input['id']);
+
+        if (count($brand)>0){
+
+            $pro=new Product();
+
+            $product=$pro->getProductByBrand($input['id'])->toArray();
+
+
+            if (count($product)>0){
+
+                $data=[
+                    'status' => 500,
+                    'message' => 'You can not delete this category cz there are so many products ' ];
+                return $data;
+
+            }else{
+
+                $delete= Brand::find($input['id'])->delete();
+
+                if ($delete){
+
+                    $data=[
+                        'status'=> 200,
+                        'message'=> 'Your brand had been deleted!!'
+
+                    ];
+
+                    return $data;
+                }
+
+            }
+        }
+
+    }
 }
 
 

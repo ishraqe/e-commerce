@@ -4,7 +4,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="myModalLabel">Edit Todo</h4>
+                <h4 class="modal-title" id="myModalLabel">Add Todo</h4>
             </div>
             <div class="modal-body">
                 <div class='row'>
@@ -28,24 +28,24 @@
 
                             <div class="form-group row">
                                 <label for="example-email-input" class="col-2 col-form-label">Assign to:</label><br>
-                                {{--@{{#each adminInfo.adminInfo }}--}}
-                                    {{--<label class="radio-inline">--}}
-                                        {{--<input type="radio" style="margin-left: -51px;" class="form-control" name="assigned_to" value="@{{ this.id }}"/>--}}
-                                        {{--<div class="thumbnail" style="background-color:inherit; border: none"; >--}}
-                                            {{--<img style="height: 41px; width: 38px;" src="@{{ this.image }}" title="">--}}
-                                            {{--<div class="caption">--}}
-                                                {{--<p>@{{ this.name }}</p>--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
+                                @{{#each adminInfo.adminInfo }}
+                                    <label class="radio-inline">
+                                        <input type="radio" style="margin-left: -51px;" class="form-control" name="assigned_to" value="@{{ this.id }}"/>
+                                        <div class="thumbnail" style="background-color:inherit; border: none"; >
+                                            <img style="height: 41px; width: 38px;" src="@{{ this.image }}" title="">
+                                            <div class="caption">
+                                                <p>@{{ this.name }}</p>
+                                            </div>
+                                        </div>
 
-                                    {{--</label>--}}
-                                {{--@{{/each }}--}}
+                                    </label>
+                                @{{/each }}
                             </div>
 
                             <div class="form-group row">
                                 <label for="example-url-input" class="col-2 col-form-label">Due date:</label>
                                 <div class="col-10">
-                                    <input type="text" class="form-control" id="dpd1" placeholder="Choose date"  name="due_date">
+                                    <input type="text" class="form-control" id="flatpickr" placeholder="Choose date"  name="due_date">
                                 </div>
                             </div>
                         </div>

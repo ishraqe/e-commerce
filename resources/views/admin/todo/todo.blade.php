@@ -312,6 +312,12 @@
         function addTodo(trigger) {
             $('#addTodoModal').modal('show');
         }
+        flatpickr('#flatpickr',{
+            dateFormat: 'd.m.Y',
+            minDate: "today",
+            prevArrow: '&lt;',
+            nextArrow: '&gt;'
+        });
     </script>
 
 @endsection

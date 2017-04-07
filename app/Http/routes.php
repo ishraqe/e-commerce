@@ -359,6 +359,28 @@ Route::group(['prefix'=>'admin'],function(){
         'as' => 'admin.deleteCategory',
         'middleware' => 'admin'
     ]);
+    Route::post('/brand/add',[
+        'uses' => 'adminController@addNewBrand',
+        'as' => 'admin.add.brand',
+        'middleware' => 'admin'
+    ]);
+    Route::post('/brand/edit',[
+        'uses' => 'adminController@editBrand',
+        'as' => 'admin.edit.brand',
+        'middleware' => 'admin'
+    ]);
+    Route::post('/brand/saveUpdateBrand',[
+        'uses' => 'adminController@saveUpdateBrand',
+        'as' => 'admin.saveUpdateBrand',
+        'middleware' => 'admin'
+    ]);
+
+    Route::post('/brand/delete',[
+        'uses' => 'adminController@deleteBrand',
+        'as' => 'admin.deleteBrand',
+        'middleware' => 'admin'
+    ]);
+
 
 
 

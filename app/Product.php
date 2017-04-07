@@ -59,4 +59,9 @@ class Product extends Model
        return Product::where('category_id',$id)->get();
 
     }
+    public function getProductByBrand($id){
+        return Product::where('brand_id',$id)->get();
+
+    }
+
 }

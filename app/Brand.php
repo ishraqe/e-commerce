@@ -22,4 +22,8 @@ class Brand extends Model
     public function getBrandByCategory($id){
         return Brand::where('category_id',$id)->get();
     }
+
+    public function getBrandById($id){
+        return Brand::where('id',$id)->get();
+    }
 }

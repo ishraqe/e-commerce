@@ -1,4 +1,4 @@
-<div class="col-md-5">
+<div class="col-md-4">
     <div class="panel">
         <div class="panel-heading">
             <div class="row">
