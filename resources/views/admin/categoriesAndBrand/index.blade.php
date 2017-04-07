@@ -249,7 +249,6 @@
                         $('#edit-brandmodal-body').html(html);
                         flatpickr('#started_from',{
                             dateFormat: 'd.m.Y',
-                            defaultDate: res.brand['in_market_from'],
                             prevArrow: '&lt;',
                             nextArrow: '&gt;'
                         });

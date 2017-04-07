@@ -310,6 +310,14 @@ Route::group(['prefix'=>'admin'],function(){
         'as' => 'admin.to-do',
         'middleware' => 'admin'
     ]);
+
+    Route::post('/todo/add',[
+        'uses' => 'adminController@addTodo',
+        'as' => 'admin.addTodo',
+        'middleware' => 'admin'
+    ]);
+
+
     Route::post('/todo/status',[
         'uses' => 'adminController@changeTodoStatus',
         'as' => 'admin.status',

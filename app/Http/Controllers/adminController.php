@@ -372,24 +372,52 @@ class adminController extends Controller
     public function getTodo()
     {
         $data = new Todo();
-
+        $us=new User();
         $allTodo = $data->allTodo();
 
         $id = Auth::user()->id;
-
+        $user=$us->getAdmin();
         $status = array(
             'todo' => 0,
             'done' => 1
         );
+
         $myTodo = $data->getbyId($id, $status['todo']);
         $myDone = $data->getbyId($id, $status['done']);
 
         return view('admin.todo.todo')->with([
             'allTodo' => $allTodo,
             'myTodo' => $myTodo,
-            'myDone' => $myDone
+            'myDone' => $myDone,
+            'admin' => $user
         ]);
 
+    }
+
+    public function addTodo(Request $request){
+
+        $validator = Validator::make($request->all(), [
+            'todo_title' => 'required',
+            'todo_body' => 'required',
+            'assigned_to' => 'required',
+            'due_date' => 'required'
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator, 'addTodoError');
+        }else{
+            Todo::create([
+                'todo_title' => $request['todo_title'],
+                'todo_body' => $request['todo_body'],
+                'assigned_by'=>Auth::user()->id,
+                'created_by'=>Auth::user()->id,
+                'assigned_to' =>$request['assigned_to'],
+                'status'=>false,
+                'due_date' => $request['due_date']
+            ]);
+
+            Session::flash('added_confirmation', 'Todo added successfully');
+            return redirect()->back();
+        }
     }
 
     public function changeTodoStatus(Request $request)

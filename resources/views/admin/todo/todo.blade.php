@@ -207,8 +207,7 @@
                 }
             });
         }
-    </script>
-    <script>
+
         function  editTodo(trigger) {
 
             var trigger=$(trigger);
@@ -240,8 +239,7 @@
                 }
             })
         }
-    </script>
-    <script>
+
         function saveTodo(trigger) {
             var todo = [];
             var trigger=$(trigger);
@@ -303,12 +301,8 @@
 
                 }
             })
-
-
-
         }
-    </script>
-    <script>
+
         function addTodo(trigger) {
             $('#addTodoModal').modal('show');
         }
@@ -318,6 +312,16 @@
             prevArrow: '&lt;',
             nextArrow: '&gt;'
         });
+
     </script>
 
+
+@endsection
+
+@section('script')
+    @if(!$errors->addTodoError->isEmpty())
+        <script>
+            $('#addTodoModal').modal('show');
+        </script>
+    @endif
 @endsection

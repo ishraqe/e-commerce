@@ -26,7 +26,9 @@ class Todo extends Model
         return Todo::where(['assigned_to'=>$id,'status'=>$status])->get();
     }
     public function getByAssignedTo(){
-        return Todo::where('assigned_to',Auth::user()->id)->get();
+        return Todo::where('assigned_to',Auth::user()->id)
+         ->where('status',0)
+         ->get();
     }
     public function getByOnlyId($id){
 
