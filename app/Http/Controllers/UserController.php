@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\BasicInfo;
+use App\Image;
 use Illuminate\Http\Request;
 use App\User;
 use Validator;
@@ -155,6 +157,36 @@ class UserController extends Controller
     public function addProduct(Request $request){
 
 
+    }
+    public function addBasicprofile(Request $request){
+        $input=$request->all();
+
+        $this->validate($request,[
+           'first_name' => 'required',
+            'last_name' => 'required',
+            'mobile_number' => 'required',
+            'postal_code'   => 'required|int',
+            'about'   => 'required',
+            'website' => 'required',
+            'address' => 'required',
+            'user_image'  => 'required'
+        ]);
+        $image = $request->file('user_image');
+        $im=new Image();
+        $data= $im->imageProcessing($image);
+
+        BasicInfo::create([
+           'user_id' => Auth::user()->id,
+            'first_name' => $request['first_name'],
+            'last_name' =>  $request['last_name'],
+            'mobile_number' =>  $request['mobile_number'],
+            'about'   =>  $request['about'],
+            'website' =>  $request['website'],
+            'user_image'  => $data['image_url'],
+            'address' =>  $request['address'],
+            'postal_code'   =>  $request['postal_code']
+        ]);
+        return redirect()-back();
     }
 }
 

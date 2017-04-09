@@ -42,16 +42,6 @@
 
 	                  	<td>
 	                  	 <?php
-		                  	foreach ($type as $t) {
-		                  		if ($t==3 && $t==2) {
-		                  			echo "blog admin";
-		                  		}elseif ($t==2) {
-		                  			echo "string";
-		                  		}else{
-		                  			echo "super";
-		                  		}
-		                  	} 
-
 	                  	?>
 
 	                  </td>

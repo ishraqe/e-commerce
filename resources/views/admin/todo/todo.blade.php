@@ -4,6 +4,7 @@
     Todo
 @endsection
 
+
 @section('content')
 
     <div class="main-content">
@@ -128,35 +129,6 @@
                     </div>
                 </div>
                 <!-- END TODO LIST -->
-            </div>
-        </div>
-        <div class="panel">
-            <div class="panel-heading">
-                <h3 class="panel-title">To-Do List</h3>
-                <div class="right">
-                    <button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
-                    <button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
-                </div>
-            </div>
-            <div class="panel-body">
-                <ul class="list-unstyled todo-list">
-                    <li>
-                        <label class="control-inline fancy-checkbox">
-                            <a  type="checkbox" ></a>
-                        </label>
-                        <p>
-                            <span class="title">Restart Server</span>
-                            <span class="short-description">Dynamically integrate client-centric technologies without cooperative resources.</span>
-                            <span class="date">Oct 9, 2016</span>
-                        </p>
-                        <div class="controls">
-                            <a style="color: green"; href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                            <a style="color: red"; href="#"><i class="fa fa-trash" aria-hidden="true"></i></a>
-
-                        </div>
-                    </li>
-
-                </ul>
             </div>
         </div>
         <!-- END TODO LIST -->

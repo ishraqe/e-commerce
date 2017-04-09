@@ -347,6 +347,10 @@ class adminController extends Controller
 
             ]);
 
+            BasicInfo::create([
+               'user_image' =>  '/assets/img/admin.svg'
+            ]);
+
             Session::flash('added_confirmation', 'Admin added successfully');
             return redirect()->back();
         }

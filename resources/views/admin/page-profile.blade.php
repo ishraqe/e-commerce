@@ -5,6 +5,8 @@
 @endsection
 
 @section('content')
+
+
 <div class="main-content">
 	<div class="container-fluid">
 		<div class="panel panel-profile">
@@ -12,6 +14,62 @@
 				<!-- LEFT COLUMN -->
 				<div class="profile-left">
 					<!-- PROFILE HEADER -->
+					@if(Auth::user()->basicInfo==null)
+						@if (count($errors) > 0)
+							<div class="alert alert-danger">
+								<ul>
+									@foreach ($errors->all() as $error)
+										<li>{{ $error }}</li>
+									@endforeach
+								</ul>
+							</div>
+						@endif
+
+						<form action="{{route('user.addBasicProfile')}}" method="post" enctype="multipart/form-data" style="padding: 26px;">
+							<input type="hidden" name="_token" value="{{csrf_token()}}">
+							<div class="row">
+								<div class="form-group col-md-6">
+									<label for="first_name">First Name:</label>
+									<input class="form-control" type="text" name="first_name">
+								</div>
+								<div class="form-group col-md-6">
+									<label for="first_name">Last Name:</label>
+									<input class="form-control" type="text" name="last_name">
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-md-6">
+									<label for="first_name">Mobile Number:</label>
+									<input class="form-control" type="text" name="mobile_number">
+								</div>
+								<div class="form-group col-md-6">
+									<label for="first_name">Postal Code:</label>
+									<input class="form-control" type="text" name="postal_code">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="first_name">About:</label>
+								<textarea class="form-control" type="text" name="about"></textarea>
+							</div>
+							<div class="form-group">
+								<label for="first_name">Website:</label>
+								<input class="form-control" type="text" name="website">
+							</div>
+							<div class="form-group">
+								<label for="first_name">Address:</label>
+								<input class="form-control" type="text" name="address">
+							</div>
+							<div class="form-group">
+								<label for="first_name">Image:</label>
+								<input class="form-control" type="file" name="user_image">
+							</div>
+
+							<div class="form-group">
+								<button type="submit" class="btn btn-primary" >Submit</button>
+							</div>
+						</form>
+					@else
 					<div class="profile-header">
 						<div class="overlay"></div>
 						<div class="profile-main">
@@ -73,49 +131,50 @@
 						</div>
 					</div>
 					<!-- END PROFILE DETAIL -->
+					@endif
 				</div>
 				<!-- END LEFT COLUMN -->
 				<!-- RIGHT COLUMN -->
 				<div class="profile-right">
 					<h4 class="heading">{{Auth::user()->name}}'s Awards</h4>
 					<!-- AWARDS -->
-					{{--<div class="awards">--}}
-						{{--<div class="row">--}}
-							{{--<div class="col-md-3 col-sm-6">--}}
-								{{--<div class="award-item">--}}
-									{{--<div class="hexagon">--}}
-										{{--<span class="lnr lnr-sun award-icon"></span>--}}
-									{{--</div>--}}
-									{{--<span>Most Bright Idea</span>--}}
-								{{--</div>--}}
-							{{--</div>--}}
-							{{--<div class="col-md-3 col-sm-6">--}}
-								{{--<div class="award-item">--}}
-									{{--<div class="hexagon">--}}
-										{{--<span class="lnr lnr-clock award-icon"></span>--}}
-									{{--</div>--}}
-									{{--<span>Most On-Time</span>--}}
-								{{--</div>--}}
-							{{--</div>--}}
-							{{--<div class="col-md-3 col-sm-6">--}}
-								{{--<div class="award-item">--}}
-									{{--<div class="hexagon">--}}
-										{{--<span class="lnr lnr-magic-wand award-icon"></span>--}}
-									{{--</div>--}}
-									{{--<span>Problem Solver</span>--}}
-								{{--</div>--}}
-							{{--</div>--}}
-							{{--<div class="col-md-3 col-sm-6">--}}
-								{{--<div class="award-item">--}}
-									{{--<div class="hexagon">--}}
-										{{--<span class="lnr lnr-heart award-icon"></span>--}}
-									{{--</div>--}}
-									{{--<span>Most Loved</span>--}}
-								{{--</div>--}}
-							{{--</div>--}}
-						{{--</div>--}}
-						{{--<div class="text-center"><a href="#" class="btn btn-default">See all awards</a></div>--}}
-					{{--</div>--}}
+					<div class="awards">
+						<div class="row">
+							<div class="col-md-3 col-sm-6">
+								<div class="award-item">
+									<div class="hexagon">
+										<span class="lnr lnr-sun award-icon"></span>
+									</div>
+									<span>Most Bright Idea</span>
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-6">
+								<div class="award-item">
+									<div class="hexagon">
+										<span class="lnr lnr-clock award-icon"></span>
+									</div>
+									<span>Most On-Time</span>
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-6">
+								<div class="award-item">
+									<div class="hexagon">
+										<span class="lnr lnr-magic-wand award-icon"></span>
+									</div>
+									<span>Problem Solver</span>
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-6">
+								<div class="award-item">
+									<div class="hexagon">
+										<span class="lnr lnr-heart award-icon"></span>
+									</div>
+									<span>Most Loved</span>
+								</div>
+							</div>
+						</div>
+						<div class="text-center"><a href="#" class="btn btn-default">See all awards</a></div>
+					</div>
 					<!-- END AWARDS -->
 					<!-- TABBED CONTENT -->
 					<div class="custom-tabs-line tabs-line-bottom left-aligned">

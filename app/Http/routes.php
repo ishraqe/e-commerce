@@ -212,7 +212,11 @@ Route::group(['prefix'=>'admin'],function(){
 		'as'=> 'admin.profile',
 		'middleware'=> 'admin'
 	]);
+    Route::post('/add/basicProfile',[
+       'uses' =>'UserController@addBasicprofile',
+        'as' => 'user.addBasicProfile',
 
+    ]);
     Route::post('/edit/basicProfile',[
         'uses' =>'adminController@editBasicProfile',
         'as'  => 'admin.editBasicProfile',

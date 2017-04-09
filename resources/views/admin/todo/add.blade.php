@@ -36,22 +36,23 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="example-email-input" class="col-2 col-form-label">Assign to:</label><br>
+                                    <label for="example-email-input" class=" col-form-label">Assign to:</label><br>
                                    @foreach($admin as $a)
-                                        <label class="radio-inline">
-                                            <input type="radio" style="margin-left: -51px;" class="form-control" name="assigned_to" value="{{$a->id}}"/>
-                                            <div class="thumbnail" style="background-color:inherit; border: none"; >
-                                                <?php $image= DB::table('basic_infos')->where('user_id', $a->id)->first(); ?>
-                                                <?php if ($image->user_image==null) { ?>
-                                                    <img style="height: 41px; width: 38px;" src="/images/admin/admn.png" title="">
-                                                 <?php }else{ ?>
-                                                    <img style="height: 41px; width: 38px;" src="{{$image['user_image']}}" title="">
-                                                 <?php } ?>
-                                                <div class="caption">
-                                                    <p>{{ $a->name }}</p>
-                                                </div>
-                                            </div>
-                                        </label>
+                                <?php  $images= DB::table('basic_infos')->where('user_id', $a->id)->get(); ?>
+                                        <div class="col-md-2">
+                                        <input type="radio" name="assigned_to" value="{{$a->id}}">
+                                        
+                                       @foreach($images as $image)    
+                                           @if($image->user_image==null)
+                                           <img src="/assets/img/admin.svg">
+                                           @else
+                                            <img class="img-circle" style="width: 64px;
+height: 63px;" src="{{$image->user_image}}">
+                                           @endif
+                                           
+                                      
+                                       @endforeach 
+                                        </div>         
                                    @endforeach
                                 </div>
 
