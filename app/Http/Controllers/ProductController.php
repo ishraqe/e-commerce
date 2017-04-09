@@ -31,7 +31,8 @@ class ProductController extends Controller
 
         $brandData = new Brand();
         $brand = $brandData->getBrand();
-//        dd($category);
+
+    
         return view('pages.index')->with([
 
             'category' => $category,

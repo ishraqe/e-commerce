@@ -93,12 +93,11 @@ class UserController extends Controller
              return redirect()->back()->withErrors($validator, 'SignInError');
         }else{
         	if (Auth::attempt(['email'=> $request['email'],'password'=>$request['password']])){
-	    		if (!Auth::user()->admin) {
-	    			return redirect('/');
-	    		}else{
-	    			return redirect()->back()->with('login_error','Email and password didn\'t matched');
-	    		}
-	    		
+    	    		if (!Auth::user()->admin) {
+    	    			return redirect('/');
+    	    		}else{
+    	    			return redirect()->back()->with('login_error','Email and password didn\'t matched');
+    	    		}
 	        }else{
 	        	return redirect()->back()->with('login_error','Email and password didn\'t matched');
 	        }

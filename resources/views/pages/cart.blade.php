@@ -159,7 +159,7 @@ Shopping Cart
                             "</i> <span class='badge'>"+numberOfProducts+" " +
                             "</span>";
                         $('#header-cart-item').html(cartHeader);
-
+                        
                     }
                 }
             })
@@ -221,6 +221,9 @@ Shopping Cart
     </script>
 
     <script>
+    function changeByLocation() {
+        // body...
+    }
         $('input[name="location"]').on('change', function(){
             var val=parseFloat($(this).val());
 
@@ -229,7 +232,9 @@ Shopping Cart
 
                 $("#charge").html("$50");
                 var price= $('#total').html();
+                console.log(price);
                 var main=parseFloat(price);
+                console.log(main);
                 var totalPrice=main+val;
                 $("#endTotal").html("$"+totalPrice);
 
