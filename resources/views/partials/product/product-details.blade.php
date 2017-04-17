@@ -1,53 +1,28 @@
 <div class="product-details"><!--product-details-->
 	<div class="col-sm-5">
 		<div class="view-product">
-			<img id="img_01" src="{{$productDetails->image}}" data-zoom-image="{{$productDetails->image}}"/>
+			<img style="width: 360px; max-width: 358.45px; max-height: 300.433px " id="img_01" src="{{$productDetails->image}}" data-zoom-image="{{$productDetails->image}}"/>
+			
 			<div id="gal1">
-				<a href="#" data-image="{{$productDetails->image}}" data-zoom-image="{{$productDetails->image}}">
-					<img id="img_01" src="{{$productDetails->image}}" />
-				</a>
-				<a href="#" data-image="{{$productDetails->image}}" data-zoom-image="{{$productDetails->image}}">
-					<img id="img_01" src="{{$productDetails->image}}" />
-				</a>
-				<a href="#" data-image="{{$productDetails->image}}" data-zoom-image="{{$productDetails->image}}">
-					<img id="img_01" src="{{$productDetails->image}}" />
-				</a>
-				<a href="#" data-image="http://www.ford.ie/cs/BlobServer?blobtable=MungoBlobs&blobcol=urldata&blobheader=image%2Fjpeg&blobwhere=1214505722090&blobkey=id" data-zoom-image="http://www.ford.ie/cs/BlobServer?blobtable=MungoBlobs&blobcol=urldata&blobheader=image%2Fjpeg&blobwhere=1214505722090&blobkey=id">
-					<img id="img_01" src="http://www.ford.ie/cs/BlobServer?blobtable=MungoBlobs&blobcol=urldata&blobheader=image%2Fjpeg&blobwhere=1214505722090&blobkey=id" />
-				</a>
+				<ul class="list-inline">
+				  <li class="list-inline-item">
+				  	<a href="#" data-image="{{$productDetails->image}}" data-zoom-image="{{$productDetails->image}}">
+						<img style="max-height: 56px" id="img_01" src="{{$productDetails->image}}" />
+					</a>
+				  </li>
+				  <li class="list-inline-item">
+				  	<a href="#" data-image="{{$productDetails->image}}" data-zoom-image="{{$productDetails->image}}">
+						<img style="max-height: 56px" id="img_01" src="{{$productDetails->image}}" />
+					</a>
+				  </li>	
+				  <li class="list-inline-item" >
+				  	<a href="#" data-image="http://www.ford.ie/cs/BlobServer?blobtable=MungoBlobs&blobcol=urldata&blobheader=image%2Fjpeg&blobwhere=1214505722090&blobkey=id" data-zoom-image="http://www.ford.ie/cs/BlobServer?blobtable=MungoBlobs&blobcol=urldata&blobheader=image%2Fjpeg&blobwhere=1214505722090&blobkey=id">
+						<img  style="max-height: 56px" id="img_01" src="http://www.ford.ie/cs/BlobServer?blobtable=MungoBlobs&blobcol=urldata&blobheader=image%2Fjpeg&blobwhere=1214505722090&blobkey=id" />
+					</a>
+				  </li>
+				</ul>	
 			</div>
 		</div>
-		<div id="similar-product" class="carousel slide" data-ride="carousel">
-
-			  {{--<!-- Wrapper for slides -->--}}
-			    {{--<!-- <div class="carousel-inner">--}}
-					{{--<div class="item active">--}}
-					  {{--<a href=""><img src="images/product-details/similar1.jpg" alt=""></a>--}}
-					  {{--<a href=""><img src="images/product-details/similar2.jpg" alt=""></a>--}}
-					  {{--<a href=""><img src="images/product-details/similar3.jpg" alt=""></a>--}}
-					{{--</div>--}}
-					{{--<div class="item">--}}
-					  {{--<a href=""><img src="images/product-details/similar1.jpg" alt=""></a>--}}
-					  {{--<a href=""><img src="images/product-details/similar2.jpg" alt=""></a>--}}
-					  {{--<a href=""><img src="images/product-details/similar3.jpg" alt=""></a>--}}
-					{{--</div>--}}
-					{{--<div class="item">--}}
-					  {{--<a href=""><img src="images/product-details/similar1.jpg" alt=""></a>--}}
-					  {{--<a href=""><img src="images/product-details/similar2.jpg" alt=""></a>--}}
-					  {{--<a href=""><img src="images/product-details/similar3.jpg" alt=""></a>--}}
-					{{--</div>--}}
-
-				{{--</div> -->--}}
-
-			  {{--<!-- Controls -->--}}
-			  {{--<!-- <a class="left item-control" href="#similar-product" data-slide="prev">--}}
-				{{--<i class="fa fa-angle-left"></i>--}}
-			  {{--</a>--}}
-			  {{--<a class="right item-control" href="#similar-product" data-slide="next">--}}
-				{{--<i class="fa fa-angle-right"></i>--}}
-			  {{--</a> -->--}}
-		</div>
-
 	</div>
 	<div class="col-sm-7">
 		<div class="product-information"><!--/product-information-->
