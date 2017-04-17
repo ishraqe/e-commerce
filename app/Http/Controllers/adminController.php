@@ -72,6 +72,8 @@ class adminController extends Controller
 
     public function addProduct(Request $request)
     {
+
+
         $validator = Validator::make($request->all(), [
             'title' => 'required|max:25|min:4',
             'description' => 'required',
@@ -82,6 +84,7 @@ class adminController extends Controller
             'number_of_products' => 'required|int',
 
         ]);
+
         if ($validator->fails()) {
 
             return redirect()->back()->withErrors($validator, 'addProductError');

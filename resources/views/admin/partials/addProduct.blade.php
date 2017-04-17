@@ -7,7 +7,7 @@
 	<div class="modal-dialog" role="document">
 	  <div class="modal-content">
 
-	    <form action="{{url('/admin/product/add')}}" method="post" enctype="multipart/form-data">
+	    <form id="addProductForm" action="{{url('/admin/product/add')}}" method="post" enctype="multipart/form-data">
 	    <input type="hidden" name="_token" value="{{csrf_token()}}">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -15,17 +15,16 @@
 	      </div>
 	      <div class="modal-body" style="color: black">
 	      <div class="row">
-	      	<div class="col-md-6">
-	      		
-					<label for="title">Image</label>
-					<input class="form-control" type="file" name="image" id="imgInp">
+	      	<div class="col-md-12" id="previewDiv">
+	      		<ul>
+	      			
+	      		</ul>
 	      	</div>
-	      	<div class="col-md-6 image-product-container">
-	      		<div class="form-group image-product" style="margin-top: 24px; max-height: 119px; max-width: 51px;">
-	      			<img id="blah" class="img-responsive imagePreview" src="#" style="height: inherit; width: 100%;" alt="product image" />
-	      		</div>
-
+	      	<div class="col-md-12">
+				<label for="title">Image</label>
+				<input class="form-control" type="file" name="image" id="imgInp" multiple="3">
 	      	</div>
+	      
 	      </div>
 	        
 	        <div class="form-group {{ $errors->has('title') ? ' has-error' : '' }}">
@@ -95,7 +94,7 @@
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        <button type="submit" class="btn btn-primary">Add Product</button>
+	        <button type="button" onclick="addThisProduct(this)" class="btn btn-primary">Add Product</button>
 	      </div>
 	    </form>   
 	  </div>

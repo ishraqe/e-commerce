@@ -271,7 +271,6 @@
             }
         })
     }
-
     function updateProductInfo(trigger) {
         var product = [];
         var trigger = $(trigger),
@@ -338,8 +337,6 @@
 
 
     }
-
-
     function  deleteProduct(trigger) {
 
         var trigger=$(trigger);
@@ -400,3 +397,30 @@
 
     }
 </script>
+@section('script')
+    <script >
+        var mediaFile = 0;
+        var postForm=$('#addProductForm');
+       
+        postForm.find("#imgInp").on('change', function () {
+            var input = this;
+            var fileList = input.files;
+            var anyWindow = window.URL || window.webkitURL;
+            for (var i = 0; i < fileList.length; i++) {
+                var objectUrl = anyWindow.createObjectURL(fileList[i]);
+              album='<li style="background-image: url(' + objectUrl + ')"><i class="fa fa-remove previewRemove" data-id="'+mediaFile+'"></i></li>';
+                $('#previewDiv').find('ul').append(album);
+               
+                mediaFile = mediaFile + 1;
+            }
+        });
+
+        postForm.find("#previewDiv").on("click", "li .previewRemove", function () {
+            var remove_id = $(this).attr('data-id');        
+            $(this).parent('li').remove();
+           
+        });
+
+
+    </script>
+@endsection
