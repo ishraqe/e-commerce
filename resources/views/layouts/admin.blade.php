@@ -15,7 +15,7 @@
 
   <link rel="stylesheet" href="/assets/css/demo.css">
   <link rel="stylesheet" type="text/css" href="/lightbox/lightbox.css">
-
+ <link rel="stylesheet" href="/assets/css/dropzone.css">
   <!-- GOOGLE FONTS -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
   <!-- ICONS -->
@@ -28,7 +28,7 @@
   <script type="text/javascript" src="/assets/js/chart.js"></script>
   <link rel="stylesheet" href="/assets/css/flatpicker.css">
   <script src="/assets/js/flatpicker.js"></script>
-  <script src="/js/dropzone.js"></script>
+ 
 
   @yield('head-script')
   @yield('style')

@@ -72,7 +72,7 @@ class adminController extends Controller
 
     public function addProduct(Request $request)
     {
-
+        dd($request->all());
 
         $validator = Validator::make($request->all(), [
             'title' => 'required|max:25|min:4',

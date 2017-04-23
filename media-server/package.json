@@ -1,0 +1,14 @@
+{
+  "name": "UploadMediaFile",
+  "version": "0.0.1",
+  "description": "This is a alpha version of Upload Media File",
+  "main": "app.js",
+  "dependencies": {
+    "express": "~4.15.2",
+    "http": "0.0.0",
+    "fs": "0.0.1-security",
+    "formidable": "~1.1.1",
+    "cors": "~2.8.3",
+    "path": "~0.12.7"
+  }
+}

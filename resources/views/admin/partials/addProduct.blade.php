@@ -21,11 +21,12 @@
 	      		</ul>
 	      	</div>
 	      	<div class="col-md-12">
-				<label for="title">Image</label>
-				<input class="form-control" type="file" name="image" id="imgInp" multiple="3">
+				<div style="width: 100%; height: 200px; display: inline-block; overflow-y: scroll;  border: 3px dashed black"  class="dropzone" id="addDropPhoto">
+					
+				</div>
 	      	</div>
-	      
-	      </div>
+	      <input type="hidden" name="files">
+	      </div>	
 	        
 	        <div class="form-group {{ $errors->has('title') ? ' has-error' : '' }}">
 				<label for="title">Title</label>
@@ -94,9 +95,42 @@
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        <button type="button" onclick="addThisProduct(this)" class="btn btn-primary">Add Product</button>
+	        <button type="submit"  class="btn btn-primary">Add Product</button>
 	      </div>
 	    </form>   
 	  </div>
 	</div>
 </div>
+<script type="text/javascript">
+
+$(function(){
+console.log('hello');
+	$("div#addDropPhoto").dropzone({ 
+		url: "http://192.168.3.96:3500/uploadImageFile",
+		maxFilesize: 50,
+		acceptedFiles: 'image/*',
+		maxFiles: 4,
+		addRemoveLinks: true,
+
+		success: function (file, response) {  
+			
+			var formName=$('#addProductForm');
+			var target=formName.find('input[name="files"]');
+			var currentVal=target.val();
+			if (currentVal.length>0 ){
+				var newVal=currentVal+','+response;
+			}else{
+				var newVal=response;
+			}
+
+			target.val(newVal);
+
+			
+		},         
+		error: function (file, response) {      
+          	console.log('Please add some valid file');    
+      		this.removeFile(file);          
+        }
+	});
+});
+</script>
