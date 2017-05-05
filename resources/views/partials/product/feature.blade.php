@@ -7,9 +7,9 @@
             <div class="single-products">
                     <div class="productinfo text-center">
 
-                        @foreach($p as $o)
-                             <img src="{{$o->image->image_header}}" alt="" />
-                        @endforeach
+
+                             <img src="{{$p->image_header}}" alt="" />
+
 
                         <h2>${{$p->price}}</h2>
                         <p>{{$p->title}}</p>

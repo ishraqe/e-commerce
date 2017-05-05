@@ -54,7 +54,7 @@ class Product extends Model
             ->join('images', 'products.id', '=', 'images.product_id')
             ->join('categories','products.category_id', '=','categories.id')
             ->join('brands','products.brand_id', '=','brands.id')
-            ->select('products.*', 'images.*','categories.category_name','brands.brand_name');
+            ->select('products.*', 'images.*','categories.*','brands.*');
 
         return $product;
     }
@@ -67,7 +67,7 @@ class Product extends Model
 
     public function recommended(){
 
-        $recommended =Product::all()->take(12);
+        $recommended =$this->getProduct();
         return $recommended;
     }
 

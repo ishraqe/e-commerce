@@ -26,7 +26,7 @@
             <div class="product-image-wrapper">
                 <div class="single-products">
                     <div class="productinfo text-center">
-                        <img src="@{{ this.image}}" alt="" />
+                        <img src="@{{ this.image_header}}" alt="" />
                         <h2>$@{{ this.price}}</h2>
                         <p>@{{ this.title}}</p>
                         <a  class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
@@ -135,21 +135,3 @@
     </script>
 @stop
 
-
-
-
-
-{{--
-<div class="col-sm-3">
-    <div class="product-image-wrapper">
-        <div class="single-products">
-            <div class="productinfo text-center">
-                <img src="images/home/gallery1.jpg" alt="" />
-                <h2>$56</h2>
-                <p>Easy Polo Black Edition</p>
-                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-            </div>
-
-        </div>
-    </div>
-</div>--}}

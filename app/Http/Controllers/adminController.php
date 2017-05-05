@@ -57,7 +57,7 @@ class adminController extends Controller
         $pro = new Product();
         $category = Category::all();
         $brand = Brand::all();
-        $product = $pro->getAllProduct();
+        $product = $pro->getProduct()->take(10)->get();
 
         $users = User::where(['is_reported' => false, 'admin' => 0, 'is_active' => true])->get();
 

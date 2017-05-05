@@ -1,23 +1,28 @@
 <div class="product-details"><!--product-details-->
 	<div class="col-sm-5">
 		<div class="view-product">
-			<img style="width: 360px; max-width: 358.45px; max-height: 300.433px " id="img_01" src="{{$productDetails->image}}" data-zoom-image="{{$productDetails->image}}"/>
+			<img style="width: 360px; max-width: 358.45px; max-height: 300.433px " id="img_01" src="{{$productDetails[0]->image_header}}" data-zoom-image="{{$productDetails[0]->image_header}}"/>
 			
 			<div id="gal1">
 				<ul class="list-inline">
+					<li class="list-inline-item">
+						<a href="#" data-image="{{$productDetails[0]->image_header}}" data-zoom-image="{{$productDetails[0]->image_header}}">
+							<img style="max-height: 56px" id="img_01" src="{{$productDetails[0]->image_header}}" />
+						</a>
+					</li>
 				  <li class="list-inline-item">
-				  	<a href="#" data-image="{{$productDetails->image}}" data-zoom-image="{{$productDetails->image}}">
-						<img style="max-height: 56px" id="img_01" src="{{$productDetails->image}}" />
+				  	<a href="#" data-image="{{$productDetails[0]->image_2}}" data-zoom-image="{{$productDetails[0]->image_2}}">
+						<img style="max-height: 56px" id="img_01" src="{{$productDetails[0]->image_2}}" />
 					</a>
 				  </li>
 				  <li class="list-inline-item">
-				  	<a href="#" data-image="{{$productDetails->image}}" data-zoom-image="{{$productDetails->image}}">
-						<img style="max-height: 56px" id="img_01" src="{{$productDetails->image}}" />
+				  	<a href="#" data-image="{{$productDetails[0]->image_3}}" data-zoom-image="{{$productDetails[0]->image_3}}">
+						<img style="max-height: 56px" id="img_01" src="{{$productDetails[0]->image_3}}" />
 					</a>
 				  </li>	
 				  <li class="list-inline-item" >
-				  	<a href="#" data-image="http://www.ford.ie/cs/BlobServer?blobtable=MungoBlobs&blobcol=urldata&blobheader=image%2Fjpeg&blobwhere=1214505722090&blobkey=id" data-zoom-image="http://www.ford.ie/cs/BlobServer?blobtable=MungoBlobs&blobcol=urldata&blobheader=image%2Fjpeg&blobwhere=1214505722090&blobkey=id">
-						<img  style="max-height: 56px" id="img_01" src="http://www.ford.ie/cs/BlobServer?blobtable=MungoBlobs&blobcol=urldata&blobheader=image%2Fjpeg&blobwhere=1214505722090&blobkey=id" />
+				  	<a href="#" data-image="{{$productDetails[0]->image_4}}" data-zoom-image="{{$productDetails[0]->image_4}}">
+						<img  style="max-height: 56px" id="img_01" src="{{$productDetails[0]->image_4}}" />
 					</a>
 				  </li>
 				</ul>	
@@ -27,13 +32,13 @@
 	<div class="col-sm-7">
 		<div class="product-information"><!--/product-information-->
 			<img src="/images/product-details/new.jpg" class="newarrival" alt="" />
-			<h2>{{$productDetails->title}}</h2>
+			<h2>{{$productDetails[0]->title}}</h2>
 			<p>Web ID: 1089772</p>
 			<img src="/images/product-details/rating.png" alt="" />
 			<span>
-				<span>US ${{$productDetails->price}}</span>
+				<span>US ${{$productDetails[0]->price}}</span>
 				<label>Quantity:</label>
-				<form action="{{route('product.addToCart',['id'=>$productDetails->id])}}">
+				<form action="{{route('product.addToCart',['id'=>$productDetails[0]->id])}}">
 					<input type="number" value="0" name="quantity" />
 					<button  class="btn btn-fefault cart">
 						<i class="fa fa-shopping-cart"></i>
@@ -43,7 +48,7 @@
 			</span>
 			<p><b>Availability:</b> In Stock</p>
 			<p><b>Condition:</b> New</p>
-			<p><b>Brand:</b><a href="#">{{$productDetails->brand->brand_name}}</a></p>
+			<p><b>Brand:</b><a href="#">{{$productDetails[0]->brand_name}}</a></p>
 			<a href=""><img src="/images/product-details/share.png" class="share img-responsive"  alt="" /></a>
 		</div><!--/product-information-->
 	</div>
@@ -61,23 +66,23 @@
 	<div class="tab-content">
 		<div class="tab-pane fade" id="details" >
 			<div class="col-sm-12">
-				<p>{{$productDetails->description}}</p>
+				<p>{{$productDetails[0]->description}}</p>
 			</div>
 		</div>
 		
 		<div class="tab-pane fade" id="companyprofile" >
 			<div class="col-sm-12">	
 				<ul>
-					<li><a href=""><i class="fa fa-user"></i>{{$productDetails->brand->brand_name}}</a></li>
+					<li><a href=""><i class="fa fa-user"></i>{{$productDetails[0]->brand_name}}</a></li>
 					<li>From: </li>
 					<li><a href=""><i class="fa fa-calendar-o"></i>31 DEC 2014</a></li>
 				</ul>
 
 				<p>
-					<h2>Brand description: {{$productDetails->brand->brand_description}}</h2>
+					<h2>Brand description: {{$productDetails[0]->brand_description}}</h2>
 				</p>		
 			</div>
-			<h4>Products from <a href="#">{{$productDetails->brand->brand_name}}</a></h4>
+			<h4>Products from <a href="#">{{$productDetails[0]->brand_name}}</a></h4>
 			@foreach($relatedByBrand as $relatedBrand)	
 			<div class="col-sm-3">
 				<div class="product-image-wrapper">
@@ -86,7 +91,7 @@
 							<img src="/images/home/gallery1.jpg" alt="" />
 							<h2>$56</h2>
 							<p>Easy Polo Black Edition</p>
-							<a href="{{route('product.addToCart',['id'=>$productDetails->id])}}" type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+							<a href="{{route('product.addToCart',['id'=>$productDetails[0]->id])}}" type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 						</div>
 					</div>
 				</div>
@@ -95,7 +100,7 @@
 		</div>
 		
 		<div class="tab-pane fade" id="tag" >
-			<h4>Product  by tag: {{$productDetails->category->category_name}}</h4>
+			<h4>Product  by tag: {{$productDetails[0]->category_name}}</h4>
 			@foreach($relatedByCategory as $relCat)
 			<div class="col-sm-3">
 				<div class="product-image-wrapper">
@@ -104,7 +109,7 @@
 							<img src="/images/home/gallery1.jpg" alt="" />
 							<h2>${{$relCat->price}}</h2>
 							<p>{{$relCat->title}}</p>
-							<a href="{{route('product.addToCart',['id'=>$productDetails->id])}}" type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+							<a href="{{route('product.addToCart',['id'=>$productDetails[0]->id])}}" type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 						</div>
 					</div>
 				</div>
@@ -131,7 +136,7 @@
 				@endforeach
 				<p><b>Write Your Review</b></p>
 
-				<form action="{{action('ReviewController@storeReview',[$productDetails->id])}}" method="post">
+				<form action="{{action('ReviewController@storeReview',[$productDetails[0]->id])}}" method="post">
 					<input type="hidden" name="_token" value="{{csrf_token()}}">
 					<span>
 						<input type="text" class="{{ $errors->has('reviewer_name') ? ' has-error' : '' }}" name="reviewer_name" value="{{old('reviewer_name')}}" placeholder="Your Name"/>
@@ -159,8 +164,6 @@
                       </span>
                     @endif
 					<b>Rating:
-
-
 						<div id="rateYo"></div>
 					<button type="submit" class="btn btn-default pull-right">
 						Submit

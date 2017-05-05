@@ -38,7 +38,7 @@ app.post('/uploadImageFile', function (req, res) {
 		});
 
 		form.on('error', function (err) {   
-		  console.log('An error has occured: \n' + err); 
+		  console.log('An error has occuard : \n' + err);
 
 		}); 
 

@@ -22,14 +22,14 @@ class ProductController extends Controller
     public function getIndex()
     {
         $productData = new Product();
-        $featured = $productData->getFeaturedProduct()->get();
+        $featured = $productData->getFeaturedProduct()->take(8)->get();
 
        
 
         $categoryData = new Category();
         $category = $categoryData->getCateory()->take(10)->toArray();
 
-        $recommended = $productData->recommended();
+        $recommended = $productData->recommended()->take(10)->get();
 
         $brandData = new Brand();
         $brand = $brandData->getBrand();
@@ -49,18 +49,20 @@ class ProductController extends Controller
 
     public function show($id)
     {
+        $product=new Product();
+        $productDetails = $product->getProduct()->where('products.id',$id)->get();
 
-        $productDetails = Product::findOrfail($id);
 
         $category = Category::all();
-        $relatedByCategory = Product::where('category_id', $productDetails->category->id)->take(4)->get();
+
+        $relatedByCategory = Product::where('category_id', $productDetails[0]->category_id)->take(4)->get();
 
         $brand = Brand::all();
-        $relatedByBrand = Product::where('brand_id', $productDetails->brand->id)->take(4)->get();
+        $relatedByBrand = Product::where('brand_id', $productDetails[0]->brand_id)->take(4)->get();
 
         $review = Review::where('product_id', $id)->get();
 
-        $recomended = Product::where('title', 'LIKE', $productDetails->title)
+        $recomended = Product::where('title', 'LIKE', $productDetails[0]->title)
             ->orderBy('created_at', 'desc')
             ->take(8)
             ->get();
@@ -399,7 +401,8 @@ class ProductController extends Controller
         
         $input=$request->all();
         $id=$input['id'];
-        $product=Product::where('category_id',$id)->take(8)->get()->toArray();
+        $pro=new Product();
+        $product=$pro->getProduct()->where('products.category_id',$id)->take(8)->get();
         if (count($product)>0) {
                 $data=[
                 'status' => 200,

@@ -136,8 +136,8 @@ Dashboard
                         <tr class="text-center">
                           <th scope="row">{{$index++}}</th>
                           <td>
-                            <a href="{{$p->image}}" data-lightbox="{{$p->image}}" id="productImage" data-title="{{$p->title}}" style=" width: 72px; height: 62px;">
-                              <img src="{{$p->image}}" style=" width: 72px; height: 62px;">
+                            <a href="{{$p->image_header}}" data-lightbox="{{$p->image_header}}" id="productImage" data-title="{{$p->title}}" style=" width: 72px; height: 62px;">
+                              <img src="{{$p->image_header}}" style=" width: 72px; height: 62px;">
                             </a>
                             <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                               <div class="modal-dialog">
@@ -159,8 +159,8 @@ Dashboard
                           <td><h4 id="productTitle">{{ucfirst($p->title)}}</h4></td>
                           <td><p id="productDesc">{{ucfirst( implode(' ', array_slice (str_word_count($p->description,2),0,7)))}}</p></td>
                           <td><p id="productPrice">${{ucfirst($p->price)}}</p></td>
-                          <td><p id="productCategory">{{ucfirst($p->category->category_name)}}</p></td>
-                          <td><p id="productBrand">{{ucfirst($p->brand->brand_name) }}</p></td>
+                          <td><p id="productCategory">{{ucfirst($p->category_name)}}</p></td>
+                          <td><p id="productBrand">{{ucfirst($p->brand_name) }}</p></td>
                           <td class="action_button">
                             <div class="interaction">
                               <a class="edit" href="{{action('adminController@showInfo',['id'=>$p->id])}}" id="confirmationCheck">Edit</a>

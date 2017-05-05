@@ -5,7 +5,7 @@
             <div class="product-image-wrapper">
                 <div class="single-products">
                     <div class="productinfo text-center">
-                        <img src="{{$r->image}}" alt="" />
+                        <img src="{{$r->image_header}}" alt="" />
                         <h2>${{$r->price}}</h2>
                         <p>{{$r->title}}</p>
                         <a href="{{route('product.addToCart',['id'=>$r->id])}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
