@@ -7,7 +7,7 @@ use App\Product;
 class Image extends Model
 {
    
-    protected $fillable = array('product_id', 'image');
+    protected $fillable = array('product_id', 'image_header','image_2','image_3','image_4');
      
     public function product(){
     	return $this->belongsTo(Product::class);

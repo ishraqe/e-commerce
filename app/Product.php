@@ -31,15 +31,36 @@ class Product extends Model
          return $this->hasMany(Order::class);
     }
 
+    public function image(){
+
+        return $this->hasMany(Image::class);
+    }
+
     public function getAllProduct()
     {
-       $product =Product::orderBy('created_at', 'desc')
-               ->paginate(20);
+        $product= DB::table('products')
+            ->join('images', 'products.id', '=', 'images.product_id')
+            ->join('categories','products.category_id', '=','categories.id')
+            ->join('brands','products.brand_id', '=','brands.id')
+            ->select('products.*', 'images.*','categories.category_name','brands.brand_name')
+            ->orderBy('products.created_at','desc')
+           ->paginate(20);
+
+        return $product;
+    }
+
+    public function getProduct(){
+         $product= DB::table('products')
+            ->join('images', 'products.id', '=', 'images.product_id')
+            ->join('categories','products.category_id', '=','categories.id')
+            ->join('brands','products.brand_id', '=','brands.id')
+            ->select('products.*', 'images.*','categories.category_name','brands.brand_name');
+
         return $product;
     }
 
     public function getFeaturedProduct(){
-        $featuredProduct=Product::where('is_featured',1)->get();
+        $featuredProduct=$this->getProduct()->where('is_featured',1);
 
         return $featuredProduct;
     }

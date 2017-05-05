@@ -12,8 +12,11 @@ class searchController extends Controller
 {
     public function getSearch(Request $request){
 
+
         $search=new Search();
+
         $query = $request->input('query');
+        
         if ($query == null) {
             return redirect()->back();
         }

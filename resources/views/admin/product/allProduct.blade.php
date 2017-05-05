@@ -23,8 +23,8 @@
     <tr class="" id="eachProduct-{{$p->id}}">
       <th scope="row">{{$index++}}</th>
     	 <td>
-            <a href="{{$p->image}}" data-lightbox="{{$p->image}}" data-title="{{$p->title}}" style=" width: 72px; height: 62px;">
-              <img src="{{$p->image}}" style=" width: 72px; height: 62px;">
+            <a href="{{$p->image_header}}" data-lightbox="{{$p->image_header}}" data-title="{{$p->title}}" style=" width: 72px; height: 62px;">
+              <img src="{{$p->image_header}}" style=" width: 72px; height: 62px;">
             </a>
         </td>
          <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -53,8 +53,8 @@
         <td style="max-width: 129px" id="description"><p><?= $first_part; ?></p></td>
         <td><p>${{ucfirst($p->price)}}</p></td>
         <td><p>{{ucfirst($p->number_of_products)}}</p></td>
-        <td style="max-width: 129px"><p>{{ucfirst($p->category->category_name)}}</p></td>
-        <td style="max-width: 129px"><p>{{ucfirst($p->brand->brand_name)	}}</p></td>
+        <td style="max-width: 129px"><p>{{ucfirst($p->category_name)}}</p></td>
+        <td style="max-width: 129px"><p>{{ucfirst($p->brand_name)	}}</p></td>
         <td><p><?php echo $foo= ($p->is_featured== true )?  "yes" : "no" ; ?></p></td>
     	  <td id="actionProduct">
     	  	<a  onclick="editProductInfo(this)" style="color: mediumseagreen"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>

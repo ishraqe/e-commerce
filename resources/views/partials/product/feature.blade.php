@@ -6,9 +6,14 @@
         <div class="product-image-wrapper">
             <div class="single-products">
                     <div class="productinfo text-center">
-                        <img src="{{$p->image}}" alt="" />
+
+                        @foreach($p as $o)
+                             <img src="{{$o->image->image_header}}" alt="" />
+                        @endforeach
+
                         <h2>${{$p->price}}</h2>
                         <p>{{$p->title}}</p>
+
                     </div>
                     <div class="product-overlay">
                         <div class="overlay-content">

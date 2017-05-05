@@ -28,7 +28,7 @@ class Search extends Model
            ->union($category)
            ->union($brand)
            ->union($blog)
-           ->simplePaginate(12);
+           ->simplePaginate(30);
 
        return $product;
 

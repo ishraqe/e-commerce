@@ -22,7 +22,9 @@ class ProductController extends Controller
     public function getIndex()
     {
         $productData = new Product();
-        $featured = $productData->getFeaturedProduct()->take(6);
+        $featured = $productData->getFeaturedProduct()->get();
+
+       
 
         $categoryData = new Category();
         $category = $categoryData->getCateory()->take(10)->toArray();

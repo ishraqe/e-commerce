@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
      $this->call(todoSeeder::class);
      $this->call(shippingCost::class);
      $this->call(districtSeeder::class);
+     $this->call(imageSeeder::class);
      
         
     

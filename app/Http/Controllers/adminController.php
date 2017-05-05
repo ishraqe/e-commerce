@@ -75,7 +75,7 @@ class adminController extends Controller
         dd($request->all());
 
         $validator = Validator::make($request->all(), [
-            'title' => 'required|max:25|min:4',
+            'title' => 'required|maPx:25|min:4',
             'description' => 'required',
             'price' => 'required|int',
             'category_id' => 'required',

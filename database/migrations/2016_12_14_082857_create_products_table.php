@@ -21,7 +21,6 @@ class CreateProductsTable extends Migration
             $table->text('description');
             $table->integer('price')->defaut(0);
             $table->integer('rating')->default(0);
-            $table->string('image');
             $table->integer('number_of_products');
             $table->integer('products_user_id');
             $table->integer('is_available')->default(true);
