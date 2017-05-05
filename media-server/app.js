@@ -7,7 +7,7 @@ app = express(),
 server = require('http').createServer(app),
 port = 3500,
 ipAddress = '0.0.0.0',
-uploadDir = '/home/ish/Desktop/artisan/e-commerce/public/products_images',
+uploadDir = '/home/batman/Desktop/artisan/public/products_images',
 filename = '';
 
 
