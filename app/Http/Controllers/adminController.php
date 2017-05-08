@@ -72,7 +72,13 @@ class adminController extends Controller
 
     public function addProduct(Request $request)
     {
-        dd($request->all());
+        $input=$request->all();
+        dd(explode(" ",$input['product_files']));
+
+
+
+        dd(explode(" ",$request->files));
+
 
         $validator = Validator::make($request->all(), [
             'title' => 'required|maPx:25|min:4',

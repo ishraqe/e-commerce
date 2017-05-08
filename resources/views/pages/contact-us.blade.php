@@ -128,7 +128,7 @@
 										<li><a href="blog-single.html">Blog Single</a></li>
                                     </ul>
                                 </li> 
-								<li><a href="404.html">404</a></li>
+								<li><a href="../errors/404.blade.php">404</a></li>
 								<li><a href="contact-us.html" class="active">Contact</a></li>
 							</ul>
 						</div>

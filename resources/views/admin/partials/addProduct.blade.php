@@ -25,8 +25,9 @@
 					
 				</div>
 	      	</div>
-	      <input type="hidden" name="files">
-	      </div>	
+	      <input type="hidden" name="product_files" type="text" >
+
+		  </div>
 	        
 	        <div class="form-group {{ $errors->has('title') ? ' has-error' : '' }}">
 				<label for="title">Title</label>
@@ -106,7 +107,7 @@
 $(function(){
 console.log('hello');
 	$("div#addDropPhoto").dropzone({ 
-		url: "http://192.168.114.131:3500/uploadImageFile",
+		url: "http://10.42.0.83:3500/uploadImageFile",
 		maxFilesize: 50,
 		acceptedFiles: 'image/*',
 		maxFiles: 4,
@@ -115,7 +116,7 @@ console.log('hello');
 		success: function (file, response) {  
 			
 			var formName=$('#addProductForm');
-			var target=formName.find('input[name="files"]');
+			var target=formName.find('input[name="product_files"]');
 			var currentVal=target.val();
 			if (currentVal.length>0 ){
 				var newVal=currentVal+','+response;
