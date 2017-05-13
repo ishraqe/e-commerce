@@ -17,7 +17,7 @@ class Image extends Model
         $image_name = str_random(20);
         $ext = strtolower($image->getClientOriginalExtension());
         $image_full_name = $image_name . '.' . $ext;
-        $destination_path = 'product_images/';
+        $destination_path = '/product_images/';
         $image_url = '/' . $destination_path . $image_full_name;
         $success = $image->move($destination_path, $image_full_name);
 
