@@ -60,7 +60,7 @@ class Product extends Model
     }
 
     public function getFeaturedProduct(){
-        $featuredProduct=$this->getProduct()->where('is_featured',1);
+        $featuredProduct=$this->getProduct()->where('is_featured',1)->orderBy('products.created_at','desc');
 
         return $featuredProduct;
     }

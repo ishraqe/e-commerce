@@ -19,6 +19,7 @@
   </thead>
   <tbody>
   	<?php $index=1; ?>
+    @if(!$product ))
     @foreach($product as $p)
     <tr class="" id="eachProduct-{{$p->id}}">
       <th scope="row">{{$index++}}</th>
@@ -63,6 +64,9 @@
     </tr>
   		@endforeach
 	{{ $product->render() }}
+    @else
+        <p>No product found</p>
+    @endif
   </tbody>
 </table>
 
@@ -390,7 +394,7 @@
 
                     setTimeout(function(){
                            location.reload();
-                      }, 3000);    
+                      }, 1000);    
                 }
             }
         })
