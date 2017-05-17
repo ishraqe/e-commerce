@@ -54,13 +54,14 @@ class Product extends Model
             ->join('images', 'products.id', '=', 'images.product_id')
             ->join('categories','products.category_id', '=','categories.id')
             ->join('brands','products.brand_id', '=','brands.id')
-            ->select('products.*', 'images.*','categories.*','brands.*');
+            ->select( 'images.*','categories.*','brands.*','products.*');
 
         return $product;
     }
 
     public function getFeaturedProduct(){
-        $featuredProduct=$this->getProduct()->where('is_featured',1)->orderBy('products.created_at','desc');
+
+        $featuredProduct=$this->getProduct()->where('products.is_featured',1)->orderBy('products.created_at','desc');
 
         return $featuredProduct;
     }

@@ -113,11 +113,25 @@ class adminController extends Controller
                 $imagePth="/products_images";
                 $image=new Image();
                 $image->product_id=$productId;
-                $image->image_header=$imagePth."/".$imageList[0];
-                $image->image_2=$imagePth."/".$imageList[1];
-                $image->image_3=$imagePth."/".$imageList[2];
-                $image->image_4=$imagePth."/".$imageList[3];
-
+                if (count($imageList)==1) {
+                    $image->image_header=$imagePth."/".$imageList[0];
+                     
+                }elseif (count($imageList)==2) {
+                    $image->image_header=$imagePth."/".$imageList[0];
+                    $image->image_2=$imagePth."/".$imageList[1];
+                  
+                }elseif (count($imageList)==3) {
+                    $image->image_header=$imagePth."/".$imageList[0];
+                    $image->image_2=$imagePth."/".$imageList[1];
+                    $image->image_3=$imagePth."/".$imageList[2];
+                    
+                }elseif (count($imageList)==4) {
+                    $image->image_header=$imagePth."/".$imageList[0];
+                    $image->image_2=$imagePth."/".$imageList[1];
+                    $image->image_3=$imagePth."/".$imageList[2];
+                    $image->image_4=$imagePth."/".$imageList[3];
+                }
+             
                 $saveImage=$image->save();
                 if ($saveImage){
                     Session::flash('added_confirmation', 'Your data has been added!!');

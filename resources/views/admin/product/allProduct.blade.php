@@ -19,7 +19,7 @@
   </thead>
   <tbody>
   	<?php $index=1; ?>
-    @if(!$product ))
+    @if($product )
     @foreach($product as $p)
     <tr class="" id="eachProduct-{{$p->id}}">
       <th scope="row">{{$index++}}</th>

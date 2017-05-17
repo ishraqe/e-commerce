@@ -29,15 +29,13 @@
                         <img src="@{{ this.image_header}}" alt="" />
                         <h2>$@{{ this.price}}</h2>
                         <p>@{{ this.title}}</p>
-                        <a  class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                        <a  class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>View Details</a>
                     </div>
                     <div class="product-overlay">
                         <div class="overlay-content">
                             <h2>$@{{ this.price}}</h2>
                             <p>@{{ this.title}}</p>
-                            {{--<a href="{{route('product.addToCart',['id'=>$p->id])}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>--}}
-                            {{--<a href="{{action('ProductController@show',[$p->id])}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>View Details</a>--}}
+                           <a href="/add-to-cart/@{{this.id}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                         <a href="/product/show/@{{this.id}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>View Details</a>
                         </div>
                     </div>
                 </div>

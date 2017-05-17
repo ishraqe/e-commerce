@@ -50,7 +50,7 @@ class ProductController extends Controller
     {
         $product=new Product();
         $productDetails = $product->getProduct()->where('products.id',$id)->get();
-
+     
 
         $category = Category::all();
 

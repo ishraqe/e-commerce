@@ -6,11 +6,7 @@
         <div class="product-image-wrapper">
             <div class="single-products">
                     <div class="productinfo text-center">
-
-
-                             <img src="{{$p->image_header}}" alt="" />
-
-
+                        <img src="{{$p->image_header}}" alt="" />
                         <h2>${{$p->price}}</h2>
                         <p>{{$p->title}}</p>
 
