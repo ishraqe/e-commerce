@@ -203,9 +203,12 @@ class ProductController extends Controller
         
     }
     public function getCheckOut(Request $request){
+        $cost=new shippingCost();
+        $shippingCost=$cost->getShippingData();
 
-
-        return view('pages.checkout');
+        return view('pages.checkout')->with([
+            'shippingCost' => $shippingCost
+        ]);
     }
 
     public function updatIncreaseCart(Request $request){

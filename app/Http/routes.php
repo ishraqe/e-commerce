@@ -129,6 +129,11 @@ Route::get('cart/deleteItem/{id}',[
     'as' => 'cart.deleteItem'
 ]);
 
+Route::post('/cart/Order',[
+    'uses'=>'OrderController@makeOrder',
+    'as' => 'cart.order'
+]);
+
 Route::post('/addReview/{id}',[
 	'uses'=>'ReviewController@storeReview',
 	'as'=>'review.store'
