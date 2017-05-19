@@ -7,13 +7,17 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use DB;
 use Cart;
+use App\Order;
+use App\order_product;
 use App\shippingCost;
 class OrderController extends Controller
 {
     public function getOrder()
     {
-     $order=Order::all();
-     return view('show')->with(['order'=>$order]);   
+
+
+        return view('admin.order.index');
+
     }
 
 
@@ -45,37 +49,42 @@ class OrderController extends Controller
           'customer_contact_no' => 'required',
           'customer_address' => 'required'
         ]);
+
+       $input=$request->all();
+
         try{
+            $uniqueId= uniqid();
+
+            $order_receipt_id="F_".$uniqueId;
+
             $order = new Order;
              // order_state', 'order_by','placeOfOrder','contact_no'
             $order->order_state = 0;
-            $order->order_by = $request->customer_name;
-            $order->placeOfOrder = $request->customer_address;
-            $order->contact_no = $request->customer_contact_no;
-
+            $order->order_by=$input['customer_name'];
+            $order->placeOfOrder =$input['customer_address'];
+            $order->contact_no = $input['customer_contact_no'];
+            $order->receipt_no=$order_receipt_id;
            $saveOrderInfo= $order->save();
            
            $orderId=$order->id;
            
             if ($saveOrderInfo) {
                $cartItem=Cart::content();
-              
+
               foreach ($cartItem as $item) {
-                  $product_id=$item->id;
-                  $product_qty=$item->qty;
 
                   $order_product=new order_product;
-                  // 'order_id','product_id','qty'
-                  $order_product->order_id =$orderId;
-                  $order_product->product_id = $product_id;
-                  $order_product->qty = $product_qty;
 
-                  $saveOrder= $order->save();
+                  $order_product->order_id =$orderId;
+                  $order_product->product_id = $item->id;
+                  $order_product->qty = $item->qty;
+
+                  $saveOrder= $order_product->save();
                   if ($saveOrder) {
                     if ( count(Cart::content())>0) {
                           Cart::destroy();
+
                     }
-                    return "order_saved";
                   }
               }
             }
@@ -83,4 +92,6 @@ class OrderController extends Controller
           die('Something went wrong, please try sometime later');
         }  
    }
+
+
 }

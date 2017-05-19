@@ -19,7 +19,7 @@
             <li><a href="#mail" data-toggle="collapse" class="collapsed"><i class="fa fa-envelope -o" aria-hidden="true"></i></i> <span>MailBox</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
               <div id="mail" class="collapse "><ul class="nav"><li><a href="" class="">Inbox</a></li></ul></div>
             </li>
-            <li><a href="notifications.html" class=""><i class="fa fa-shopping-cart" aria-hidden="true"></i> <span>Orders</span></a></li>
+            <li><a href="{{url('/admin/orders')}}" class=""><i class="fa fa-shopping-cart" aria-hidden="true"></i> <span>Orders</span></a></li>
             <li><a href="notifications.html" class=""><i class="fa fa-comments-o" aria-hidden="true"></i></i> <span>Review</span></a></li>
             <li><a href="notifications.html" class=""><i class="fa fa-book" aria-hidden="true"></i> <span>Blog</span></a></li>
             <li><a href="tables.html" class=""><i class="lnr lnr-dice"></i> <span>Tables</span></a></li>

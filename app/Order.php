@@ -8,7 +8,7 @@ class Order extends Model
 {
 
 	 protected $fillable = [
-         'order_state', 'order_by','placeOfOrder','contact_no',
+         'order_state', 'order_by','placeOfOrder','contact_no','receipt_no',
     ];
 
     public function product()

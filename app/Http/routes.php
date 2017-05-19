@@ -397,15 +397,12 @@ Route::group(['prefix'=>'admin'],function(){
         'as' => 'admin.deleteBrand',
         'middleware' => 'admin'
     ]);
+    Route::get('/orders',[
+        'uses' => 'OrderController@getOrder',
+        'as' => 'admin.order',
+        'middleware' => 'admin'
+    ]);
 
-
-
-
-
-
-
-
-	
 });
 
 Route::get('/chart',function(){

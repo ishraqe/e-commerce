@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Image;
 use Illuminate\Http\Request;
 
 use App\Wish;
@@ -110,6 +111,8 @@ class ProductController extends Controller
 
     public function getAddToCart(Request $request, $id)
     {
+
+
         if (isset($request['quantity'])){
             $qty=$request['quantity'];
         }else{
@@ -117,6 +120,11 @@ class ProductController extends Controller
         }
 
            $product = Product::findOrfail($id);
+        $productImage= DB::table('images')
+                        ->where('product_id',$id)
+                        ->get();
+
+
 
             Cart::add(['id' => $product->id,
                 'name' =>$product->title,
@@ -126,14 +134,14 @@ class ProductController extends Controller
                     'category_id'=>$product->category_id ,
                     'brand_id' =>$product->brand_id ,
                     'description' =>$product->description ,
-                    'image' => $product->image,
+                    'image' => $productImage[0]->image_header,
                     'products_user_id' =>$product->products_user_id ,
                     'number_of_products'=>$product->number_of_products
                 ]
 
             ]);
 
-        
+
 
 
 
@@ -327,7 +335,6 @@ class ProductController extends Controller
                 'number_of_product'=>$product['number_of_products'],
                 'is_available' => $product['is_available'],
                 'is_sold' => $product['is_sold'],
-                'image'=>$product['image'],
                 'category_id'=>$product['category_id'],
                 'brand_id' => $product['brand_id'],
                 'is_featured' => $product['is_featured']
