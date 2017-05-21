@@ -36,24 +36,27 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td>1</td>
-												<td>Steve</td>
-												<td>Jobs</td>
-												<td>@steve</td>
-											</tr>
-											<tr>
-												<td>2</td>
-												<td>Simon</td>
-												<td>Philips</td>
-												<td>@simon</td>
-											</tr>
-											<tr>
-												<td>3</td>
-												<td>Jane</td>
-												<td>Doe</td>
-												<td>@jane</td>
-											</tr>
+										@foreach($allOrder as $a)
+											<?php dd($a['id']); ?>
+											{{--<tr>--}}
+												{{--<td>1</td>--}}
+												{{--<td>Steve</td>--}}
+												{{--<td>Jobs</td>--}}
+												{{--<td>@steve</td>--}}
+											{{--</tr>--}}
+											{{--<tr>--}}
+												{{--<td>2</td>--}}
+												{{--<td>Simon</td>--}}
+												{{--<td>Philips</td>--}}
+												{{--<td>@simon</td>--}}
+											{{--</tr>--}}
+											{{--<tr>--}}
+												{{--<td>3</td>--}}
+												{{--<td>Jane</td>--}}
+												{{--<td>Doe</td>--}}
+												{{--<td>@jane</td>--}}
+											{{--</tr>--}}
+										@endforeach
 										</tbody>
 									</table>
 					</div>

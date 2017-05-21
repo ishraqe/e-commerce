@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Product;
+use DB;
 class Order extends Model
 {
 
@@ -14,5 +15,13 @@ class Order extends Model
     public function product()
     {
         return $this->hasMany(Product::class);
+    }
+
+    public function getOrderAll(){
+        $order= DB::table('products')
+            ->join('order_products', 'order_products.product_id', '=', 'products.id')
+            ->select('products.*','order_products.*');
+
+        return $order;
     }
 }
