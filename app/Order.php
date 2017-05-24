@@ -18,9 +18,11 @@ class Order extends Model
     }
 
     public function getOrderAll(){
-        $order= DB::table('products')
-            ->join('order_products', 'order_products.product_id', '=', 'products.id')
-            ->select('products.*','order_products.*');
+        $order= DB::table('order_products')
+            ->join('orders', 'order_products.order_id', '=', 'orders.id')
+            ->select('orders.*','order_products.product_id','order_products.qty');
+
+
 
         return $order;
     }

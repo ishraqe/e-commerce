@@ -15,7 +15,7 @@ class OrderController extends Controller
     public function getOrder()
     {
         $order=new Order;
-        $allOrder=$order->getOrderAll();
+        $allOrder=$order->getOrderAll()->get();
 
         return view('admin.order.index')->with([
             'allOrder'=> $allOrder

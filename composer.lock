@@ -1186,16 +1186,16 @@
         },
         {
             "name": "swiftmailer/swiftmailer",
-            "version": "v5.4.7",
+            "version": "v5.4.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "56db4ed32a6d5c9824c3ecc1d2e538f663f47eb4"
+                "reference": "9a06dc570a0367850280eefd3f1dc2da45aef517"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/56db4ed32a6d5c9824c3ecc1d2e538f663f47eb4",
-                "reference": "56db4ed32a6d5c9824c3ecc1d2e538f663f47eb4",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/9a06dc570a0367850280eefd3f1dc2da45aef517",
+                "reference": "9a06dc570a0367850280eefd3f1dc2da45aef517",
                 "shasum": ""
             },
             "require": {
@@ -1236,7 +1236,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2017-04-20T17:32:18+00:00"
+            "time": "2017-05-01T15:54:03+00:00"
         },
         {
             "name": "symfony/console",
@@ -2019,16 +2019,16 @@
         },
         {
             "name": "unisharp/laravel-filemanager",
-            "version": "v1.7.6",
+            "version": "v1.7.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/UniSharp/laravel-filemanager.git",
-                "reference": "bc3d5975c19445ed5a64a80a186356a91af8d278"
+                "reference": "4efe7057b6a7d7a5feccf9e2fb68146758fd7a8c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/UniSharp/laravel-filemanager/zipball/bc3d5975c19445ed5a64a80a186356a91af8d278",
-                "reference": "bc3d5975c19445ed5a64a80a186356a91af8d278",
+                "url": "https://api.github.com/repos/UniSharp/laravel-filemanager/zipball/4efe7057b6a7d7a5feccf9e2fb68146758fd7a8c",
+                "reference": "4efe7057b6a7d7a5feccf9e2fb68146758fd7a8c",
                 "shasum": ""
             },
             "require": {
@@ -2079,7 +2079,7 @@
                 "tinymce",
                 "upload"
             ],
-            "time": "2017-04-28T06:34:29+00:00"
+            "time": "2017-05-18T01:41:19+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -2996,23 +2996,23 @@
         },
         {
             "name": "sebastian/diff",
-            "version": "1.4.1",
+            "version": "1.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/diff.git",
-                "reference": "13edfd8706462032c2f52b4b862974dd46b71c9e"
+                "reference": "7f066a26a962dbe58ddea9f72a4e82874a3975a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/13edfd8706462032c2f52b4b862974dd46b71c9e",
-                "reference": "13edfd8706462032c2f52b4b862974dd46b71c9e",
+                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/7f066a26a962dbe58ddea9f72a4e82874a3975a4",
+                "reference": "7f066a26a962dbe58ddea9f72a4e82874a3975a4",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": "^5.3.3 || ^7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.8"
+                "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.0"
             },
             "type": "library",
             "extra": {
@@ -3044,7 +3044,7 @@
             "keywords": [
                 "diff"
             ],
-            "time": "2015-12-08T07:14:41+00:00"
+            "time": "2017-05-22T07:24:03+00:00"
         },
         {
             "name": "sebastian/environment",
