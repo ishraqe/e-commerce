@@ -107,7 +107,7 @@
 $(function(){
 
 	$("div#addDropPhoto").dropzone({ 
-		url: "http://192.168.3.17:3500/uploadImageFile",
+		url: "http://127.0.0.1:3500/uploadImageFile",
 		maxFilesize: 50,
 		acceptedFiles: 'image/*',
 		maxFiles: 4,

@@ -2,7 +2,7 @@
 <html lang="en" class="fullscreen-bg">
 
 <head>
-	<title>Login | Klorofil - Free Bootstrap Dashboard Template</title>
+	<title>Login </title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -27,8 +27,7 @@
 				<div class="auth-box ">
 					<div class="left">
 						<div class="content">
-							<div class="logo text-center"><img src="/assets/img/logo-dark.png" alt="Klorofil Logo"></div>
-							<form class="form-auth-small" action="{{route('admin.postlogin')}}" method="post">
+							<form style="margin-top: -342px" class="form-auth-small" action="{{route('admin.postlogin')}}" method="post">
 								<input type="hidden" name="_token" value="{{csrf_token()}}">
 								<div class="form-group">
 
@@ -47,12 +46,12 @@
 								<div class="form-group clearfix">
 									<label class="fancy-checkbox element-left">
 										<input type="checkbox">
-										<span>Remember me</span>
+										
 									</label>
 								</div>
 								<button type="submit" class="btn btn-primary btn-lg btn-block">LOGIN</button>
 								<div class="bottom">
-									<span><i class="fa fa-lock"></i> <a href="#">Forgot password?</a></span>
+									
 								</div>
 							</form>
 						</div>
@@ -60,8 +59,7 @@
 					<div class="right">
 						<div class="overlay"></div>
 						<div class="content text">
-							<h1 class="heading">Free Bootstrap dashboard template</h1>
-							<p>by The Develovers</p>
+						
 						</div>
 					</div>
 					<div class="clearfix"></div>

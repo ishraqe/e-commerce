@@ -109,9 +109,10 @@ class ProductController extends Controller
         ]);
     }
 
-    public function getAddToCart(Request $request, $id)
+    public function getAddToCart(Request $request)
     {
-
+        $input=$request->all();
+        $productId=$input['id'];
 
         if (isset($request['quantity'])){
             $qty=$request['quantity'];
@@ -119,14 +120,14 @@ class ProductController extends Controller
             $qty=1;
         }
 
-           $product = Product::findOrfail($id);
-        $productImage= DB::table('images')
-                        ->where('product_id',$id)
+           $product = Product::findOrfail($productId);
+           $productImage= DB::table('images')
+                        ->where('product_id',$productId)
                         ->get();
 
 
 
-            Cart::add(['id' => $product->id,
+           Cart::add(['id' => $product->id,
                 'name' =>$product->title,
                 'qty' => $qty,
                 'price' => $product->price,
@@ -139,13 +140,13 @@ class ProductController extends Controller
                     'number_of_products'=>$product->number_of_products
                 ]
 
-            ]);
+           ]);
 
-
-
-
-
-        return redirect()->back();
+        return [
+            'status' => 200,
+            'subTotal' =>  Cart::subtotal(),
+            'count'   => Cart::count()
+        ];
     }
 
     public function addToWishlist(Request $request, $id)

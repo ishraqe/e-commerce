@@ -64,7 +64,7 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="logo pull-left">
-                            <a href="{{url('/')}}"><img src="images/home/logo.png" alt="" /></a>
+                            <a href="{{url('/')}}"><img height="31px" src="images/home/story.png" alt="" /></a>
                         </div>
                        
                         
@@ -89,7 +89,7 @@
                                     </a>
                                 </li>
                                 <li><a href="{{route('cart.checkout')}}"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                                <li> 
+                                <li id="addToCart-body">
                                     <a id="header-cart-item" href="{{route('product.shoppingCart')}}">Cart -
                                         <span class="cart-amunt">
                                             {{Cart::subtotal()}}
@@ -166,7 +166,6 @@
                                         <li><a href="{{route('brand.all')}}">See all</a></li>
                                     </ul>
                                 </li>  
-                                <li><a href="404.html">404</a></li>
                                 <li><a href="{{url('/contact')}}">Contact</a></li>
                             </ul>
                         </div>
@@ -252,7 +251,7 @@
                     </div>
                     <div class="col-sm-2">
                         <div class="single-widget">
-                            <h2>About Shopper</h2>
+                            <h2>About Artisan</h2>
                             <ul class="nav nav-pills nav-stacked">
                                 <li><a href="#">Company Information</a></li>
                                 <li><a href="#">Careers</a></li>
@@ -264,7 +263,7 @@
                     </div>
                     <div class="col-sm-3 col-sm-offset-1">
                         <div class="single-widget">
-                            <h2>About Shopper</h2>
+                            <h2>About Aritsan</h2>
                             <form action="#" class="searchform">
                                 <input type="text" placeholder="Your email address" />
                                 <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
@@ -361,6 +360,45 @@
                 }
             })
         });
+
+    </script>
+    <script id="addToCart-template" type="text/x-handlebars-template">
+        <a id="header-cart-item" href="/shopping-cart">Cart -
+            <span class="cart-amunt">@{{subtotal}}</span>
+            <i class="fa fa-shopping-cart"></i>
+            <span class="badge">@{{count}} </span>
+        </a>
+    </script>
+    <script>
+        function  addToCart(trigger) {
+
+            var trigger=$(trigger);
+            var dataId=trigger.attr("data-id");
+
+
+
+            param = {
+                id : dataId
+            };
+
+            $.ajax({
+                url: "/add-to-cart",
+                method: "get",
+                data: param,
+                dataType: "json",
+                success: function (res) {
+                    if(res.status==200){
+
+                        var source   = $("#addToCart-template").html();
+                        var template = Handlebars.compile(source);
+                        var context = {subtotal:res.subTotal,count:res.count};
+                        var html    = template(context);
+                        $('#addToCart-body').replaceWith(html);
+                    }
+                }
+            })
+        }
+
 
     </script>
 

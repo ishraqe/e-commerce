@@ -88,7 +88,7 @@ Route::get('/product-details', [
 	'as' => 'productDetails'
 ]);
 
-Route::get('/add-to-cart/{id}',[
+Route::get('/add-to-cart/',[
 	'uses'=>'ProductController@getAddToCArt',
 	'as' => 'product.addToCart'
 ]);
