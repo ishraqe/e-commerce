@@ -12,6 +12,11 @@ use App\order_product;
 use App\shippingCost;
 class OrderController extends Controller
 {
+
+  public function my()
+  {
+    # code...
+  }
     public function getOrder()
     {
         $order=new Order;
